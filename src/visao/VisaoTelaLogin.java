@@ -10,10 +10,10 @@ public class VisaoTelaLogin extends JPanel{
 	private JPasswordField  passwordFieldSenha      = null;
 	private JButton 		buttonSair        		= null;
 	private JButton 		buttonEntrar        	= null;
-	private JSeparator separatorTitulo;
-	private JLabel labelPaginaLogin;
-	private JLabel labelLogo;
-	private Icon imagemSistema;
+	private JSeparator 		separatorTitulo        	= null;
+	private JLabel 			labelPaginaLogin        = null;
+	private JLabel 			labelLogo        		= null;
+	private Icon 			imagemSistema        	= null;
 	
 	public VisaoTelaLogin() {
 		setBackground(new Color(252, 246, 229));

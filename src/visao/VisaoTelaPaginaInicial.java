@@ -26,10 +26,10 @@ public class VisaoTelaPaginaInicial extends JPanel {
 	private JMenuItem menuItemEntregaInserirEndereco = null;
 	private JMenuItem menuItemEntregaConsultar 	 	 = null;
 	private JMenuItem menuItemEntregaGerenciar 	 	 = null;
-	private JSeparator separatorTitulo;
-	private JLabel labelPaginaInicial;
-	private JLabel labelLogo;
-	private Icon imagemSistema;
+	private JSeparator separatorTitulo        		 = null;
+	private JLabel labelPaginaInicial        	 	 = null;
+	private JLabel labelLogo        				 = null;
+	private Icon imagemSistema        				 = null;
 	
 	public VisaoTelaPaginaInicial() {
 		setLayout(null);

@@ -20,52 +20,51 @@ import visao.VisaoTelaPesquisa;
 import java.awt.Rectangle;
 
 public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
-	private JLabel labelTipoCliente;
-	private JLabel labelSituacao;
-	private JLabel labelRazoSocial;
-	private JLabel labelContato;
-	private JLabel labelCep;
-	private JLabel labelCnpj;
-	private JLabel labelInscrioEstadualN;
-	private JLabel labelUfEndereco;
-	private JLabel labelNumero;
-	private JLabel labelCidade;
-	private JLabel labelEmail;
-	private JLabel labelBairro;
-	private JLabel labelTelefone;
-	private JLabel labelComplemento;
-	private JLabel labelLogradouro;
-	private JLabel labelLimiteDeCredito;
-	private JLabel labelPaginaCadastroCliente;
-	private JLabel labelUfInscricaoEstadual;
-	private JLabel label;
-	private JLabel labelTituloEndereo;
-	private JComboBox<String> comboBoxTipoCliente;
-	private JComboBox<String> comboBoxSituacaoCliente;
-	private JComboBox<String> 	comboBoxEstadoEndereco;
-	private JFormattedTextField formattedTextFieldCEP;
-	private JFormattedTextField formattedTextFieldTelefone;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldNumero;
-	private ValidacaoGeralCamposTexto validacaoJTextFieldCnpj;
-	private ValidacaoGeralCamposTexto validacaoJTextFieldInscricaoEstadual;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldCidade;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldLogradouro;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldBairro;	
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldRazaoSocial;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldRepresentante;
-	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldComplemento;
-	private ValidacaoGeralCamposTexto validacaoJTextFieldEmail;
-	private ValidacaoGeralCamposTexto validacaoJTextFieldLimiteCredito;
-	private JComboBox<String> comboBoxUfInscricaoEstadual;
-	private VisaoTelaPesquisa telaPesquisa;
-	private JSeparator separator;
-	private JSeparator separator_1;
-	private JSeparator separatorTitulo;	
-	private ClienteJuridicoTable clienteJuridicoTableModel;
-	private FormataMascaras mascaraFixa = new FormataMascaras();
-	private ClienteJuridicoTable buscaExibicaoTableModel;
+	private JLabel labelTipoCliente		 	  = null;
+	private JLabel labelSituacao		 	  = null;
+	private JLabel labelRazaoSocial		 	  = null;
+	private JLabel labelContato		 	 	  = null;
+	private JLabel labelCep		 	 		  = null;
+	private JLabel labelCnpj		 	 	  = null;
+	private JLabel labelInscricaoEstadualN	  = null;
+	private JLabel labelUfEndereco		 	  = null;
+	private JLabel labelNumero		 	 	  = null;
+	private JLabel labelCidade		 	 	  = null;
+	private JLabel labelEmail		 	 	  = null;
+	private JLabel labelBairro		 	 	  = null;
+	private JLabel labelTelefone		 	  = null;
+	private JLabel labelComplemento		 	  = null;
+	private JLabel labelLogradouro		 	  = null;
+	private JLabel labelLimiteDeCredito		  = null;
+	private JLabel labelPaginaCadastroCliente = null;
+	private JLabel labelUfInscricaoEstadual	  = null;
+	private JLabel label		 	 		  = null;
+	private JLabel labelTituloEndereo		  = null;
+	private JLabel lblR		 	 		      = null;
+	private JComboBox<String> comboBoxTipoCliente		  = null;
+	private JComboBox<String> comboBoxSituacaoCliente	  = null;
+	private JComboBox<String> comboBoxEstadoEndereco	  = null;
+	private JComboBox<String> comboBoxUfInscricaoEstadual = null;
+	private JFormattedTextField formattedTextFieldCEP	  = null;
+	private JFormattedTextField formattedTextFieldTelefone	= null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldNumero		= null;
+	private ValidacaoGeralCamposTexto validacaoJTextFieldCnpj		 	    = null;
+	private ValidacaoGeralCamposTexto validacaoJTextFieldInscricaoEstadual	= null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldCidade	    = null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldLogradouro	= null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldBairro		= null;	
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldRazaoSocial	= null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldRepresentante	= null;
+	private ValidacaoGeralCamposTexto validacaoGeralJTextFieldComplemento	= null;
+	private ValidacaoGeralCamposTexto validacaoJTextFieldEmail		 	 	= null;
+	private ValidacaoGeralCamposTexto validacaoJTextFieldLimiteCredito		= null;
+	private JSeparator separator		= null;
+	private JSeparator separator_1		= null;
+	private JSeparator separatorTitulo	= null;	
+	private ClienteJuridicoTable clienteJuridicoTableModel = null;
+	private ClienteJuridicoTable buscaExibicaoTableModel   = null;
+	private VisaoTelaPesquisa telaPesquisa = null;
 	FormataMascaras fm = new FormataMascaras();
-	private JLabel lblR;
 	
 	public VisaoTelaCadastroClientePessoaJuridica() {
 		setLayout(null);
@@ -74,8 +73,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		setMaximumSize(new Dimension(1055, 720));
 		add(getLabelTipoCliente());
 		add(getLabelSituacao());
-		add(getComboBoxTipoCliente());
-		add(getComboBoxSituacaoCliente());
 		add(getLabelRazoSocial());
 		add(getLabelContato());
 		add(getLabelCep());
@@ -91,32 +88,33 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		add(getLabelTelefone());
 		add(getLabelLimiteDeCredito());
 		add(getLabelComplemento());
+		add(getLabelPaginaCadastroCliente());
+		add(getLabel());
+		add(getLabelTituloEndereo());
+		add(getLblR());
+		add(getLabelUfInscricaoEstadual());
 		add(getComboBoxTipoCliente());
 		add(getComboBoxEstadoEndereco());
 		add(getComboBoxSituacaoCliente());
+		add(getComboBoxUfInscricaoEstadual());
 		add(getValidacaoGeralJTextFieldRazaoSocial());
+		add(getFormattedTextFieldTelefone());
 		add(getFormattedTextFieldCEP());
 		add(getValidacaoGeralJTextFieldNumero());
 		add(getValidacaoGeralJTextFieldCidade());
 		add(getValidacaoGeralJTextFieldLogradouro());
 		add(getValidacaoGeralJTextFieldBairro());
-		add(getFormattedTextFieldTelefone());
 		add(getValidacaoGeralJTextFieldComplemento());
 		add(getValidacaoJTextFieldEmail());
 		add(getValidacaoJTextFieldLimiteCredito());
 		add(getValidacaoJTextFieldInscricaoEstadual());
 		add(getValidacaoJTextFieldCnpj());
 		add(getValidacaoGeralJTextFieldRepresentante());
-		add(getSeparatorTitulo());
-		add(getLabelPaginaCadastroCliente());
-		add(getLabelUfInscricaoEstadual());
-		add(getComboBoxUfInscricaoEstadual());
-		add(getTelaPesquisa());		
+		add(getSeparatorTitulo());	
 		add(getSeparator());
-		add(getLabel());
-		add(getLabelTituloEndereo());
 		add(getSeparator_1());
-		add(getLblR());
+		add(getTelaPesquisa());	
+		
 	}
 	
 	public JLabel getLabelTipoCliente() {
@@ -140,13 +138,13 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		return labelSituacao;
 	}
 	public JLabel getLabelRazoSocial() {
-		if (labelRazoSocial == null) {
-			labelRazoSocial = new JLabel("Raz\u00E3o Social:*");
-			labelRazoSocial.setForeground(Color.BLACK);
-			labelRazoSocial.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelRazoSocial.setBounds(10, 100, 115, 20);
+		if (labelRazaoSocial == null) {
+			labelRazaoSocial = new JLabel("Raz\u00E3o Social:*");
+			labelRazaoSocial.setForeground(Color.BLACK);
+			labelRazaoSocial.setFont(new Font("Arial", Font.PLAIN, 16));
+			labelRazaoSocial.setBounds(10, 100, 115, 20);
 		}
-		return labelRazoSocial;
+		return labelRazaoSocial;
 	}
 	public JLabel getLabelContato() {
 		if (labelContato == null) {
@@ -176,13 +174,13 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		return labelCnpj;
 	}
 	public JLabel getLabelInscrioEstadualN() {
-		if (labelInscrioEstadualN == null) {
-			labelInscrioEstadualN = new JLabel("Inscri\u00E7\u00E3o Estadual n\u00BA:*");
-			labelInscrioEstadualN.setForeground(Color.BLACK);
-			labelInscrioEstadualN.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelInscrioEstadualN.setBounds(400, 148, 171, 20);
+		if (labelInscricaoEstadualN == null) {
+			labelInscricaoEstadualN = new JLabel("Inscri\u00E7\u00E3o Estadual n\u00BA:*");
+			labelInscricaoEstadualN.setForeground(Color.BLACK);
+			labelInscricaoEstadualN.setFont(new Font("Arial", Font.PLAIN, 16));
+			labelInscricaoEstadualN.setBounds(400, 148, 171, 20);
 		}
-		return labelInscrioEstadualN;
+		return labelInscricaoEstadualN;
 	}
 	public JLabel getLabelNumero() {
 		if (labelNumero == null) {
@@ -502,11 +500,11 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
 			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
 			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(850, 41);
+			telaPesquisa.getButtonBuscar().setLocation(789, 41);
 			telaPesquisa.getJTableDadosCliente().setModel(getBuscaExibicaoTableModel(false));
 			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(10, 89, 1014, 208);
+			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
 			telaPesquisa.setBounds(0,334, 1058, 357);
 			//algumas alterações, variantes de tabela pra tabela

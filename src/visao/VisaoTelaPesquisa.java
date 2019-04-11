@@ -9,20 +9,20 @@ import modelo.tableModel.ClienteFisicoTable;
 import modelo.tableModel.ClienteJuridicoTable;
 
 public class VisaoTelaPesquisa extends JPanel {
-	private JLabel labelPesquisa;
-	private JComboBox<String> comboBoxTipoPesquisa;
-	private JTextField textFieldEntradaDado;
-	private JButton buttonBuscar;
-	private JButton buttonIncluir;
-	private JButton buttonExcluir;
-	private JButton buttonAlterar;
-	private JButton buttonCancelar;
-	private JButton buttonConfirmar;
-	private JButton buttonFechar;
-	private JSeparator separatorPesquisa;
-	private JSeparator separatorBotoes;
-	private JTable jtableDadosCliente;
-	private JScrollPane dadosClienteJScrollPane;
+	private JLabel labelPesquisa        			= null;
+	private JComboBox<String> comboBoxTipoPesquisa  = null;
+	private JTextField textFieldEntradaDado        	= null;
+	private JButton buttonBuscar        			= null;
+	private JButton buttonIncluir        			= null;
+	private JButton buttonExcluir        			= null;
+	private JButton buttonAlterar        			= null;
+	private JButton buttonCancelar        			= null;
+	private JButton buttonConfirmar        			= null;
+	private JButton buttonFechar        			= null;
+	private JSeparator separatorPesquisa        	= null;
+	private JSeparator separatorBotoes        		= null;
+	private JTable jtableDadosCliente        		= null;
+	private JScrollPane dadosClienteJScrollPane    	= null;
 	
 	public VisaoTelaPesquisa() {
 		setLayout(null);
@@ -84,7 +84,7 @@ public class VisaoTelaPesquisa extends JPanel {
 			buttonBuscar.setForeground(Color.BLACK);
 			buttonBuscar.setBackground(Color.WHITE);
 			buttonBuscar.setFont(new Font("Arial", Font.PLAIN, 16));
-			buttonBuscar.setBounds(850, 41, 135, 24);
+			buttonBuscar.setBounds(789, 43, 135, 24);
 		}
 		return buttonBuscar;
 	}
@@ -153,7 +153,7 @@ public class VisaoTelaPesquisa extends JPanel {
 			separatorPesquisa = new JSeparator();
 			separatorPesquisa.setBackground(Color.WHITE);
 			separatorPesquisa.setForeground(Color.BLACK);
-			separatorPesquisa.setBounds(0, 74, 804, 20);
+			separatorPesquisa.setBounds(0, 74, 1053, 20);
 		}
 		return separatorPesquisa;
 	}
@@ -204,7 +204,7 @@ public class VisaoTelaPesquisa extends JPanel {
 	public JScrollPane getDadosClienteJScrollPane() {
 		if(dadosClienteJScrollPane == null) {
 			dadosClienteJScrollPane = new JScrollPane(getJTableDadosCliente());
-			dadosClienteJScrollPane.setBounds(10, 89, 776, 208);
+			dadosClienteJScrollPane.setBounds(48, 89, 905, 208);
 		}
 		return dadosClienteJScrollPane;
 	}	

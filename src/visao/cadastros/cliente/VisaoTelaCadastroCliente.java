@@ -16,13 +16,13 @@ import modelo.tableModel.ClienteJuridicoTable;
 import visao.VisaoTelaPesquisa;
 
 public class VisaoTelaCadastroCliente extends JPanel {
-	private JLabel labelTipoCliente;
-	private JLabel labelPaginaCadastroCliente;
-	private JComboBox<String> comboBoxTipoCliente;
-	private JSeparator separatorTitulo;
-	private VisaoTelaPesquisa telaPesquisa;
-	private ClienteFisicoTable buscaExibicaoTableModelFisico;
-	private ClienteJuridicoTable buscaExibicaoTableModelJuridico;
+	private JLabel 					labelTipoCliente		 		= null;
+	private JLabel 					labelPaginaCadastroCliente		= null;
+	private JComboBox<String> 		comboBoxTipoCliente		 		= null;
+	private JSeparator 				separatorTitulo		 			= null;
+	private VisaoTelaPesquisa 		telaPesquisa		 			= null;
+	private ClienteFisicoTable 		buscaExibicaoTableModelFisico	= null;
+	private ClienteJuridicoTable 	buscaExibicaoTableModelJuridico	= null;
 	
 	public VisaoTelaCadastroCliente() {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -88,10 +88,10 @@ public class VisaoTelaCadastroCliente extends JPanel {
 			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
 			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
 			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(850, 41);
+			telaPesquisa.getButtonBuscar().setLocation(789, 41);
 			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(10, 89, 1014, 208);
+			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
 			telaPesquisa.setBounds(0,334, 1058, 357);
 		}
