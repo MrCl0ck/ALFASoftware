@@ -25,8 +25,9 @@ public class VisaoTelaCadastroCliente extends JPanel {
 	private ClienteJuridicoTable 	buscaExibicaoTableModelJuridico	= null;
 	
 	public VisaoTelaCadastroCliente() {
-		setBorder(new LineBorder(new Color(0, 0, 0)));
+		
 		setLayout(null);
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(252, 246, 229));
 		setMinimumSize(new Dimension(804, 770));
 		setMaximumSize(new Dimension(804, 770));

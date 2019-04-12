@@ -392,6 +392,7 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		}
 		return labelBairro;
 	}
+	
 	public ValidacaoGeralCamposTexto getValidacaoJTextFieldBairro() {
 		if (validacaoJTextFieldBairro == null) {
 			validacaoJTextFieldBairro = new ValidacaoGeralCamposTexto("7");
@@ -413,6 +414,7 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		}
 		return labelTelefone;
 	}
+	
 	public JFormattedTextField getFormattedTextFieldTelefone() {
 		if (formattedTextFieldTelefone == null) {
 			formattedTextFieldTelefone = new JFormattedTextField(fm.getTelefone());
@@ -434,6 +436,7 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		}
 		return labelComplemento;
 	}
+	
 	public ValidacaoGeralCamposTexto getValidacaoJTextFieldComplemento() {
 		if (validacaoJTextFieldComplemento == null) {
 			validacaoJTextFieldComplemento = new ValidacaoGeralCamposTexto("7");
@@ -454,6 +457,7 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		}
 		return labelLimiteDeCredito;
 	}
+	
 	public ValidacaoGeralCamposTexto getTextFieldLimiteCredito() {
 		if (validacaoJTextFieldLimiteCredito == null) {
 			validacaoJTextFieldLimiteCredito = new ValidacaoGeralCamposTexto("10");
