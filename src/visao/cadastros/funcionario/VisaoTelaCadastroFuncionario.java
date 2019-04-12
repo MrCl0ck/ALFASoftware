@@ -168,14 +168,14 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			telaPesquisa.getButtonIncluir().setLocation(85, 321);
 			telaPesquisa.getButtonBuscar().setSize(135, 24);
 			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
-			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
-			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(789, 41);
-			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
+			telaPesquisa.getComboBoxTipoPesquisa().setLocation(109, 38);
+			telaPesquisa.getTextFieldEntradaDado().setLocation(320, 38);
+			telaPesquisa.getButtonBuscar().setLocation(839, 38);
+			telaPesquisa.getSeparatorBotoes().setSize(1105, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1058, 357);
+			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 987, 208);
+			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1105, 20);
+			telaPesquisa.setBounds(0,334, 1105, 357);
 		}
 		return telaPesquisa;
 	}
@@ -184,7 +184,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			labelCadastroDeFuncionrio = new JLabel(" Cadastro de Funcion\u00E1rio");
 			labelCadastroDeFuncionrio.setBorder(new LineBorder(Color.BLACK));
 			labelCadastroDeFuncionrio.setFont(new Font("Arial", Font.BOLD, 22));
-			labelCadastroDeFuncionrio.setBounds(0, 0, 1055, 25);
+			labelCadastroDeFuncionrio.setBounds(0, 0, 1105, 26);
 		}
 		return labelCadastroDeFuncionrio;
 	}
@@ -288,7 +288,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelCep == null) {
 			labelCep = new JLabel("CEP:*");
 			labelCep.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelCep.setBounds(10, 276, 104, 20);
+			labelCep.setBounds(10, 280, 104, 20);
 		}
 		return labelCep;
 	}
@@ -296,7 +296,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelLogradouro == null) {
 			labelLogradouro = new JLabel("Logradouro:*");
 			labelLogradouro.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelLogradouro.setBounds(1129, 245, 46, 20);
+			labelLogradouro.setBounds(114, 280, 239, 20);
 		}
 		return labelLogradouro;
 	}
@@ -304,7 +304,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelNumero == null) {
 			labelNumero = new JLabel("N\u00FAmero:*");
 			labelNumero.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelNumero.setBounds(1054, 273, 104, 20);
+			labelNumero.setBounds(551, 280, 104, 20);
 		}
 		return labelNumero;
 	}
@@ -312,7 +312,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelBairro == null) {
 			labelBairro = new JLabel("Bairro:*");
 			labelBairro.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelBairro.setBounds(1139, 273, 46, 20);
+			labelBairro.setBounds(619, 280, 78, 20);
 		}
 		return labelBairro;
 	}
@@ -320,7 +320,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelComplemento == null) {
 			labelComplemento = new JLabel("Complemento:");
 			labelComplemento.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelComplemento.setBounds(1139, 334, 46, 20);
+			labelComplemento.setBounds(331, 280, 211, 20);
 		}
 		return labelComplemento;
 	}
@@ -328,7 +328,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelCidade == null) {
 			labelCidade = new JLabel("Cidade:*");
 			labelCidade.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelCidade.setBounds(1054, 298, 104, 20);
+			labelCidade.setBounds(774, 280, 104, 20);
 		}
 		return labelCidade;
 	}
@@ -336,7 +336,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (labelUfEndereco == null) {
 			labelUfEndereco = new JLabel("UF:*");
 			labelUfEndereco.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelUfEndereco.setBounds(1129, 298, 46, 20);
+			labelUfEndereco.setBounds(991, 280, 57, 20);
 		}
 		return labelUfEndereco;
 	}
@@ -455,7 +455,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			formattedTextFieldCEP.setBackground(Color.WHITE);
 			formattedTextFieldCEP.setForeground(Color.BLACK);
 			formattedTextFieldCEP.setFont(new Font("Arial", Font.PLAIN, 16));
-			formattedTextFieldCEP.setBounds(928, 303, 104, 20);
+			formattedTextFieldCEP.setBounds(10, 302, 99, 20);
 		}
 		return formattedTextFieldCEP;
 	}
@@ -485,7 +485,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			formattedTextFieldDataAdmissao.setBackground(Color.WHITE);
 			formattedTextFieldDataAdmissao.setForeground(Color.BLACK);
 			formattedTextFieldDataAdmissao.setFont(new Font("Arial", Font.PLAIN, 16));
-			formattedTextFieldDataAdmissao.setBounds(307, 182, 104, 20);
+			formattedTextFieldDataAdmissao.setBounds(307, 182, 125, 20);
 		}
 		return formattedTextFieldDataAdmissao;
 	}
@@ -517,7 +517,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldNumero.setForeground(Color.BLACK);
 			validacaoJTextFieldNumero.setFont(new Font("Arial", Font.PLAIN, 16));
 
-			validacaoJTextFieldNumero.setBounds(539, 250, 72, 21);
+			validacaoJTextFieldNumero.setBounds(549, 302, 58, 21);
 		}
 		return validacaoJTextFieldNumero;
 	}
@@ -527,7 +527,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldCidade.setBackground(Color.WHITE);
 			validacaoJTextFieldCidade.setForeground(Color.BLACK);
 			validacaoJTextFieldCidade.setFont(new Font("Arial", Font.PLAIN, 16));
-			validacaoJTextFieldCidade.setBounds(401, 305, 207, 20);
+			validacaoJTextFieldCidade.setBounds(774, 302, 207, 20);
 		}
 		return validacaoJTextFieldCidade;
 	}
@@ -538,7 +538,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldEmail.setBackground(Color.WHITE);
 			validacaoJTextFieldEmail.setForeground(Color.BLACK);
 			validacaoJTextFieldEmail.setFont(new Font("Arial", Font.PLAIN, 16));
-			validacaoJTextFieldEmail.setBounds(791, 114, 254, 20);
+			validacaoJTextFieldEmail.setBounds(791, 114, 290, 20);
 			validacaoJTextFieldEmail.setColumns(10);
 		}
 		return validacaoJTextFieldEmail;
@@ -559,7 +559,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldLogradouro.setBackground(Color.WHITE);
 			validacaoJTextFieldLogradouro.setForeground(Color.BLACK);
 			validacaoJTextFieldLogradouro.setFont(new Font("Arial", Font.PLAIN, 16));
-			validacaoJTextFieldLogradouro.setBounds(242, 274, 307, 20);
+			validacaoJTextFieldLogradouro.setBounds(114, 302, 211, 20);
 		}
 		return validacaoJTextFieldLogradouro;
 	}
@@ -569,7 +569,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldBairro.setBackground(Color.WHITE);
 			validacaoJTextFieldBairro.setForeground(Color.BLACK);
 			validacaoJTextFieldBairro.setFont(new Font("Arial", Font.PLAIN, 16));
-			validacaoJTextFieldBairro.setBounds(791, 276, 262, 21);
+			validacaoJTextFieldBairro.setBounds(619, 302, 149, 21);
 		}
 		return validacaoJTextFieldBairro;
 	}
@@ -580,7 +580,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			validacaoJTextFieldComplemento.setBackground(Color.WHITE);
 			validacaoJTextFieldComplemento.setForeground(Color.BLACK);
 			validacaoJTextFieldComplemento.setFont(new Font("Arial", Font.PLAIN, 16));
-			validacaoJTextFieldComplemento.setBounds(691, 250, 249, 21);
+			validacaoJTextFieldComplemento.setBounds(331, 302, 211, 21);
 		}
 		return validacaoJTextFieldComplemento;
 	}
@@ -637,7 +637,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			comboBoxEstadoEndereco.setBackground(Color.WHITE);
 			comboBoxEstadoEndereco.setFont(new Font("Arial", Font.PLAIN, 16));
 			comboBoxEstadoEndereco.setModel(new DefaultComboBoxModel(new String[] {"Selecione", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"}));
-			comboBoxEstadoEndereco.setBounds(649, 295, 115, 20);
+			comboBoxEstadoEndereco.setBounds(991, 299, 104, 20);
 		}
 		return comboBoxEstadoEndereco;
 	}
