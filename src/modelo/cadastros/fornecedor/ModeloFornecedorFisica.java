@@ -1,11 +1,10 @@
 package modelo.cadastros.fornecedor;
 
-import java.util.ArrayList;
-
 import modelo.cadastros.EnderecoCadastro;
 
-public class ModeloFornecedorFisica {
+public class ModeloFornecedorFisica extends EnderecoCadastro{
 	
+	private int id;
 	private String nome;
 	private String ramoAtividade;
 	private String cpf;
@@ -14,10 +13,37 @@ public class ModeloFornecedorFisica {
 	private String orgaoExpeditorRg;
 	private String sexo;
 	private String dataNascimento;	
-	private ArrayList<EnderecoCadastro> endereco;	
 	private String fax;
 	private String situacao;
 	
+	public ModeloFornecedorFisica() {
+		
+	}
+	
+	public ModeloFornecedorFisica(int id, String nome, String ramoAtividade, String cpf, String rg, String ufRg,
+			String orgaoExpeditorRg, String sexo, String dataNascimento, String fax, String situacao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.ramoAtividade = ramoAtividade;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.ufRg = ufRg;
+		this.orgaoExpeditorRg = orgaoExpeditorRg;
+		this.sexo = sexo;
+		this.dataNascimento = dataNascimento;
+		this.fax = fax;
+		this.situacao = situacao;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -66,12 +92,7 @@ public class ModeloFornecedorFisica {
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public ArrayList<EnderecoCadastro> getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(ArrayList<EnderecoCadastro> endereco) {
-		this.endereco = endereco;
-	}	
+	
 	public String getFax() {
 		return fax;
 	}

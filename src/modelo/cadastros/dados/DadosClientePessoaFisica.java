@@ -70,7 +70,7 @@ public class DadosClientePessoaFisica {
 		retornoFuncao = banco.excluir("endereco", "id", idBusca);
 		
 		if(retornoFuncao == true) {
-			JOptionPane.showMessageDialog(null, "Alteração do registro de cliente feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Exclusão do registro de cliente feita com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
 			return true;
 		}		
 		else {

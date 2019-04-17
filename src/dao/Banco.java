@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import modelo.cadastros.EnderecoCadastro;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
+import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
 
 public class Banco {
 
@@ -452,6 +453,39 @@ public class Banco {
 		}
 		return lista;
 	}
+	
+	public ArrayList<ModeloFornecedorFisica> consultarFornecedorFisico() {
+		ArrayList<ModeloFornecedorFisica> lista = new ArrayList<ModeloFornecedorFisica>();
+		String sql = "SELECT * FROM cliente";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				ModeloFornecedorFisica modeloFornecedorFisica = new ModeloFornecedorFisica();
+				modeloFornecedorFisica.setCpf(resultado.getString("cpf"));
+				modeloFornecedorFisica.setNome(resultado.getString("nome"));
+				modeloFornecedorFisica.setSituacao(resultado.getString("situacao"));
+				modeloFornecedorFisica.setDataNascimento(resultado.getString("datanasc"));
+				modeloFornecedorFisica.setSexo(resultado.getString("sexo"));
+				modeloFornecedorFisica.setRg(resultado.getString("rg"));
+				modeloFornecedorFisica.setUfRg(resultado.getString("uf_rg"));
+				modeloFornecedorFisica.setOrgaoExpeditorRg(resultado.getString("orgaoexpedidor"));
+				modeloFornecedorFisica.setEmail(resultado.getString("email"));
+				modeloFornecedorFisica.setTelefone(resultado.getString("telefone"));
+				modeloFornecedorFisica.setRamoAtividade(resultado.getString("ramoatividade"));
+				modeloFornecedorFisica.setFax(resultado.getString("fax"));
+				modeloFornecedorFisica.setId_endereco(resultado.getInt("ENDERECO_id"));
+				lista.add(modeloFornecedorFisica);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
 	public ArrayList<EnderecoCadastro> consultarEndereco() {
 		ArrayList<EnderecoCadastro> lista = new ArrayList<EnderecoCadastro>();
 		String sql = "SELECT * FROM endereco";
