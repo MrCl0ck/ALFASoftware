@@ -78,7 +78,7 @@ public class DadosFornecedorPessoaJuridica {
 		retornoFuncao = banco.excluir("endereco", "id", idBusca);
 		
 		if(retornoFuncao == true) {
-			JOptionPane.showMessageDialog(null, "Exclusão do registro de fornecedor feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Exclusão do registro de fornecedor feita com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
 			setFornecedores();
 			return true;
 		}		
