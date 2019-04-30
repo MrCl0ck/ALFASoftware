@@ -16,26 +16,6 @@ public class ModeloFornecedorFisica extends EnderecoCadastro{
 	private String fax;
 	private String situacao;
 	
-	public ModeloFornecedorFisica() {
-		
-	}
-	
-	public ModeloFornecedorFisica(int id, String nome, String ramoAtividade, String cpf, String rg, String ufRg,
-			String orgaoExpeditorRg, String sexo, String dataNascimento, String fax, String situacao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.ramoAtividade = ramoAtividade;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.ufRg = ufRg;
-		this.orgaoExpeditorRg = orgaoExpeditorRg;
-		this.sexo = sexo;
-		this.dataNascimento = dataNascimento;
-		this.fax = fax;
-		this.situacao = situacao;
-	}
-	
 	public int getId() {
 		return id;
 	}

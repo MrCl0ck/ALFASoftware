@@ -13,6 +13,7 @@ import modelo.cadastros.EnderecoCadastro;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
+import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
 
 public class Banco {
 
@@ -456,7 +457,7 @@ public class Banco {
 	
 	public ArrayList<ModeloFornecedorFisica> consultarFornecedorFisico() {
 		ArrayList<ModeloFornecedorFisica> lista = new ArrayList<ModeloFornecedorFisica>();
-		String sql = "SELECT * FROM cliente";
+		String sql = "SELECT * FROM fornecedor";
 		conexao = this.abrir(0);
 		try {
 			consulta = conexao.createStatement();
@@ -477,6 +478,34 @@ public class Banco {
 				modeloFornecedorFisica.setFax(resultado.getString("fax"));
 				modeloFornecedorFisica.setId_endereco(resultado.getInt("ENDERECO_id"));
 				lista.add(modeloFornecedorFisica);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public ArrayList<ModeloFornecedorJuridica> consultarFornecedorJuridico() {
+		ArrayList<ModeloFornecedorJuridica> lista = new ArrayList<ModeloFornecedorJuridica>();
+		String sql = "SELECT * FROM fornecedor";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				ModeloFornecedorJuridica modeloFornecedorJuridica = new ModeloFornecedorJuridica();
+				modeloFornecedorJuridica.setCnpj(resultado.getString("cnpj"));
+				modeloFornecedorJuridica.setRazaoSocial(resultado.getString("razaosocial"));
+				modeloFornecedorJuridica.setRepresentante(resultado.getString("representante"));
+				modeloFornecedorJuridica.setTelefone(resultado.getString("telefone"));
+				modeloFornecedorJuridica.setFax(resultado.getString("fax"));
+				modeloFornecedorJuridica.setEmail(resultado.getString("email"));
+				modeloFornecedorJuridica.setSituacao(resultado.getString("situacao"));
+				modeloFornecedorJuridica.setRamoAtividade(resultado.getString("ramoatividade"));
+				modeloFornecedorJuridica.setId_endereco(resultado.getInt("ENDERECO_id"));
+				lista.add(modeloFornecedorJuridica);
 			}
 			this.fechar(0);
 		} catch (SQLException e) {

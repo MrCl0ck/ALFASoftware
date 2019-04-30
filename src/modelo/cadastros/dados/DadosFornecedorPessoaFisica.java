@@ -94,11 +94,10 @@ public class DadosFornecedorPessoaFisica {
 	}
 	// ---------------------------------------------------------------------------------------------------------------
 
-	// ------------------------------------FUN합ES
-	// TABELA-------------------------------------------------------------
+	// ------------------------------------FUN합ES TABELA-------------------------------------------------------------
 
-	public void adicionarClienteTabela(ModeloFornecedorFisica fornecedor) {
-		fornecedorTabela.addCliente(fornecedor);
+	public void adicionarFornecedorTabela(ModeloFornecedorFisica fornecedor) {
+		fornecedorTabela.addFornecedor(fornecedor);
 	}
 
 	public FornecedorFisicoTable getFornecedoresNaTabela() {
@@ -107,39 +106,36 @@ public class DadosFornecedorPessoaFisica {
 
 	// ---------------------------------------------------------------------------------------------------------------
 
-	// ------------------------------------FUN합ES
-	// ARRAYLIST-------------------------------------------------------------
+	// ------------------------------------FUN합ES ARRAYLIST-------------------------------------------------------------
 
 	// -------------------------------------------------------------------------------------------------
 
-	// GET E SET ARRAYLIST GERAL DESSA CLASSE, PEGAR OS VALORES CONTIDOS NO BANCO DE
-	// DADOS E ATUALIZA.
+	// GET E SET ARRAYLIST GERAL DESSA CLASSE, PEGAR OS VALORES CONTIDOS NO BANCO DE DADOS E ATUALIZA.
 
 	public ArrayList<ModeloFornecedorFisica> getFornecedoresFisicos() {
 		return banco.consultarFornecedorFisico();
 	}
 
-	public static void setClientes() {
+	public static void setFornecedores() {
 		banco.consultarFornecedorFisico();
 	}
 
 	// -------------------------------------------------------------------------------------------------
 
-	// ------------------------------------FUN합ES DE
-	// PESQUISA-------------------------------------------------------------
+	// ------------------------------------FUN합ES DE PESQUISA-------------------------------------------------------------
 
-	public static ModeloFornecedorFisica buscaArrayGeralPorCpfERg(ModeloFornecedorFisica clienteASerBuscado) {
-		for (ModeloClientePessoaFisica u : banco.consultarClienteFisico()) {
-			if (u.getCpf().equals(clienteASerBuscado.getCpf()) && u.getRg().equals(clienteASerBuscado.getRg())) {
+	public static ModeloFornecedorFisica buscaArrayGeralPorCpfERg(ModeloFornecedorFisica fornecedorASerBuscado) {
+		for (ModeloFornecedorFisica u : banco.consultarFornecedorFisico()) {
+			if (u.getCpf().equals(fornecedorASerBuscado.getCpf()) && u.getRg().equals(fornecedorASerBuscado.getRg())) {
 				return u;
 			}
 		}
 		return null;
 	}
 
-	public static ModeloClientePessoaFisica buscaArrayGeralNomeContem(ModeloClientePessoaFisica clienteASerBuscado) {
-		for (ModeloClientePessoaFisica u : banco.consultarClienteFisico()) {
-			if (u.getNome().equals(clienteASerBuscado.getNome())) {
+	public static ModeloFornecedorFisica buscaArrayGeralNomeContem(ModeloFornecedorFisica fornecedorASerBuscado) {
+		for (ModeloFornecedorFisica u : banco.consultarFornecedorFisico()) {
+			if (u.getNome().equals(fornecedorASerBuscado.getNome())) {
 				return u;
 			}
 		}

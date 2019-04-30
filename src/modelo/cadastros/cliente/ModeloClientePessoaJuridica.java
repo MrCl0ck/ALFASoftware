@@ -3,6 +3,7 @@ package modelo.cadastros.cliente;
 import modelo.cadastros.EnderecoCadastro;
 
 public class ModeloClientePessoaJuridica extends EnderecoCadastro{
+	
 	private int id;
 	private String situacao;
 	private String razaoSocial;
