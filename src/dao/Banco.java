@@ -14,6 +14,7 @@ import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
 import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
+import modelo.cadastros.funcionario.ModeloFuncionario;
 
 public class Banco {
 
@@ -514,6 +515,48 @@ public class Banco {
 		}
 		return lista;
 	}
+	
+	public ArrayList<ModeloFuncionario> consultarFuncionario() {
+		ArrayList<ModeloFuncionario> lista = new ArrayList<ModeloFuncionario>();
+		String sql = "SELECT * FROM funcionario";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				ModeloFuncionario modeloFuncionario = new ModeloFuncionario();
+				modeloFuncionario.setNome(resultado.getString("nome"));
+				modeloFuncionario.setCpf(resultado.getString("cpf"));
+				modeloFuncionario.setRg(resultado.getString("rg"));
+				modeloFuncionario.setOrgaoExpeditor(resultado.getString("orgaoexpedidor"));
+				modeloFuncionario.setUfRg(resultado.getString("uf_rg"));
+				modeloFuncionario.setDataExpedicaoRg(resultado.getString("dataexpedicao"));
+				modeloFuncionario.setNacionalidade(resultado.getString("nacionalidade"));
+				modeloFuncionario.setNaturalidade(resultado.getString("naturaldade"));
+				modeloFuncionario.setDataDeNascimento(resultado.getString("datanasc"));
+				modeloFuncionario.setSexo(resultado.getString("sexo"));
+				modeloFuncionario.setCtps(resultado.getString("ctps"));
+				modeloFuncionario.setDataDeAdmissao(resultado.getString("dataadmissao"));
+				modeloFuncionario.setIdcargo(resultado.getInt("CARGO_id"));
+				modeloFuncionario.setCargo(resultado.getString("cargo"));
+				modeloFuncionario.setSetor(resultado.getString("setor"));
+				modeloFuncionario.setSalario(resultado.getFloat("salario"));
+				modeloFuncionario.setNomeDeUsuario(resultado.getString("usuario"));
+				modeloFuncionario.setSenha(resultado.getString("senha"));
+				modeloFuncionario.setEmail(resultado.getString("email"));
+				modeloFuncionario.setTelefone(resultado.getString("telefone"));
+				modeloFuncionario.setId_endereco(resultado.getInt("ENDERECO_id"));
+				lista.add(modeloFuncionario);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	//Falta array do CARGO
 	
 	public ArrayList<EnderecoCadastro> consultarEndereco() {
 		ArrayList<EnderecoCadastro> lista = new ArrayList<EnderecoCadastro>();
