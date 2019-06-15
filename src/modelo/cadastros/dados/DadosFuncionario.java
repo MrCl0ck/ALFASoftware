@@ -45,7 +45,7 @@ public class DadosFuncionario {
 							+ funcionario.getDataExpedicaoRg() + "','" + funcionario.getNacionalidade() + "','"
 							+ funcionario.getNaturalidade() + "','" + funcionario.getDataDeNascimento() + "','"
 							+ funcionario.getSexo() + "','" + funcionario.getCtps() + "','"
-							+ funcionario.getDataDeAdmisao() + "','" + null + "','" + funcionario.getTelefone() + "','"
+							+ funcionario.getDataDeAdmissao() + "','" + null + "','" + funcionario.getTelefone() + "','"
 							+ funcionario.getEmail() + "','" + funcionario.getSetor() + "','" + funcionario.getSalario()
 							+ "','" + funcionario.getNomeDeUsuario() + "','" + funcionario.getSenha() + "','" + idCargo
 							+ "','" + id + "'");
@@ -71,7 +71,7 @@ public class DadosFuncionario {
 						+ "',email='" + funcionarioAtual.getEmail() + "',dataexpedicao='"
 						+ funcionarioAtual.getDataExpedicaoRg() + "',nacionalidade='" + funcionarioAtual.getNacionalidade() 
 						+ "',naturalidade='" + funcionarioAtual.getNaturalidade() + "',ctps='" + funcionarioAtual.getCtps()
-						+ "',dataadmissao='" + funcionarioAtual.getDataDeAdmisao() + "',setor='" + funcionarioAtual.getSetor()
+						+ "',dataadmissao='" + funcionarioAtual.getDataDeAdmissao() + "',setor='" + funcionarioAtual.getSetor()
 						+ "',salario='" + funcionarioAtual.getSalario() + "',usuario='" + funcionarioAtual.getNomeDeUsuario() 
 						+ "',senha='" + funcionarioAtual.getSenha() +  "'");
 

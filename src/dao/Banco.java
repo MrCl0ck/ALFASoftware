@@ -15,6 +15,7 @@ import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
 import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
 import modelo.cadastros.funcionario.ModeloFuncionario;
+import modelo.cadastros.produto.ModeloProduto;
 
 public class Banco {
 
@@ -556,7 +557,38 @@ public class Banco {
 		return lista;
 	}
 	
+	public ArrayList<ModeloProduto> consultarProduto() {
+		ArrayList<ModeloProduto> lista = new ArrayList<ModeloProduto>();
+		String sql = "SELECT * FROM funcionario";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				ModeloProduto modeloProduto = new ModeloProduto();
+				modeloProduto.setCodigo(resultado.getString("codigo"));
+				modeloProduto.setCodigoDeBarras(resultado.getString("codigobarras"));
+				modeloProduto.setDescricao(resultado.getString("descricao"));
+				modeloProduto.setValorDaCompra(resultado.getDouble("valorcompra"));
+				modeloProduto.setValorDaVenda(resultado.getDouble("valorvenda"));
+				modeloProduto.setLucro(resultado.getDouble("lucro"));
+				modeloProduto.setEstoqueMinimo(resultado.getString("estoqueminimo"));
+				modeloProduto.setEstoqueMaximo(resultado.getString("estoquemaximo"));
+				modeloProduto.setIdUnidade(resultado.getInt("UNIDADE_id"));
+				modeloProduto.setIdTipo(resultado.getInt("TIPO_id"));
+				lista.add(modeloProduto);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
 	//Falta array do CARGO
+	//Falta array do UNIDADE
+	//Falta array do TIPO
 	
 	public ArrayList<EnderecoCadastro> consultarEndereco() {
 		ArrayList<EnderecoCadastro> lista = new ArrayList<EnderecoCadastro>();
