@@ -28,7 +28,7 @@ public class Banco {
 	public Connection abrir(int op) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/banco_engenharia";
+			String url = "jdbc:mysql://localhost:3306/banco_engenharia?useTimezone=true&serverTimezone=UTC";
 			conexao = DriverManager.getConnection(url, "root", "");
 			if (op == 1) {
 				JOptionPane.showMessageDialog(null, "Conexão realizada com sucesso!");
