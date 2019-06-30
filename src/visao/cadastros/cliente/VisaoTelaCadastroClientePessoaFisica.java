@@ -7,6 +7,7 @@ import modelo.cadastros.validacoes.FormataMascaras;
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
 import modelo.tableModel.ClienteFisicoTable;
 import visao.VisaoTelaPesquisa;
+import javax.swing.border.LineBorder;
 
 public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 	private JLabel labelTipoCliente		 	  = null;
@@ -28,7 +29,6 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 	private JLabel labelLimiteDeCredito		  = null;
 	private JLabel lblDataDeNascimento		  = null;
 	private JLabel labelSexo		 		  = null;
-	private JLabel labelPaginaCadastroCliente = null;
 	private JLabel lblR		 				  = null;
 	private JLabel labelDadosPessoais		  = null;
 	private JLabel labelEndereo		 		  = null;
@@ -54,16 +54,16 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 	private JSeparator separatorTitulo	= null;
 	private JSeparator separator		= null;
 	private JSeparator separator_2	    = null;
-	private VisaoTelaPesquisa telaPesquisa = null;
 	private ClienteFisicoTable clienteFisicoTableModel = null;
 	private ClienteFisicoTable buscaExibicaoTableModel = null;
 	
 	FormataMascaras fm = new FormataMascaras();
 	public VisaoTelaCadastroClientePessoaFisica() {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(252, 246, 229));
 		setLayout(null);
-		setMinimumSize(new Dimension(1055, 720));
-		setMaximumSize(new Dimension(1055, 720));
+		setMinimumSize(new Dimension(1055, 335));
+		setMaximumSize(new Dimension(1055, 335));
 		add(getLabelTipoCliente());
 		add(getLabelNome());
 		add(getLabelCPF());
@@ -83,7 +83,6 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		add(getLabelSexo());
 		add(getLabelComplemento());
 		add(getLblDataDeNascimento());
-		add(getLabelPaginaCadastroCliente());	
 		add(getLabelDadosPessoais());
 		add(getLabelEndereo());
 		add(getLblR());
@@ -114,7 +113,6 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		add(getSeparatorTitulo());
 		add(getSeparator());
 		add(getSeparator_2());
-		add(getTelaPesquisa());
 	}
 	public JLabel getLabelTipoCliente() {
 		if (labelTipoCliente == null) {
@@ -519,40 +517,6 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 			separatorTitulo.setBounds(0, 30, 1500, 22);
 		}
 		return separatorTitulo;
-	}
-	public JLabel getLabelPaginaCadastroCliente() {
-		if (labelPaginaCadastroCliente == null) {
-			labelPaginaCadastroCliente = new JLabel(" Cadastro de Cliente - Pessoa F\u00EDsica");
-			labelPaginaCadastroCliente.setFont(new Font("Arial", Font.BOLD, 22));
-			labelPaginaCadastroCliente.setBounds(0, 0, 585, 30);
-		}
-		return labelPaginaCadastroCliente;
-	}
-	
-	public VisaoTelaPesquisa getTelaPesquisa() {
-		if(telaPesquisa == null) {
-			telaPesquisa = new VisaoTelaPesquisa();
-			telaPesquisa.getButtonFechar().setLocation(832, 321);
-			telaPesquisa.getButtonConfirmar().setLocation(683, 321);
-			telaPesquisa.getButtonCancelar().setLocation(539, 321);
-			telaPesquisa.getButtonAlterar().setLocation(388, 321);
-			telaPesquisa.getButtonExcluir().setLocation(233, 321);
-			telaPesquisa.getButtonIncluir().setLocation(85, 321);
-			telaPesquisa.getButtonBuscar().setSize(135, 24);
-			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
-			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
-			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(789, 41);
-			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
-			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1058, 357);
-			//algumas alterações, variantes de tabela pra tabela
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("Razão Social");
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("CNPJ");
-		}
-		return telaPesquisa;
 	}
 	public ValidacaoGeralCamposTexto getValidacaoJTextFieldOrgaoExpeditor() {
 		if (validacaoJTextFieldOrgaoExpeditor == null) {

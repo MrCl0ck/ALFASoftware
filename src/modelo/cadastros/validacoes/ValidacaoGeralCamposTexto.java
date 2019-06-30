@@ -88,13 +88,13 @@ public class ValidacaoGeralCamposTexto extends JTextField{
 	}
 	
 	private void validaLimiteCreditoTyping(KeyEvent evento) {
-		String permitidos = "0123456789,"; 
+		String permitidos = "0123456789."; 
 		String stringLimite = evento.getKeyChar()+"";
 		
 		if(!permitidos.contains(stringLimite)) {
 			evento.consume(); 			
 		}
-		if((evento.getKeyChar()== ',' && getText().length() == 0) || count(',', getText()) > 0  && evento.getKeyChar()== ',') {
+		if((evento.getKeyChar()== '.' && getText().length() == 0) || count('.', getText()) > 0  && evento.getKeyChar()== '.') {
 			evento.consume(); 
 		}
 	}

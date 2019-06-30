@@ -18,6 +18,7 @@ import modelo.tableModel.ClienteJuridicoTable;
 import visao.VisaoTelaPesquisa;
 
 import java.awt.Rectangle;
+import javax.swing.border.LineBorder;
 
 public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 	private JLabel labelTipoCliente		 	  = null;
@@ -36,7 +37,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 	private JLabel labelComplemento		 	  = null;
 	private JLabel labelLogradouro		 	  = null;
 	private JLabel labelLimiteDeCredito		  = null;
-	private JLabel labelPaginaCadastroCliente = null;
 	private JLabel labelUfInscricaoEstadual	  = null;
 	private JLabel label		 	 		  = null;
 	private JLabel labelTituloEndereo		  = null;
@@ -63,14 +63,14 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 	private JSeparator separatorTitulo	= null;	
 	private ClienteJuridicoTable clienteJuridicoTableModel = null;
 	private ClienteJuridicoTable buscaExibicaoTableModel   = null;
-	private VisaoTelaPesquisa telaPesquisa = null;
 	FormataMascaras fm = new FormataMascaras();
 	
 	public VisaoTelaCadastroClientePessoaJuridica() {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLayout(null);
 		setBackground(new Color(252, 246, 229));
-		setMinimumSize(new Dimension(1055, 720));
-		setMaximumSize(new Dimension(1055, 720));
+		setMinimumSize(new Dimension(1055, 335));
+		setMaximumSize(new Dimension(1055, 335));
 		add(getLabelTipoCliente());
 		add(getLabelSituacao());
 		add(getLabelRazoSocial());
@@ -88,7 +88,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		add(getLabelTelefone());
 		add(getLabelLimiteDeCredito());
 		add(getLabelComplemento());
-		add(getLabelPaginaCadastroCliente());
 		add(getLabel());
 		add(getLabelTituloEndereo());
 		add(getLblR());
@@ -113,7 +112,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		add(getSeparatorTitulo());	
 		add(getSeparator());
 		add(getSeparator_1());
-		add(getTelaPesquisa());	
 		
 	}
 	
@@ -455,14 +453,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		}
 		return separatorTitulo;
 	}
-	public JLabel getLabelPaginaCadastroCliente() {
-		if (labelPaginaCadastroCliente == null) {
-			labelPaginaCadastroCliente = new JLabel(" Cadastro de Cliente - Pessoa Jur\u00EDdica");
-			labelPaginaCadastroCliente.setFont(new Font("Arial", Font.BOLD, 22));
-			labelPaginaCadastroCliente.setBounds(0, -1, 621, 30);
-		}
-		return labelPaginaCadastroCliente;
-	}
 	public JLabel getLabelUfInscricaoEstadual() {
 		if (labelUfInscricaoEstadual == null) {
 			labelUfInscricaoEstadual = new JLabel("UF:*");
@@ -485,33 +475,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 			comboBoxUfInscricaoEstadual.setBounds(648, 169, 115, 20);
 		}
 		return comboBoxUfInscricaoEstadual;
-	}
-	
-	public VisaoTelaPesquisa getTelaPesquisa() {
-		if(telaPesquisa == null) {
-			telaPesquisa = new VisaoTelaPesquisa();
-			telaPesquisa.getButtonFechar().setLocation(832, 321);
-			telaPesquisa.getButtonConfirmar().setLocation(683, 321);
-			telaPesquisa.getButtonCancelar().setLocation(539, 321);
-			telaPesquisa.getButtonAlterar().setLocation(388, 321);
-			telaPesquisa.getButtonExcluir().setLocation(233, 321);
-			telaPesquisa.getButtonIncluir().setLocation(85, 321);
-			telaPesquisa.getButtonBuscar().setSize(135, 24);
-			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
-			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
-			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(789, 41);
-			telaPesquisa.getJTableDadosCliente().setModel(getBuscaExibicaoTableModel(false));
-			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
-			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1058, 357);
-			//algumas alterações, variantes de tabela pra tabela
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("Nome");
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("CPF");
-		}
-		return telaPesquisa;
 	}
 	public JSeparator getSeparator() {
 		if (separator == null) {

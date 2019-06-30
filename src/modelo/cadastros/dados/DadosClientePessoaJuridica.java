@@ -67,7 +67,7 @@ public class DadosClientePessoaJuridica {
 		retornoFuncao = banco.atualizar("endereco", "id", idBusca, "cep='" + clienteJuridicoAtual.getCep() + "',logradouro='" + clienteJuridicoAtual.getLogradouro() + "',numero='" + clienteJuridicoAtual.getNumeroEndereco() + "',bairro='" + clienteJuridicoAtual.getBairro() + "',complemento='" + clienteJuridicoAtual.getComplemento() + "',cidade='" + clienteJuridicoAtual.getCidade() + "',uf='" + clienteJuridicoAtual.getUf_estado() + "'");
 		
 		if(retornoFuncao == true) {
-			JOptionPane.showMessageDialog(null, "Alteração do registro de cliente feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Alteração do registro de cliente feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
 			setClientes();
 		}		
 	}
@@ -79,7 +79,7 @@ public class DadosClientePessoaJuridica {
 		retornoFuncao = banco.excluir("endereco", "id", idBusca);
 		
 		if(retornoFuncao == true) {
-			JOptionPane.showMessageDialog(null, "Exclusão do registro de cliente feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Exclusão do registro de cliente feita com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
 			setClientes();
 			return true;
 		}		

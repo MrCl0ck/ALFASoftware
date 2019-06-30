@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,19 +22,19 @@ public class VisaoTelaCadastroCliente extends JPanel {
 	private VisaoTelaPesquisa 		telaPesquisa		 			= null;
 	private ClienteFisicoTable 		buscaExibicaoTableModelFisico	= null;
 	private ClienteJuridicoTable 	buscaExibicaoTableModelJuridico	= null;
+	private VisaoTelaCadastroClientePessoaFisica fisica;
+	private VisaoTelaCadastroClientePessoaJuridica juridica;
+	private JPanel panel;
 	
-	public VisaoTelaCadastroCliente() {
-		
+	public VisaoTelaCadastroCliente() {		
 		setLayout(null);
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(252, 246, 229));
 		setMinimumSize(new Dimension(804, 770));
 		setMaximumSize(new Dimension(804, 770));
-		add(getComboBoxTipoCliente());
-		add(getLabelTipoCliente());
-		add(getSeparatorTitulo());
-		add(getLabelPaginaCadastroCliente());		
+		add(getLabelPaginaCadastroCliente());	
 		add(getTelaPesquisa());
+		add(getPanel());
 	}
 	public JLabel getLabelTipoCliente() {
 		if (labelTipoCliente == null) {
@@ -76,6 +75,7 @@ public class VisaoTelaCadastroCliente extends JPanel {
 		}
 		return comboBoxTipoCliente;
 	}
+	
 	public VisaoTelaPesquisa getTelaPesquisa() {
 		if(telaPesquisa == null) {
 			telaPesquisa = new VisaoTelaPesquisa();
@@ -93,7 +93,7 @@ public class VisaoTelaCadastroCliente extends JPanel {
 			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
 			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
+			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1058, 20);
 			telaPesquisa.setBounds(0,334, 1058, 357);
 		}
 		return telaPesquisa;
@@ -120,5 +120,54 @@ public class VisaoTelaCadastroCliente extends JPanel {
 			return buscaExibicaoTableModelJuridico;
 		}		
 	}
-
+	
+	public JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBackground(new Color(252, 246, 229));
+			panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+			panel.setBounds(0, 0, 1055, 335);
+			panel.setLayout(null);
+			panel.add(getComboBoxTipoCliente());
+			panel.add(getLabelTipoCliente());
+			panel.add(getSeparatorTitulo());
+		}
+		return panel;
+	}
+	
+	public VisaoTelaCadastroClientePessoaFisica getTelaFisica()
+	{
+		if(fisica==null)
+		{
+			fisica = new VisaoTelaCadastroClientePessoaFisica();
+			fisica.setBounds(0,0,1055,335);
+		}
+		return fisica;
+	}
+	
+	public VisaoTelaCadastroClientePessoaJuridica getTelaJuridica()
+	{
+		if(juridica==null)
+		{
+			juridica = new VisaoTelaCadastroClientePessoaJuridica();
+			juridica.setBounds(0,0,1055,335);
+		}
+		return juridica;
+	}
+	
+	public void removePanel() {
+		this.remove(panel);
+	}
+	
+	public void removeTelaPesquisa() {
+		this.remove(telaPesquisa);
+	}
+	
+	public void removeTelaFisica() {
+		this.remove(fisica);
+	}
+	
+	public void removeTelaJuridica() {
+		this.remove(juridica);
+	}
 }

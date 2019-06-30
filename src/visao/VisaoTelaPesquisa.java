@@ -174,19 +174,19 @@ public class VisaoTelaPesquisa extends JPanel {
 			jtableDadosCliente.setFont(new Font("Arial", Font.PLAIN, 16));
 			jtableDadosCliente.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
-					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
+//					{null, null, null, null},
 				},
 				new String[] {
 					"CPF/CNPJ", "Nome/Razão Social", "Endere\u00E7o", "Telefone"

@@ -8,27 +8,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import dao.Banco;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.dados.DadosClientePessoaJuridica;
 import modelo.cadastros.validacoes.ValidacaoClientePessoaJuridica;
 import visao.cadastros.cliente.VisaoFramePrincipal;
+import visao.cadastros.cliente.VisaoTelaCadastroCliente;
 import visao.cadastros.cliente.VisaoTelaCadastroClientePessoaJuridica;
 
 public class ControladorTelaCadastroClientePessoaJuridica{
 	private ModeloClientePessoaJuridica clienteAtual;
 	private ModeloClientePessoaJuridica clienteExibicao;
 	private ModeloClientePessoaJuridica clienteAntigo;
-	private VisaoTelaCadastroClientePessoaJuridica telaClienteJuridico;
-	private VisaoTelaCadastroClientePessoaJuridica tcj;
-	private VisaoFramePrincipal framePrincipal;
-	private ControladorTelaCadastroCliente controladorTelaCadastroCliente;
+	private VisaoTelaCadastroCliente principal;
 	private Banco banco = new Banco();
 	
-	public ControladorTelaCadastroClientePessoaJuridica(VisaoFramePrincipal frame) {
-		framePrincipal = frame;
-		inicializaTela();
+	public ControladorTelaCadastroClientePessoaJuridica(VisaoTelaCadastroCliente frame) {
+		principal = frame;
 		desabilitadosEHabilitadosInicialmente();
 		addEventos();
 	}
@@ -46,14 +44,14 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	private void getBotaoAlterarAction() {
-		tcj.getTelaPesquisa().getButtonAlterar().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonAlterar().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				if(tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
-					tcj.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");
-					int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-					ModeloClientePessoaJuridica cliente = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
+				if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");
+					int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					ModeloClientePessoaJuridica cliente = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 					
 					clienteAntigo = new ModeloClientePessoaJuridica();
 					clienteAntigo = cliente;
@@ -72,14 +70,14 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 
 	private void getBotaoExcluirAction() {
-		tcj.getTelaPesquisa().getButtonExcluir().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonExcluir().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				if(tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
-					tcj.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente");
-					int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-					ModeloClientePessoaJuridica cliente = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
+				if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente");
+					int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					ModeloClientePessoaJuridica cliente = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 					
 					Object[] options = { "NÃO", "SIM" };
 				      int opcao = JOptionPane.showOptionDialog(null, "Deseja excluir o cliente de Razão Social: '" + cliente.getRazaoSocial() +"' ?", "Exclusão",
@@ -87,7 +85,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 				              null, options, options[0]);
 				      
 				      if(opcao == 1) {
-				    	  tcj.getBuscaExibicaoTableModel(true).removerCliente(linhaSelecionada);
+				    	  principal.getTelaJuridica().getBuscaExibicaoTableModel(true).removerCliente(linhaSelecionada);
 				    	  String cnpjBusca = cliente.getCnpj();
 				    	  String idBusca = banco.consultar("cliente", "cnpj" , cnpjBusca, "ENDERECO_id");
 				    	  if(new DadosClientePessoaJuridica().bancoDeDadosExcluir(cnpjBusca, idBusca) == true) {
@@ -108,7 +106,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 
 	private void getBotaoCancelarAction() {
-		tcj.getTelaPesquisa().getButtonCancelar().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonCancelar().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -126,22 +124,22 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 
 	private void getBotaoConfirmarAction() {
-		tcj.getTelaPesquisa().getButtonConfirmar().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonConfirmar().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "Fazer validação Regex para os campos especiais e validação geral pros campos!", "Validação", JOptionPane.INFORMATION_MESSAGE);
-				if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+				if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
 					capturarCampos();
 					if(validacaoClienteCampos("Incluir") == true) {
 						limparCamposGeral();
 						desabilitadosEHabilitadosInicialmente();	
 					}	
 				}
-				else if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente")) {
+				else if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente")) {
 					
 				}
-				else if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente")) {
+				else if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente")) {
 					Object[] options = { "NÃO", "SIM" };
 				      int opcao = JOptionPane.showOptionDialog(null, "Confirma a alteração dos dados do cliente tratado?", "Confirmar",
 				          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -161,7 +159,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 
 	private void getBotaoFecharAction() {
-		tcj.getTelaPesquisa().getButtonFechar().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonFechar().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -171,14 +169,19 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			              null, options, options[0]);
 			      
 			      if(opcao == 1) {
-			    	  getControladorTelaCadastroCliente(framePrincipal);
+			    	  principal.removeTelaFisica();
+			    	  principal.add(principal.getPanel());
+			    	  principal.repaint();
+			    	  principal.validate();
+			    	  principal.getComboBoxTipoCliente().setSelectedItem("Selecione");
+			    	  principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente");
 			      }			
 			}
 		});
 	}
 
 	private void getBotaoBuscarAction() {
-		tcj.getTelaPesquisa().getButtonBuscar().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonBuscar().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,11 +193,11 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	private void getBotaoIncluirAction() {
-		tcj.getTelaPesquisa().getButtonIncluir().addActionListener(new ActionListener() {
+		principal.getTelaPesquisa().getButtonIncluir().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tcj.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente");
+				principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente");
 				camposHabilitadosAoIncluirOuAlterar(true);
 				botoesHabilitadosEDesabilitadosAoIncluirOuAlterar(true);
 				
@@ -203,141 +206,98 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 		
 	}
 	
-	public void inicializaTela() {		
-		getTelaClienteJuridico();
-		adicionarTela();
-		tcj = telaClienteJuridico;//uma variavel nova que igualei a original da tela, pra nao ter que escrever isso tudo na hora de alterar :P
-	}
-	
-	public VisaoTelaCadastroClientePessoaJuridica getTelaClienteJuridico() {
-		if(telaClienteJuridico == null) {
-			telaClienteJuridico = new VisaoTelaCadastroClientePessoaJuridica();
-		}
-		return telaClienteJuridico;
-	}
-	
-	private void adicionarTela() {
-		framePrincipal.getContentPane().removeAll();
-		framePrincipal.setContentPane(telaClienteJuridico);
-		framePrincipal.repaint();
-		framePrincipal.validate();
-	}
-	
 	private void desabilitadosEHabilitadosInicialmente() {
 		botoesDesablitadosEHabilitadosInicialmente();
 		camposDesabilitadosInicialmente();
 	}
 	
 	private void botoesDesablitadosEHabilitadosInicialmente() {
-		tcj.getTelaPesquisa().getButtonExcluir().setEnabled(false);
-		tcj.getTelaPesquisa().getButtonAlterar().setEnabled(false);
-		tcj.getTelaPesquisa().getButtonCancelar().setEnabled(false);
-		tcj.getTelaPesquisa().getButtonConfirmar().setEnabled(false);
-		tcj.getTelaPesquisa().getButtonIncluir().setEnabled(true);
-		tcj.getTelaPesquisa().getButtonBuscar().setEnabled(true);
+		principal.getTelaPesquisa().getButtonExcluir().setEnabled(false);
+		principal.getTelaPesquisa().getButtonAlterar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonCancelar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonConfirmar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonIncluir().setEnabled(true);
+		principal.getTelaPesquisa().getButtonBuscar().setEnabled(true);
 	}
 	
 	public void botoesHabilitadosEDesabilitadosAoIncluirOuAlterar(boolean b) {
-		tcj.getTelaPesquisa().getButtonConfirmar().setEnabled(b);
-		tcj.getTelaPesquisa().getButtonCancelar().setEnabled(b);
-		tcj.getTelaPesquisa().getButtonIncluir().setEnabled(!b);
-		tcj.getTelaPesquisa().getButtonExcluir().setEnabled(!b);
-		tcj.getTelaPesquisa().getButtonAlterar().setEnabled(!b);
+		principal.getTelaPesquisa().getButtonConfirmar().setEnabled(b);
+		principal.getTelaPesquisa().getButtonCancelar().setEnabled(b);
+		principal.getTelaPesquisa().getButtonIncluir().setEnabled(!b);
+		principal.getTelaPesquisa().getButtonExcluir().setEnabled(!b);
+		principal.getTelaPesquisa().getButtonAlterar().setEnabled(!b);
 	}		
 	
 	private void camposDesabilitadosInicialmente() {
-		tcj.getComboBoxSituacaoCliente().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldRazaoSocial().setEnabled(false);
-		tcj.getValidacaoJTextFieldCnpj().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldRepresentante().setEnabled(false);
-		tcj.getValidacaoJTextFieldInscricaoEstadual().setEnabled(false);
-		tcj.getComboBoxUfInscricaoEstadual().setEnabled(false);
-		tcj.getFormattedTextFieldCEP().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldLogradouro().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldNumero().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldBairro().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldComplemento().setEnabled(false);
-		tcj.getValidacaoGeralJTextFieldCidade().setEnabled(false);
-		tcj.getComboBoxEstadoEndereco().setEnabled(false);
-		tcj.getFormattedTextFieldTelefone().setEnabled(false);
-		tcj.getValidacaoJTextFieldEmail().setEnabled(false);
-		tcj.getValidacaoJTextFieldLimiteCredito().setEnabled(false);
+		principal.getTelaJuridica().getComboBoxSituacaoCliente().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoJTextFieldCnpj().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setEnabled(false);
+		principal.getTelaJuridica().getComboBoxUfInscricaoEstadual().setEnabled(false);
+		principal.getTelaJuridica().getFormattedTextFieldCEP().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setEnabled(false);
+		principal.getTelaJuridica().getComboBoxEstadoEndereco().setEnabled(false);
+		principal.getTelaJuridica().getFormattedTextFieldTelefone().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoJTextFieldEmail().setEnabled(false);
+		principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setEnabled(false);
 	}
 	
 	public void camposHabilitadosAoIncluirOuAlterar(boolean b) {
-		tcj.getComboBoxSituacaoCliente().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldRazaoSocial().setEnabled(b);
-		tcj.getValidacaoJTextFieldCnpj().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldRepresentante().setEnabled(b);
-		tcj.getValidacaoJTextFieldInscricaoEstadual().setEnabled(b);
-		tcj.getComboBoxUfInscricaoEstadual().setEnabled(b);
-		tcj.getFormattedTextFieldCEP().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldLogradouro().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldNumero().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldBairro().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldComplemento().setEnabled(b);
-		tcj.getValidacaoGeralJTextFieldCidade().setEnabled(b);
-		tcj.getComboBoxEstadoEndereco().setEnabled(b);
-		tcj.getFormattedTextFieldTelefone().setEnabled(b);
-		tcj.getValidacaoJTextFieldEmail().setEnabled(b);
-		tcj.getValidacaoJTextFieldLimiteCredito().setEnabled(b);
+		principal.getTelaJuridica().getComboBoxSituacaoCliente().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoJTextFieldCnpj().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setEnabled(b);
+		principal.getTelaJuridica().getComboBoxUfInscricaoEstadual().setEnabled(b);
+		principal.getTelaJuridica().getFormattedTextFieldCEP().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setEnabled(b);
+		principal.getTelaJuridica().getComboBoxEstadoEndereco().setEnabled(b);
+		principal.getTelaJuridica().getFormattedTextFieldTelefone().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoJTextFieldEmail().setEnabled(b);
+		principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setEnabled(b);
 	}
 	
 	private void limparCamposGeral() {
-		tcj.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica");
-		tcj.getComboBoxSituacaoCliente().setSelectedIndex(0);
-		tcj.getValidacaoGeralJTextFieldRazaoSocial().setText("");
-		tcj.getValidacaoJTextFieldCnpj().setText("");
-		tcj.getValidacaoGeralJTextFieldRepresentante().setText("");
-		tcj.getValidacaoJTextFieldInscricaoEstadual().setText("");
-		tcj.getComboBoxUfInscricaoEstadual().setSelectedIndex(0);
-		tcj.getFormattedTextFieldCEP().setText("");
-		tcj.getValidacaoGeralJTextFieldLogradouro().setText("");
-		tcj.getValidacaoGeralJTextFieldNumero().setText("");
-		tcj.getValidacaoGeralJTextFieldBairro().setText("");
-		tcj.getValidacaoGeralJTextFieldComplemento().setText("");
-		tcj.getValidacaoGeralJTextFieldCidade().setText("");
-		tcj.getComboBoxEstadoEndereco().setSelectedIndex(0);
-		tcj.getFormattedTextFieldTelefone().setText("");
-		tcj.getValidacaoJTextFieldEmail().setText("");
-		tcj.getValidacaoJTextFieldLimiteCredito().setText("");
-		tcj.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
-		tcj.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		tcj.getTelaPesquisa().getJTableDadosCliente().setModel(tcj.getBuscaExibicaoTableModel(false));
+		principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica");
+		principal.getTelaJuridica().getComboBoxSituacaoCliente().setSelectedIndex(0);
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setText("");
+		principal.getTelaJuridica().getValidacaoJTextFieldCnpj().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setText("");
+		principal.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setText("");
+		principal.getTelaJuridica().getComboBoxUfInscricaoEstadual().setSelectedIndex(0);
+		principal.getTelaJuridica().getFormattedTextFieldCEP().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setText("");
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setText("");
+		principal.getTelaJuridica().getComboBoxEstadoEndereco().setSelectedIndex(0);
+		principal.getTelaJuridica().getFormattedTextFieldTelefone().setText("");
+		principal.getTelaJuridica().getValidacaoJTextFieldEmail().setText("");
+		principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setText("");
+		principal.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
+		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
+		principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));
 	}	
-
-	private void limparCampos() {
-		tcj.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica");
-		tcj.getComboBoxSituacaoCliente().setSelectedIndex(0);
-		tcj.getValidacaoGeralJTextFieldRazaoSocial().setText("");
-		tcj.getValidacaoJTextFieldCnpj().setText("");
-		tcj.getValidacaoGeralJTextFieldRepresentante().setText("");
-		tcj.getValidacaoJTextFieldInscricaoEstadual().setText("");
-		tcj.getComboBoxUfInscricaoEstadual().setSelectedIndex(0);
-		tcj.getFormattedTextFieldCEP().setText("");
-		tcj.getValidacaoGeralJTextFieldLogradouro().setText("");
-		tcj.getValidacaoGeralJTextFieldNumero().setText("");
-		tcj.getValidacaoGeralJTextFieldBairro().setText("");
-		tcj.getValidacaoGeralJTextFieldComplemento().setText("");
-		tcj.getValidacaoGeralJTextFieldCidade().setText("");
-		tcj.getComboBoxEstadoEndereco().setSelectedIndex(0);
-		tcj.getFormattedTextFieldTelefone().setText("");
-		tcj.getValidacaoJTextFieldEmail().setText("");
-		tcj.getValidacaoJTextFieldLimiteCredito().setText("");
-		tcj.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
-		tcj.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		tcj.getTelaPesquisa().getJTableDadosCliente().setModel(tcj.getBuscaExibicaoTableModel(false));
-	}
 	
 	public void botoesHabilitadosPosBusca(boolean b) {
-		tcj.getTelaPesquisa().getButtonExcluir().setEnabled(b);
-		tcj.getTelaPesquisa().getButtonAlterar().setEnabled(b);
-		tcj.getTelaPesquisa().getButtonCancelar().setEnabled(b);
-		tcj.getTelaPesquisa().getButtonIncluir().setEnabled(!b);
+		principal.getTelaPesquisa().getButtonExcluir().setEnabled(b);
+		principal.getTelaPesquisa().getButtonAlterar().setEnabled(b);
+		principal.getTelaPesquisa().getButtonCancelar().setEnabled(b);
+		principal.getTelaPesquisa().getButtonIncluir().setEnabled(!b);
 	}
 	
 	public void getSelecionarUmClienteTabelaTyped() {
-		tcj.getTelaPesquisa().getJTableDadosCliente().addKeyListener(new KeyListener() {
+		principal.getTelaPesquisa().getJTableDadosCliente().addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -349,8 +309,8 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 				      
 				      if(opcao == 1) {
 				    	  clienteExibicao = new ModeloClientePessoaJuridica();
-				    	  int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-				    	  clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+				    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+				    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 				    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 				      }
 				}			
@@ -359,7 +319,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_UP) {
-					if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+					if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
 						Object[] options = { "NÃO", "SIM" };
 					      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 					          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -367,20 +327,20 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-					    	  clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-						clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
 				}
 				else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-					if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+					if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
 						Object[] options = { "NÃO", "SIM" };
 					      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 					          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -388,15 +348,15 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-					    	  clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-						clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
 				}
@@ -410,12 +370,12 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	private void getSelecionarUmClienteTabela() {
-		tcj.getTelaPesquisa().getJTableDadosCliente().addMouseListener(new MouseListener() {
+		principal.getTelaPesquisa().getJTableDadosCliente().addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(e.getClickCount() == 1) {
-					if(tcj.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+					if(principal.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
 						Object[] options = { "NÃO", "SIM" };
 					      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Fechar",
 					          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -423,15 +383,15 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-					    	  clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = tcj.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
-						clienteExibicao = tcj.getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
 				}				
@@ -465,37 +425,37 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	public void atribuicaoDeBuscaAosCampos(ModeloClientePessoaJuridica cliente) {
-		tcj.getComboBoxSituacaoCliente().setSelectedItem(cliente.getSituacao());
-		tcj.getValidacaoGeralJTextFieldRazaoSocial().setText(cliente.getRazaoSocial());
-		tcj.getValidacaoJTextFieldCnpj().setText(cliente.getCnpj());
-		tcj.getValidacaoGeralJTextFieldRepresentante().setText(cliente.getRepresentante());
-		tcj.getValidacaoJTextFieldInscricaoEstadual().setText(cliente.getInscricaoEstadual());
-		tcj.getComboBoxUfInscricaoEstadual().setSelectedItem(cliente.getInscricaoEstadualUF());
-		tcj.getFormattedTextFieldCEP().setText(cliente.getCep());
-		tcj.getValidacaoGeralJTextFieldLogradouro().setText(cliente.getLogradouro());
-		tcj.getValidacaoGeralJTextFieldNumero().setText(cliente.getNumeroEndereco());
-		tcj.getValidacaoGeralJTextFieldBairro().setText(cliente.getBairro());
-		tcj.getValidacaoGeralJTextFieldComplemento().setText(cliente.getComplemento());
-		tcj.getValidacaoGeralJTextFieldCidade().setText(cliente.getCidade());
-		tcj.getComboBoxEstadoEndereco().setSelectedItem(cliente.getUf_estado());
-		tcj.getFormattedTextFieldTelefone().setText(cliente.getTelefone());
-		tcj.getValidacaoJTextFieldEmail().setText(cliente.getEmail());
-		tcj.getValidacaoJTextFieldLimiteCredito().setText(String.valueOf(cliente.getLimiteCredito()));
-		tcj.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
-		tcj.getTelaPesquisa().getTextFieldEntradaDado().setText("");
+		principal.getTelaJuridica().getComboBoxSituacaoCliente().setSelectedItem(cliente.getSituacao());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setText(cliente.getRazaoSocial());
+		principal.getTelaJuridica().getValidacaoJTextFieldCnpj().setText(cliente.getCnpj());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setText(cliente.getRepresentante());
+		principal.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setText(cliente.getInscricaoEstadual());
+		principal.getTelaJuridica().getComboBoxUfInscricaoEstadual().setSelectedItem(cliente.getInscricaoEstadualUF());
+		principal.getTelaJuridica().getFormattedTextFieldCEP().setText(cliente.getCep());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setText(cliente.getLogradouro());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setText(cliente.getNumeroEndereco());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setText(cliente.getBairro());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setText(cliente.getComplemento());
+		principal.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setText(cliente.getCidade());
+		principal.getTelaJuridica().getComboBoxEstadoEndereco().setSelectedItem(cliente.getUf_estado());
+		principal.getTelaJuridica().getFormattedTextFieldTelefone().setText(cliente.getTelefone());
+		principal.getTelaJuridica().getValidacaoJTextFieldEmail().setText(cliente.getEmail());
+		principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setText(String.valueOf(cliente.getLimiteCredito()));
+		principal.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
+		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
 	}
 
 	private boolean buscaNoArrayToTabela() {
 		String tipoBusca, valorBusca;
 		
-		tipoBusca = tcj.getTelaPesquisa().getComboBoxTipoPesquisa().getSelectedItem().toString();
-		valorBusca = tcj.getTelaPesquisa().getTextFieldEntradaDado().getText();
+		tipoBusca = principal.getTelaPesquisa().getComboBoxTipoPesquisa().getSelectedItem().toString();
+		valorBusca = principal.getTelaPesquisa().getTextFieldEntradaDado().getText();
 		
 		if(!tipoBusca.equals("Selecione")) {		
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Razão Social")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					tcj.getTelaPesquisa().getJTableDadosCliente().setModel(tcj.getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -511,13 +471,13 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 									clientePessoa.setComplemento(banco.consultarEndereco().get(j).getComplemento());
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-									tcj.getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
+									principal.getTelaJuridica().getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
 								}
 							}
 						}				
 					}
-					if(tcj.getBuscaExibicaoTableModel(true).getRowCount() > 0) {
-						//JOptionPane.showMessageDialog(null, "Busca finalizada, " + tcj.getBuscaExibicaoTableModel(true).getRowCount() + " clientes encontrados.", "Busca", JOptionPane.INFORMATION_MESSAGE);
+					if(principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getRowCount() > 0) {
+						//JOptionPane.showMessageDialog(null, "Busca finalizada, " + principal.getBuscaExibicaoTableModel(true).getRowCount() + " clientes encontrados.", "Busca", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Busca finalizada, nenhum cliente encontrado."
@@ -527,7 +487,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 				}
 				else if(tipoBusca.equals("CNPJ")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					tcj.getTelaPesquisa().getJTableDadosCliente().setModel(tcj.getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -543,13 +503,13 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 									clientePessoa.setComplemento(banco.consultarEndereco().get(j).getComplemento());
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-									tcj.getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
+									principal.getTelaJuridica().getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
 								}
 							}
 						}				
 					}	
-					if(tcj.getBuscaExibicaoTableModel(true).getRowCount() > 0) {
-						//JOptionPane.showMessageDialog(null, "Busca finalizada, " + tcj.getBuscaExibicaoTableModel(true).getRowCount() + " clientes encontrados.", "Busca", JOptionPane.INFORMATION_MESSAGE);
+					if(principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getRowCount() > 0) {
+						//JOptionPane.showMessageDialog(null, "Busca finalizada, " + principal.getBuscaExibicaoTableModel(true).getRowCount() + " clientes encontrados.", "Busca", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Busca finalizada, nenhum cliente encontrado."
@@ -575,15 +535,15 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	
 	private void capturarCampos() {
 		clienteAtual = new ModeloClientePessoaJuridica();
-		this.clienteAtual.setSituacao(tcj.getComboBoxSituacaoCliente().getSelectedItem().toString());
-		this.clienteAtual.setRazaoSocial(tcj.getValidacaoGeralJTextFieldRazaoSocial().getText());
-		this.clienteAtual.setCnpj(tcj.getValidacaoJTextFieldCnpj().getText());
-		this.clienteAtual.setRepresentante(tcj.getValidacaoGeralJTextFieldRepresentante().getText());
-		this.clienteAtual.setInscricaoEstadual(tcj.getValidacaoJTextFieldInscricaoEstadual().getText());
-		this.clienteAtual.setInscricaoEstadualUF(tcj.getComboBoxUfInscricaoEstadual().getSelectedItem().toString());
+		this.clienteAtual.setSituacao(principal.getTelaJuridica().getComboBoxSituacaoCliente().getSelectedItem().toString());
+		this.clienteAtual.setRazaoSocial(principal.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().getText());
+		this.clienteAtual.setCnpj(principal.getTelaJuridica().getValidacaoJTextFieldCnpj().getText());
+		this.clienteAtual.setRepresentante(principal.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().getText());
+		this.clienteAtual.setInscricaoEstadual(principal.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().getText());
+		this.clienteAtual.setInscricaoEstadualUF(principal.getTelaJuridica().getComboBoxUfInscricaoEstadual().getSelectedItem().toString());
 		
 		try {
-			this.clienteAtual.setLimiteCredito(Double.parseDouble(tcj.getValidacaoJTextFieldLimiteCredito().getText()));
+			this.clienteAtual.setLimiteCredito(Double.parseDouble(principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().getText()));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -591,15 +551,15 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			//System.out.println(cliente.getLimiteCredito());
 		}
 						
-		this.clienteAtual.setCep(tcj.getFormattedTextFieldCEP().getText());
-		this.clienteAtual.setLogradouro(tcj.getValidacaoGeralJTextFieldLogradouro().getText());
-		this.clienteAtual.setNumeroEndereco(tcj.getValidacaoGeralJTextFieldNumero().getText());
-		this.clienteAtual.setBairro(tcj.getValidacaoGeralJTextFieldBairro().getText());
-		this.clienteAtual.setComplemento(tcj.getValidacaoGeralJTextFieldComplemento().getText());
-		this.clienteAtual.setCidade(tcj.getValidacaoGeralJTextFieldCidade().getText());
-		this.clienteAtual.setUf_estado(tcj.getComboBoxEstadoEndereco().getSelectedItem().toString());
-		this.clienteAtual.setTelefone(tcj.getFormattedTextFieldTelefone().getText());
-		this.clienteAtual.setEmail(tcj.getValidacaoJTextFieldEmail().getText());
+		this.clienteAtual.setCep(principal.getTelaJuridica().getFormattedTextFieldCEP().getText());
+		this.clienteAtual.setLogradouro(principal.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().getText());
+		this.clienteAtual.setNumeroEndereco(principal.getTelaJuridica().getValidacaoGeralJTextFieldNumero().getText());
+		this.clienteAtual.setBairro(principal.getTelaJuridica().getValidacaoGeralJTextFieldBairro().getText());
+		this.clienteAtual.setComplemento(principal.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().getText());
+		this.clienteAtual.setCidade(principal.getTelaJuridica().getValidacaoGeralJTextFieldCidade().getText());
+		this.clienteAtual.setUf_estado(principal.getTelaJuridica().getComboBoxEstadoEndereco().getSelectedItem().toString());
+		this.clienteAtual.setTelefone(principal.getTelaJuridica().getFormattedTextFieldTelefone().getText());
+		this.clienteAtual.setEmail(principal.getTelaJuridica().getValidacaoJTextFieldEmail().getText());
 	}
 	
 	private boolean validacaoClienteCampos(String b) {
@@ -639,10 +599,42 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 		return false;
 	}
 	
-	public ControladorTelaCadastroCliente getControladorTelaCadastroCliente(VisaoFramePrincipal frame) {
-		if(controladorTelaCadastroCliente == null) {
-			controladorTelaCadastroCliente = new ControladorTelaCadastroCliente(frame);
-		}		
-		return controladorTelaCadastroCliente;				
+	public void chamarTelaCliente() {
+		principal.removeTelaFisica();
+		principal.add(principal.getPanel());
+		principal.getComboBoxTipoCliente().setSelectedItem("Selecione");
+		principal.remove(principal.getTelaPesquisa());
+		principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente");		
+		principal.getTelaPesquisa().getButtonExcluir().setEnabled(false);
+		principal.getTelaPesquisa().getButtonAlterar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonCancelar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonConfirmar().setEnabled(false);
+		principal.getTelaPesquisa().getButtonIncluir().setEnabled(true);
+		principal.getTelaPesquisa().getButtonBuscar().setEnabled(true);
+		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
+		principal.getTelaPesquisa().getJTableDadosCliente().setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+					{null, null, null, null},
+				},
+				new String[] {
+					"CPF/CNPJ", "Nome/Razão Social", "Endere\u00E7o", "Telefone"
+				}
+			)
+		);
+		principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente");
+		principal.repaint();
+		principal.validate();
 	}
 }
