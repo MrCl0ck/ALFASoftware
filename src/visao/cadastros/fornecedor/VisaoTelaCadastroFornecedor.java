@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
-import modelo.tableModel.ClienteFisicoTable;
-import modelo.tableModel.ClienteJuridicoTable;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.JuridicoTable;
 import visao.VisaoTelaPesquisa;
 
 public class VisaoTelaCadastroFornecedor extends JPanel {

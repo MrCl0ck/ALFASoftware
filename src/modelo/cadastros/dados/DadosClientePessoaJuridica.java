@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
 import dao.Banco;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
-import modelo.tableModel.ClienteFisicoTable;
-import modelo.tableModel.ClienteJuridicoTable;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.JuridicoTable;
 
 public class DadosClientePessoaJuridica {
-	private static ClienteJuridicoTable clienteTabela = new ClienteJuridicoTable();
+	private static JuridicoTable clienteTabela = new JuridicoTable();
 	private static Banco banco = new Banco();
 	
 	public DadosClientePessoaJuridica() {
@@ -94,7 +94,7 @@ public class DadosClientePessoaJuridica {
 			clienteTabela.addCliente(cliente);
 		}
 		
-		public ClienteJuridicoTable getClientesNaTabela() {
+		public JuridicoTable getClientesNaTabela() {
 			return clienteTabela;
 		}
 		

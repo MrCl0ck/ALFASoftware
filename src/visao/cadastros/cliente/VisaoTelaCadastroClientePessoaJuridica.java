@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import modelo.cadastros.validacoes.FormataMascaras;
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
-import modelo.tableModel.ClienteJuridicoTable;
+import modelo.tableModel.JuridicoTable;
 import visao.VisaoTelaPesquisa;
 
 import java.awt.Rectangle;
@@ -61,8 +61,8 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 	private JSeparator separator		= null;
 	private JSeparator separator_1		= null;
 	private JSeparator separatorTitulo	= null;	
-	private ClienteJuridicoTable clienteJuridicoTableModel = null;
-	private ClienteJuridicoTable buscaExibicaoTableModel   = null;
+	private JuridicoTable clienteJuridicoTableModel = null;
+	private JuridicoTable buscaExibicaoTableModel   = null;
 	FormataMascaras fm = new FormataMascaras();
 	
 	public VisaoTelaCadastroClientePessoaJuridica() {
@@ -509,12 +509,12 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		return separator_1;
 	}
 	
-	public ClienteJuridicoTable getBuscaExibicaoTableModel(boolean consulta) {
+	public JuridicoTable getBuscaExibicaoTableModel(boolean consulta) {
 		if(consulta == true) {
 			return buscaExibicaoTableModel;
 		}
 		else{
-			buscaExibicaoTableModel = new ClienteJuridicoTable();
+			buscaExibicaoTableModel = new JuridicoTable();
 			
 			return buscaExibicaoTableModel;
 		}		

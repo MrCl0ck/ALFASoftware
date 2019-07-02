@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
-import modelo.tableModel.ClienteFisicoTable;
-import modelo.tableModel.ClienteJuridicoTable;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.JuridicoTable;
 import visao.VisaoTelaPesquisa;
 
 public class VisaoTelaCadastroCliente extends JPanel {
@@ -20,8 +20,8 @@ public class VisaoTelaCadastroCliente extends JPanel {
 	private JComboBox<String> 		comboBoxTipoCliente		 		= null;
 	private JSeparator 				separatorTitulo		 			= null;
 	private VisaoTelaPesquisa 		telaPesquisa		 			= null;
-	private ClienteFisicoTable 		buscaExibicaoTableModelFisico	= null;
-	private ClienteJuridicoTable 	buscaExibicaoTableModelJuridico	= null;
+	private FisicoTable 		buscaExibicaoTableModelFisico	= null;
+	private JuridicoTable 	buscaExibicaoTableModelJuridico	= null;
 	private VisaoTelaCadastroClientePessoaFisica fisica;
 	private VisaoTelaCadastroClientePessoaJuridica juridica;
 	private JPanel panel;
@@ -99,23 +99,23 @@ public class VisaoTelaCadastroCliente extends JPanel {
 		return telaPesquisa;
 	}
 	
-	public ClienteFisicoTable getBuscaExibicaoTableModelFisico(boolean consulta) {
+	public FisicoTable getBuscaExibicaoTableModelFisico(boolean consulta) {
 		if(consulta == true) {
 			return buscaExibicaoTableModelFisico;
 		}
 		else{
-			buscaExibicaoTableModelFisico = new ClienteFisicoTable();
+			buscaExibicaoTableModelFisico = new FisicoTable();
 			
 			return buscaExibicaoTableModelFisico;
 		}		
 	}
 	
-	public ClienteJuridicoTable getBuscaExibicaoTableModelJuridico(boolean consulta) {
+	public JuridicoTable getBuscaExibicaoTableModelJuridico(boolean consulta) {
 		if(consulta == true) {
 			return buscaExibicaoTableModelJuridico;
 		}
 		else{
-			buscaExibicaoTableModelJuridico = new ClienteJuridicoTable();
+			buscaExibicaoTableModelJuridico = new JuridicoTable();
 			
 			return buscaExibicaoTableModelJuridico;
 		}		

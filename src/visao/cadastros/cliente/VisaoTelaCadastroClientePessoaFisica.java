@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import modelo.cadastros.validacoes.FormataMascaras;
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
-import modelo.tableModel.ClienteFisicoTable;
+import modelo.tableModel.FisicoTable;
 import visao.VisaoTelaPesquisa;
 import javax.swing.border.LineBorder;
 
@@ -54,8 +54,8 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 	private JSeparator separatorTitulo	= null;
 	private JSeparator separator		= null;
 	private JSeparator separator_2	    = null;
-	private ClienteFisicoTable clienteFisicoTableModel = null;
-	private ClienteFisicoTable buscaExibicaoTableModel = null;
+	private FisicoTable clienteFisicoTableModel = null;
+	private FisicoTable buscaExibicaoTableModel = null;
 	
 	FormataMascaras fm = new FormataMascaras();
 	public VisaoTelaCadastroClientePessoaFisica() {
@@ -561,12 +561,12 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		return separator_2;
 	}
 	
-	public ClienteFisicoTable getBuscaExibicaoTableModel(boolean consulta) {
+	public FisicoTable getBuscaExibicaoTableModel(boolean consulta) {
 		if(consulta == true) {
 			return buscaExibicaoTableModel;
 		}
 		else{
-			buscaExibicaoTableModel = new ClienteFisicoTable();
+			buscaExibicaoTableModel = new FisicoTable();
 			
 			return buscaExibicaoTableModel;
 		}		

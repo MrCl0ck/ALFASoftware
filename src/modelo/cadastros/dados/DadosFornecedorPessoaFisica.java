@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import dao.Banco;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
-import modelo.tableModel.ClienteFisicoTable;
+import modelo.tableModel.FisicoTable;
 
 public class DadosFornecedorPessoaFisica {
 

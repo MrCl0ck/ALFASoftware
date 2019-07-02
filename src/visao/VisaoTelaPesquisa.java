@@ -5,8 +5,8 @@ import java.awt.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.tableModel.ClienteFisicoTable;
-import modelo.tableModel.ClienteJuridicoTable;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.JuridicoTable;
 
 public class VisaoTelaPesquisa extends JPanel {
 	private JLabel labelPesquisa        			= null;

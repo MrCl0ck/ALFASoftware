@@ -7,11 +7,11 @@ import javax.swing.table.AbstractTableModel;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 
-public class ClienteJuridicoTable extends AbstractTableModel{
+public class JuridicoTable extends AbstractTableModel{
 	private	ArrayList<ModeloClientePessoaJuridica> listaClientesJuridico;
 	private String[] colunas = new String[]{"CNPJ","Razao Social","Endereço", "Telefone"};
 	
-	public ClienteJuridicoTable () {
+	public JuridicoTable () {
 		this.listaClientesJuridico = new ArrayList<>();		
 	}
 		

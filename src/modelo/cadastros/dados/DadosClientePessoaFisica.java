@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 
 import dao.Banco;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
-import modelo.tableModel.ClienteFisicoTable;
+import modelo.tableModel.FisicoTable;
 
 public class DadosClientePessoaFisica {
-	private static ClienteFisicoTable clienteTabela = new ClienteFisicoTable();
+	private static FisicoTable clienteTabela = new FisicoTable();
 	private static Banco banco = new Banco();
 	
 	public DadosClientePessoaFisica() {
@@ -85,7 +85,7 @@ public class DadosClientePessoaFisica {
 		clienteTabela.addCliente(cliente);
 	}
 	
-	public ClienteFisicoTable getClientesNaTabela() {
+	public FisicoTable getClientesNaTabela() {
 		return clienteTabela;
 	}
 	
