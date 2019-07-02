@@ -25,11 +25,11 @@ public class DadosProduto {
 			boolean retornoFuncao = false;
 
 			try {
-				retornoFuncao = banco.inserir("tipo", "`nome`", produto.getTipo());
+				retornoFuncao = banco.inserir("tipo", "`nome`", produto.getTipo().getTipoNome());
 
 				String idTipo = banco.primeiroEultimo("tipo", "id", 1);
 
-				retornoFuncao = banco.inserir("unidade", "`nome`", produto.getUnidade());
+				retornoFuncao = banco.inserir("unidade", "`nome`", produto.getUnidade().getUnidadeNome());
 
 				String idUnidade = banco.primeiroEultimo("unidade", "id", 1);
 

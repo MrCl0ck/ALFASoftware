@@ -10,10 +10,8 @@ public class ModeloProduto {
 	private double valorDaCompra;
 	private double valorDaVenda;
 	private double lucro;
-	private int idUnidade;
-	private String unidade;
-	private int idTipo;
-	private String tipo;
+	private Unidade unidade;
+	private Tipo tipo;
 	private String estoqueMinimo;
 	private String estoqueMaximo;
 
@@ -64,20 +62,20 @@ public class ModeloProduto {
 	public void setLucro(double lucro) {
 		this.lucro = lucro;
 	}
-	
-	public String getUnidade() {
+
+	public Unidade getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(String unidade) {
+	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
@@ -96,24 +94,4 @@ public class ModeloProduto {
 	public void setEstoqueMaximo(String estoqueMaximo) {
 		this.estoqueMaximo = estoqueMaximo;
 	}
-
-	public int getIdUnidade() {
-		return idUnidade;
-	}
-
-	public void setIdUnidade(int idUnidade) {
-		this.idUnidade = idUnidade;
-	}
-
-	public int getIdTipo() {
-		return idTipo;
-	}
-
-	public void setIdTipo(int idTipo) {
-		this.idTipo = idTipo;
-	}
-	
-	
-
 }
-

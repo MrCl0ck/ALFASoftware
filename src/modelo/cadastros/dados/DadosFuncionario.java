@@ -34,7 +34,7 @@ public class DadosFuncionario {
 
 			String id = banco.primeiroEultimo("endereco", "id", 1);
 
-			retornoFuncao = banco.inserir("cargo", "`nome`", funcionario.getCargo());
+			retornoFuncao = banco.inserir("cargo", "`nome`", funcionario.getCargo().getNomeCargo());
 
 			String idCargo = banco.primeiroEultimo("cargo", "id", 1);
 

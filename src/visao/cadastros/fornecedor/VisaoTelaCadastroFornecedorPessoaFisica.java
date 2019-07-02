@@ -65,7 +65,6 @@ public class VisaoTelaCadastroFornecedorPessoaFisica extends JPanel{
 	private JSeparator 	separator 				= null;
 	private JSeparator 	separator_1 			= null;
 	private JButton 	buttonCadastroEndereco 	= null;
-	private VisaoTelaPesquisa telaPesquisa 		= null;
 	FormataMascaras fm = new FormataMascaras();
 	
 	public VisaoTelaCadastroFornecedorPessoaFisica() {
@@ -113,7 +112,6 @@ public class VisaoTelaCadastroFornecedorPessoaFisica extends JPanel{
 		add(getLabelPaginaCadastroFornecedor());
 		add(getLblRamoDeAtividade());
 		add(getFormattedTextFieldRamoAtividade());
-		add(getTelaPesquisa());
 		add(getSeparator());
 		add(getLabelDadosPessoais());
 		add(getSeparator_1());
@@ -520,33 +518,6 @@ public class VisaoTelaCadastroFornecedorPessoaFisica extends JPanel{
 			formattedTextFieldRamoAtividade.setBounds(335, 112, 255, 20);
 		}
 		return formattedTextFieldRamoAtividade;
-	}
-	
-	public VisaoTelaPesquisa getTelaPesquisa() {
-		if(telaPesquisa == null) {
-			telaPesquisa = new VisaoTelaPesquisa();
-			telaPesquisa.getButtonFechar().setLocation(832, 321);
-			telaPesquisa.getButtonConfirmar().setLocation(683, 321);
-			telaPesquisa.getButtonCancelar().setLocation(539, 321);
-			telaPesquisa.getButtonAlterar().setLocation(388, 321);
-			telaPesquisa.getButtonExcluir().setLocation(233, 321);
-			telaPesquisa.getButtonIncluir().setLocation(85, 321);
-			telaPesquisa.getButtonBuscar().setSize(135, 24);
-			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
-			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
-			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(789, 41);
-//			telaPesquisa.getJTableDadosCliente().setModel(getBuscaExibicaoTableModel(false));
-			telaPesquisa.getSeparatorBotoes().setSize(1121, 48);
-			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1121, 20);
-			telaPesquisa.setBounds(0,343, 1055, 348);
-			//algumas alterações, variantes de tabela pra tabela
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("Razão Social");
-			telaPesquisa.getComboBoxTipoPesquisa().removeItem("CNPJ");
-		}
-		return telaPesquisa;
 	}
 	public JSeparator getSeparator() {
 		if (separator == null) {

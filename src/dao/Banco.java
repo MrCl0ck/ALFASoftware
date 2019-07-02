@@ -14,8 +14,11 @@ import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
 import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
+import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
 import modelo.cadastros.produto.ModeloProduto;
+import modelo.cadastros.produto.Tipo;
+import modelo.cadastros.produto.Unidade;
 
 public class Banco {
 
@@ -538,8 +541,7 @@ public class Banco {
 				modeloFuncionario.setSexo(resultado.getString("sexo"));
 				modeloFuncionario.setCtps(resultado.getString("ctps"));
 				modeloFuncionario.setDataDeAdmissao(resultado.getString("dataadmissao"));
-				modeloFuncionario.setIdcargo(resultado.getInt("CARGO_id"));
-				modeloFuncionario.setCargo(resultado.getString("cargo"));
+				modeloFuncionario.getCargo().setId(resultado.getInt("CARGO_id"));
 				modeloFuncionario.setSetor(resultado.getString("setor"));
 				modeloFuncionario.setSalario(resultado.getFloat("salario"));
 				modeloFuncionario.setNomeDeUsuario(resultado.getString("usuario"));
@@ -574,8 +576,8 @@ public class Banco {
 				modeloProduto.setLucro(resultado.getDouble("lucro"));
 				modeloProduto.setEstoqueMinimo(resultado.getString("estoqueminimo"));
 				modeloProduto.setEstoqueMaximo(resultado.getString("estoquemaximo"));
-				modeloProduto.setIdUnidade(resultado.getInt("UNIDADE_id"));
-				modeloProduto.setIdTipo(resultado.getInt("TIPO_id"));
+				modeloProduto.getUnidade().setId(resultado.getInt("UNIDADE_id"));
+				modeloProduto.getTipo().setId(resultado.getInt("TIPO_id"));
 				lista.add(modeloProduto);
 			}
 			this.fechar(0);
@@ -586,9 +588,72 @@ public class Banco {
 		return lista;
 	}
 	
-	//Falta array do CARGO
-	//Falta array do UNIDADE
-	//Falta array do TIPO
+	
+	public ArrayList<Cargo> consultarCargo() {
+		ArrayList<Cargo> lista = new ArrayList<Cargo>();
+		String sql = "SELECT * FROM endereco";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				Cargo modelocargo = new Cargo();
+				modelocargo.setId(resultado.getInt("id"));
+				modelocargo.setNomeCargo(resultado.getString("nome"));
+				
+				lista.add(modelocargo);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public ArrayList<Unidade> consultarUnidade() {
+		ArrayList<Unidade> lista = new ArrayList<Unidade>();
+		String sql = "SELECT * FROM endereco";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				Unidade modelounidade = new Unidade();
+				modelounidade.setId(resultado.getInt("id"));
+				modelounidade.setUnidadeNome(resultado.getString("nome"));
+				
+				lista.add(modelounidade);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public ArrayList<Tipo> consultarTipo() {
+		ArrayList<Tipo> lista = new ArrayList<Tipo>();
+		String sql = "SELECT * FROM endereco";
+		conexao = this.abrir(0);
+		try {
+			consulta = conexao.createStatement();
+			resultado = consulta.executeQuery(sql);
+			while (resultado.next()) {
+				Tipo modelotipo = new Tipo();
+				modelotipo.setId(resultado.getInt("id"));
+				modelotipo.setTipoNome(resultado.getString("nome"));
+				
+				lista.add(modelotipo);
+			}
+			this.fechar(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
 	
 	public ArrayList<EnderecoCadastro> consultarEndereco() {
 		ArrayList<EnderecoCadastro> lista = new ArrayList<EnderecoCadastro>();

@@ -60,7 +60,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 	private JSeparator separator_1	= null;
 	private JSeparator separator_2	= null;
 	private JButton buttonCadastroEndereco	= null;
-	private VisaoTelaPesquisa telaPesquisa	= null;
 	FormataMascaras fm = new FormataMascaras();
 	
 	public VisaoTelaCadastroFornecedorPessoaJuridica() {
@@ -108,7 +107,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 		add(getFormattedTextFieldFax());
 		add(getFormattedTextFieldTelefone());
 		add(getButtonCadastroEndereco());
-		add(getTelaPesquisa());
 	}
 	public JLabel getLabelTitulo() {
 		if (labelTitulo == null) {
@@ -489,28 +487,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 			buttonCadastroEndereco.setBounds(773, 296, 207, 30);
 		}
 		return buttonCadastroEndereco;
-	}
-	public VisaoTelaPesquisa getTelaPesquisa() {
-		if(telaPesquisa == null) {
-			telaPesquisa = new VisaoTelaPesquisa();
-			telaPesquisa.getButtonFechar().setLocation(832, 321);
-			telaPesquisa.getButtonConfirmar().setLocation(683, 321);
-			telaPesquisa.getButtonCancelar().setLocation(539, 321);
-			telaPesquisa.getButtonAlterar().setLocation(388, 321);
-			telaPesquisa.getButtonExcluir().setLocation(233, 321);
-			telaPesquisa.getButtonIncluir().setLocation(85, 321);
-			telaPesquisa.getButtonBuscar().setSize(135, 24);
-			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
-			telaPesquisa.getComboBoxTipoPesquisa().setLocation(59, 41);
-			telaPesquisa.getTextFieldEntradaDado().setLocation(270, 41);
-			telaPesquisa.getButtonBuscar().setLocation(789, 41);
-			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
-			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
-			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1058, 357);
-		}
-		return telaPesquisa;
 	}
 	
 }
