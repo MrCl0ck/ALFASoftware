@@ -6,10 +6,12 @@ import javax.swing.JOptionPane;
 
 import dao.Banco;
 import modelo.cadastros.funcionario.ModeloFuncionario;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.FisicoTable_F;
 
 public class DadosFuncionario {
 
-	private static FuncionarioTable FuncionarioTabela = new FuncionarioTable();
+	private static FisicoTable_F funcionarioTabela = new FisicoTable_F();
 	private static Banco banco = new Banco();
 
 	public DadosFuncionario() {
@@ -113,11 +115,11 @@ public class DadosFuncionario {
 	// TABELA-------------------------------------------------------------
 
 	public void adicionarFuncionarioTabela(ModeloFuncionario funcionario) {
-		funcionarioTabela.addFuncionario(funcionario);
+		funcionarioTabela.add_tabela(funcionario);
 	}
 
-	public FuncionarioTable getFuncionariosNaTabela() {
-		return funcionariosTabela;
+	public FisicoTable_F getFuncionariosNaTabela() {
+		return funcionarioTabela;
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------

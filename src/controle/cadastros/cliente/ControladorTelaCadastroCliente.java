@@ -54,7 +54,7 @@ public class ControladorTelaCadastroCliente{
 	}
 	
 	public void getSelecionarUmClienteTabelaTyped() {
-		telaCliente.getTelaPesquisa().getJTableDadosCliente().addKeyListener(new KeyListener() {
+		telaCliente.getTelaPesquisa().getJTableDados().addKeyListener(new KeyListener() {
 			
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -67,14 +67,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_J = new ModeloClientePessoaJuridica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_J(cliente_exibicao_J);
 						      }
 						}
 						else {
 							cliente_exibicao_J = new ModeloClientePessoaJuridica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_J(cliente_exibicao_J);
 						}						
@@ -88,14 +88,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_F = new ModeloClientePessoaFisica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_F(cliente_exibicao_F);
 						      }
 						}
 						else {
 							cliente_exibicao_F = new ModeloClientePessoaFisica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_F(cliente_exibicao_F);
 						}
@@ -115,14 +115,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_J = new ModeloClientePessoaJuridica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_J(cliente_exibicao_J);
 						      }
 						}
 						else {
 							cliente_exibicao_J = new ModeloClientePessoaJuridica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_J(cliente_exibicao_J);
 						}
@@ -136,14 +136,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_F = new ModeloClientePessoaFisica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_F(cliente_exibicao_F);
 						      }
 						}
 						else {
 							cliente_exibicao_F = new ModeloClientePessoaFisica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_F(cliente_exibicao_F);
 						}
@@ -160,14 +160,14 @@ public class ControladorTelaCadastroCliente{
 							
 							if(opcao == 1) {
 								cliente_exibicao_J = new ModeloClientePessoaJuridica();
-								int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+								int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 								cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 								atribuicao_busca_campos_J(cliente_exibicao_J);
 							}
 						}
 						else {
 							cliente_exibicao_J = new ModeloClientePessoaJuridica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_J(cliente_exibicao_J);
 						}						
@@ -181,14 +181,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_F = new ModeloClientePessoaFisica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_F(cliente_exibicao_F);
 						      }
 						}
 						else {
 							cliente_exibicao_F = new ModeloClientePessoaFisica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_F(cliente_exibicao_F);
 						}
@@ -272,13 +272,13 @@ public class ControladorTelaCadastroCliente{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Busca")) {
-					int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();
-					if (telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {
+					int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();
+					if (telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {
 						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Busca - Pessoa Física")) {
 							atribuicao_busca_campos_F(telaCliente.getBuscaExibicaoTableModelFisico(true).getCliente(linhaSelecionada));						
 							telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText(telaCliente.getTelaPesquisa().getTextFieldEntradaDado().getText());
 							telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem(telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().getSelectedItem().toString());
-							telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getBuscaExibicaoTableModelFisico(true));;
+							telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelFisico(true));;
 							telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).setClienteArray(telaCliente.getBuscaExibicaoTableModelFisico(true).getClienteArray());
 							telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alteração de cliente");											
 							incluir_alterar_campos_f(true);
@@ -303,9 +303,9 @@ public class ControladorTelaCadastroCliente{
 					}
 				}	
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica")) {
-					if(telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");
-						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						ModeloClientePessoaJuridica cliente = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 						
 						cliente_antigo_J = new ModeloClientePessoaJuridica();
@@ -321,9 +321,9 @@ public class ControladorTelaCadastroCliente{
 					}
 				}
 				else if (telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física")) {
-					if(telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alteração de cliente");
-						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();
+						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();
 						
 						cliente_antigo_F = new ModeloClientePessoaFisica();
 						cliente_antigo_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
@@ -379,9 +379,9 @@ public class ControladorTelaCadastroCliente{
 					}
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")) {
-					if(telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 						//telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Exclusão de cliente");
-						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						ModeloClientePessoaFisica cliente = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 						
 						Object[] options = { "NÃO", "SIM" };
@@ -406,9 +406,9 @@ public class ControladorTelaCadastroCliente{
 					}
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-					if(telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 						//telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente");
-						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						ModeloClientePessoaJuridica cliente = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 						
 						Object[] options = { "NÃO", "SIM" };
@@ -437,7 +437,7 @@ public class ControladorTelaCadastroCliente{
 	}
 	
 	public void exclusaoFisico() {
-		int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+		int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 			ModeloClientePessoaFisica cliente = telaCliente.getBuscaExibicaoTableModelFisico(true).getCliente(linhaSelecionada);
 			
 			Object[] options = { "NÃO", "SIM" };
@@ -457,7 +457,7 @@ public class ControladorTelaCadastroCliente{
 	}
 	
 	public void exclusaoJuridico() {
-		int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+		int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 		ModeloClientePessoaJuridica cliente = telaCliente.getBuscaExibicaoTableModelJuridico(true).getCliente(linhaSelecionada);
 		
 		Object[] options = { "NÃO", "SIM" };
@@ -513,23 +513,37 @@ public class ControladorTelaCadastroCliente{
 						if(opcao == 1) {
 							limpar_campos_fisico();
 							campos_inicial_fisico();
-							
 							//antes de fazer a limpeza dos butoes ver se tem clientes  mostrando na tabela de busca.
-							inicial_buttons_fj();
+							//inicial_buttons_fj();
 						}
 					}
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-					Object[] options = { "NÃO", "SIM" };
-				      int opcao = JOptionPane.showOptionDialog(null, "Deseja cancelar o procedimento atual?", "Cancelamento",
-				          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-				              null, options, options[0]);
-				      
-				      if(opcao == 1) {
-				    	  limpar_campos_juridico();
-				    	  inicial_buttons_fj();
-				    	  campos_inicial_juridico();
-				      }	
+					if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica")) {
+						Object[] options = { "NÃO", "SIM" };
+						int opcao = JOptionPane.showOptionDialog(null, "Deseja cancelar o procedimento atual?", "Cancelamento",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+								null, options, options[0]);
+						
+						if(opcao == 1) {
+							limpar_campos_juridico();
+							inicial_buttons_fj();
+							campos_inicial_juridico();
+						}						
+					}
+					else {
+						Object[] options = { "NÃO", "SIM" };
+						int opcao = JOptionPane.showOptionDialog(null, "Deseja cancelar o procedimento atual?", "Cancelamento",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+								null, options, options[0]);
+						
+						if(opcao == 1) {
+							limpar_campos_fisico();
+							campos_inicial_fisico();
+							//antes de fazer a limpeza dos butoes ver se tem clientes  mostrando na tabela de busca.
+							//inicial_buttons_fj();
+						}
+					}
 				}
 				else {
 					Object[] options = { "NÃO", "SIM" };
@@ -658,7 +672,7 @@ public class ControladorTelaCadastroCliente{
 	
 	
 	private void getSelecionarUmClienteTabela() {
-		telaCliente.getTelaPesquisa().getJTableDadosCliente().addMouseListener(new MouseListener() {
+		telaCliente.getTelaPesquisa().getJTableDados().addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -666,7 +680,7 @@ public class ControladorTelaCadastroCliente{
 					if(e.getClickCount() == 1) {
 						System.out.println(telaCliente.getLabelPaginaCadastroCliente().getText());
 						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Busca - Pessoa Física")) {
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();
 							//						getControladorPessoaFisicaInstancia().atribuicaoDeBuscaAosCampos(telaCliente.getBuscaExibicaoTableModelFisico(true).getCliente(linhaSelecionada));
 							//						getControladorPessoaFisicaInstancia().botoesHabilitadosPosBusca(true);
 							//						getControladorPessoaFisicaInstancia().getTelaClienteFisico().getTelaPesquisa().getTextFieldEntradaDado().setText(telaCliente.getTelaPesquisa().getTextFieldEntradaDado().getText());
@@ -677,7 +691,7 @@ public class ControladorTelaCadastroCliente{
 							
 						}
 						else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Busca - Pessoa Jurídica")) {
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();			
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();			
 							//						getControladorPessoaJuridicaInstancia().atribuicaoDeBuscaAosCampos(telaCliente.getBuscaExibicaoTableModelJuridico(true).getCliente(linhaSelecionada));
 							//						getControladorPessoaJuridicaInstancia().botoesHabilitadosPosBusca(true);
 							//						getControladorPessoaJuridicaInstancia().getTelaClienteJuridico().getTelaPesquisa().getTextFieldEntradaDado().setText(telaCliente.getTelaPesquisa().getTextFieldEntradaDado().getText());
@@ -698,14 +712,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_exibicao_F = new ModeloClientePessoaFisica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_F(cliente_exibicao_F);
 						      }
 						}
 						else {
 							cliente_exibicao_F = new ModeloClientePessoaFisica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_exibicao_F = telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_F(cliente_exibicao_F);
 						}
@@ -722,14 +736,14 @@ public class ControladorTelaCadastroCliente{
 						      
 						      if(opcao == 1) {
 						    	  cliente_atual_J = new ModeloClientePessoaJuridica();
-						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						    	  int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						    	  cliente_atual_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						    	  atribuicao_busca_campos_J(cliente_atual_J);
 						      }
 						}
 						else {
 							cliente_atual_J = new ModeloClientePessoaJuridica();
-							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+							int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 							cliente_atual_J = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 							atribuicao_busca_campos_J(cliente_atual_J);
 						}
@@ -786,7 +800,7 @@ public class ControladorTelaCadastroCliente{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Razão Social")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getBuscaExibicaoTableModelJuridico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelJuridico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -819,7 +833,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(tipoBusca.equals("CNPJ")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getBuscaExibicaoTableModelJuridico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelJuridico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -872,7 +886,7 @@ public class ControladorTelaCadastroCliente{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Nome")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getBuscaExibicaoTableModelFisico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelFisico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
@@ -889,6 +903,7 @@ public class ControladorTelaCadastroCliente{
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
 									telaCliente.getBuscaExibicaoTableModelFisico(true).addCliente(clientePessoa);
+									break;
 								}
 							}
 						}				
@@ -905,7 +920,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(tipoBusca.equals("CPF")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getBuscaExibicaoTableModelFisico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelFisico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
@@ -922,6 +937,7 @@ public class ControladorTelaCadastroCliente{
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
 									telaCliente.getBuscaExibicaoTableModelFisico(true).addCliente(clientePessoa);
+									break;
 								}
 							}
 						}				
@@ -1033,7 +1049,7 @@ public class ControladorTelaCadastroCliente{
 		telaCliente.getComboBoxTipoCliente().setSelectedItem("Selecione");
 		telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText("");
 		telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
-		telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(new DefaultTableModel(
+		telaCliente.getTelaPesquisa().getJTableDados().setModel(new DefaultTableModel(
 				new Object[][] {
 //					{null, null, null, null},
 //					{null, null, null, null},
@@ -1086,7 +1102,7 @@ public class ControladorTelaCadastroCliente{
 	public void limpar_pesquisa_juridico() {
 		telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));	
+		telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));	
 	}
 	
 	private void limpar_campos_juridico() {
@@ -1150,7 +1166,7 @@ public class ControladorTelaCadastroCliente{
 	public void limpar_pesquisa_fisico() {
 		telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));
+		telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));
 	}
 	
 	public void incluir_alterar_campos_f(boolean b) {
@@ -1206,7 +1222,7 @@ public class ControladorTelaCadastroCliente{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Nome")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
 					for (int i = 0; i < cliente.getClientesFisicos().size(); i++) {
@@ -1237,7 +1253,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(tipoBusca.equals("CPF")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
@@ -1293,7 +1309,7 @@ public class ControladorTelaCadastroCliente{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Razão Social")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -1310,6 +1326,7 @@ public class ControladorTelaCadastroCliente{
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
 									telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
+									break;
 								}
 							}
 						}				
@@ -1325,7 +1342,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(tipoBusca.equals("CNPJ")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					telaCliente.getTelaPesquisa().getJTableDadosCliente().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -1342,6 +1359,7 @@ public class ControladorTelaCadastroCliente{
 									clientePessoa.setCidade(banco.consultarEndereco().get(j).getCidade());
 									clientePessoa.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
 									telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).addCliente(clientePessoa);
+									break;
 								}
 							}
 						}				

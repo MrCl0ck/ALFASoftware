@@ -28,7 +28,6 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 		setBackground(new Color(252, 246, 229));
 		setMinimumSize(new Dimension(804, 770));
 		setMaximumSize(new Dimension(804, 770));
-		
 		add(getComboBoxTipoFornecedor());
 		add(getLabelTipoFornecedor());
 		add(getSeparatorTitulo());
@@ -91,7 +90,7 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 			telaPesquisa.getButtonBuscar().setLocation(789, 41);
 			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
+			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
 			telaPesquisa.setBounds(0,334, 1058, 357);
 		}

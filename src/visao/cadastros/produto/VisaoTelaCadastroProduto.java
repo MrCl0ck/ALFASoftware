@@ -100,7 +100,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			telaPesquisa.getButtonBuscar().setLocation(789, 41);
 			telaPesquisa.getSeparatorBotoes().setSize(1058, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 905, 208);
+			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
 			telaPesquisa.setBounds(0,334, 1058, 357);
 		}

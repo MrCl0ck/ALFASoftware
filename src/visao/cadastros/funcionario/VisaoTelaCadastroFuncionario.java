@@ -8,9 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.TableModel;
 
 import modelo.cadastros.validacoes.FormataMascaras;
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
+import modelo.tableModel.FisicoTable;
+import modelo.tableModel.FisicoTable_F;
 import visao.VisaoTelaPesquisa;
 
 import javax.swing.DefaultComboBoxModel;
@@ -83,7 +86,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	FormataMascaras fm = new FormataMascaras();
 	private JSeparator separator;
 	private JSeparator separator_1;
-	
+	private FisicoTable_F tabela = null;	
 	
 	
 	public VisaoTelaCadastroFuncionario() {
@@ -153,8 +156,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		add(getButtonRemoverCargo());
 		add(getButtonAlterarCargo());
 		add(getSeparator());
-		add(getSeparator_1());
-	
+		add(getSeparator_1());	
 	}
 	
 	public VisaoTelaPesquisa getTelaPesquisa() {
@@ -168,17 +170,28 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			telaPesquisa.getButtonIncluir().setLocation(85, 321);
 			telaPesquisa.getButtonBuscar().setSize(135, 24);
 			telaPesquisa.getComboBoxTipoPesquisa().setSize(163, 20);
+			telaPesquisa.getComboBoxTipoPesquisa().removeItem("CNPJ");
+			telaPesquisa.getComboBoxTipoPesquisa().removeItem("Razão Social");
 			telaPesquisa.getComboBoxTipoPesquisa().setLocation(109, 38);
 			telaPesquisa.getTextFieldEntradaDado().setLocation(320, 38);
 			telaPesquisa.getButtonBuscar().setLocation(839, 38);
 			telaPesquisa.getSeparatorBotoes().setSize(1105, 48);
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
-			telaPesquisa.getDadosClienteJScrollPane().setBounds(48, 89, 987, 208);
+			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 987, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1105, 20);
+			telaPesquisa.getJTableDados().setModel(getTableModel());
 			telaPesquisa.setBounds(0,334, 1105, 357);
 		}
 		return telaPesquisa;
 	}
+	
+	public FisicoTable_F getTableModel() {
+		if(tabela==null) {
+			tabela = new FisicoTable_F();
+		}
+		return tabela;
+	}
+
 	public JLabel getLabelCadastroDeFuncionrio() {
 		if (labelCadastroDeFuncionrio == null) {
 			labelCadastroDeFuncionrio = new JLabel(" Cadastro de Funcion\u00E1rio");
@@ -711,7 +724,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (separator == null) {
 			separator = new JSeparator();
 			separator.setForeground(Color.BLACK);
-			separator.setBounds(0, 138, 1132, 2);
+			separator.setBounds(0, 138, 1105, 2);
 		}
 		return separator;
 	}
@@ -719,7 +732,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		if (separator_1 == null) {
 			separator_1 = new JSeparator();
 			separator_1.setForeground(Color.BLACK);
-			separator_1.setBounds(0, 255, 1132, 2);
+			separator_1.setBounds(0, 255, 1105, 2);
 		}
 		return separator_1;
 	}

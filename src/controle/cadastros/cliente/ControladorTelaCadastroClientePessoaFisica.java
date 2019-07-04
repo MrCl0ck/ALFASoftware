@@ -52,9 +52,9 @@ public class ControladorTelaCadastroClientePessoaFisica{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {				
-					if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+					if(principal.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 						principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alteração de cliente");
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();
 						
 						clienteAntigo = new ModeloClientePessoaFisica();
 						clienteAntigo = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
@@ -78,9 +78,9 @@ public class ControladorTelaCadastroClientePessoaFisica{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+				if(principal.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 					principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Exclusão de cliente");
-					int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					ModeloClientePessoaFisica cliente = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 					
 					Object[] options = { "NÃO", "SIM" };
@@ -210,7 +210,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 	
 	
 	public void getSelecionarUmClienteTabelaTyped() {
-		principal.getTelaPesquisa().getJTableDadosCliente().addKeyListener(new KeyListener() {
+		principal.getTelaPesquisa().getJTableDados().addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -222,7 +222,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 				      
 				      if(opcao == 1) {
 				    	  clienteExibicao = new ModeloClientePessoaFisica();
-				    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+				    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 				    	  clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 				    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 				      }
@@ -240,14 +240,14 @@ public class ControladorTelaCadastroClientePessoaFisica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaFisica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaFisica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -261,14 +261,14 @@ public class ControladorTelaCadastroClientePessoaFisica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaFisica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaFisica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -282,7 +282,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 		});
 	}
 	public void getSelecionarUmClienteTabela() {
-		principal.getTelaPesquisa().getJTableDadosCliente().addMouseListener(new MouseListener() {
+		principal.getTelaPesquisa().getJTableDados().addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -295,14 +295,14 @@ public class ControladorTelaCadastroClientePessoaFisica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaFisica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaFisica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaFisica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -369,7 +369,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Nome")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
 					for (int i = 0; i < cliente.getClientesFisicos().size(); i++) {
@@ -400,7 +400,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 				}
 				else if(tipoBusca.equals("CPF")) {
 					DadosClientePessoaFisica cliente = new DadosClientePessoaFisica();
-					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaFisica clientePessoa = new ModeloClientePessoaFisica();
 					
@@ -487,7 +487,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 		principal.getTelaFisica().getFormattedTextFieldTelefone().setEnabled(false);
 		principal.getTelaFisica().getTextFieldEmail().setEnabled(false);
 		principal.getTelaFisica().getTextFieldLimiteCredito().setEnabled(false);
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
+		principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
 	}
 	
 	public void camposHabilitadosAoIncluirOuAlterar(boolean b) {
@@ -533,7 +533,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 		principal.getTelaFisica().getTextFieldLimiteCredito().setText("");
 		principal.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
+		principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
 	}
 	
 	private void limparCampos() {
@@ -558,7 +558,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 		principal.getTelaFisica().getTextFieldLimiteCredito().setText("");
 		principal.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
+		principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaFisica().getBuscaExibicaoTableModel(false));
 	}
 	
 	private void capturarCampos() {
@@ -640,7 +640,7 @@ public class ControladorTelaCadastroClientePessoaFisica{
 		principal.getTelaPesquisa().getButtonIncluir().setEnabled(true);
 		principal.getTelaPesquisa().getButtonBuscar().setEnabled(true);
 		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(new DefaultTableModel(
+		principal.getTelaPesquisa().getJTableDados().setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null},
 					{null, null, null, null},

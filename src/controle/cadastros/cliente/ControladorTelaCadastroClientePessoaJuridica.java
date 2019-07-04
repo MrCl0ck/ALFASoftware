@@ -48,9 +48,9 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+				if(principal.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 					principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");
-					int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					ModeloClientePessoaJuridica cliente = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 					
 					clienteAntigo = new ModeloClientePessoaJuridica();
@@ -74,9 +74,9 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				if(principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow() != -1) {					
+				if(principal.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 					principal.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Exclusão de cliente");
-					int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					ModeloClientePessoaJuridica cliente = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 					
 					Object[] options = { "NÃO", "SIM" };
@@ -286,7 +286,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 		principal.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setText("");
 		principal.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));
+		principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));
 	}	
 	
 	public void botoesHabilitadosPosBusca(boolean b) {
@@ -297,7 +297,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	public void getSelecionarUmClienteTabelaTyped() {
-		principal.getTelaPesquisa().getJTableDadosCliente().addKeyListener(new KeyListener() {
+		principal.getTelaPesquisa().getJTableDados().addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -309,7 +309,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 				      
 				      if(opcao == 1) {
 				    	  clienteExibicao = new ModeloClientePessoaJuridica();
-				    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+				    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 				    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 				    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 				      }
@@ -327,14 +327,14 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -348,14 +348,14 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -370,7 +370,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 	}
 	
 	private void getSelecionarUmClienteTabela() {
-		principal.getTelaPesquisa().getJTableDadosCliente().addMouseListener(new MouseListener() {
+		principal.getTelaPesquisa().getJTableDados().addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -383,14 +383,14 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 					      
 					      if(opcao == 1) {
 					    	  clienteExibicao = new ModeloClientePessoaJuridica();
-					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+					    	  int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 					    	  clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 					    	  atribuicaoDeBuscaAosCampos(clienteExibicao);
 					      }
 					}
 					else {
 						clienteExibicao = new ModeloClientePessoaJuridica();
-						int linhaSelecionada = principal.getTelaPesquisa().getJTableDadosCliente().getSelectedRow();					
+						int linhaSelecionada = principal.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						clienteExibicao = principal.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);					
 						atribuicaoDeBuscaAosCampos(clienteExibicao);
 					}
@@ -455,7 +455,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 			if(!valorBusca.trim().equals("")) {
 				if(tipoBusca.equals("Razão Social")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -487,7 +487,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 				}
 				else if(tipoBusca.equals("CNPJ")) {
 					DadosClientePessoaJuridica cliente = new DadosClientePessoaJuridica();
-					principal.getTelaPesquisa().getJTableDadosCliente().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+					principal.getTelaPesquisa().getJTableDados().setModel(principal.getTelaJuridica().getBuscaExibicaoTableModel(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 					
 					ModeloClientePessoaJuridica clientePessoa = new ModeloClientePessoaJuridica();
 					
@@ -612,7 +612,7 @@ public class ControladorTelaCadastroClientePessoaJuridica{
 		principal.getTelaPesquisa().getButtonIncluir().setEnabled(true);
 		principal.getTelaPesquisa().getButtonBuscar().setEnabled(true);
 		principal.getTelaPesquisa().getTextFieldEntradaDado().setText("");
-		principal.getTelaPesquisa().getJTableDadosCliente().setModel(new DefaultTableModel(
+		principal.getTelaPesquisa().getJTableDados().setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null},
 					{null, null, null, null},

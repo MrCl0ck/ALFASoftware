@@ -21,8 +21,8 @@ public class VisaoTelaPesquisa extends JPanel {
 	private JButton buttonFechar        			= null;
 	private JSeparator separatorPesquisa        	= null;
 	private JSeparator separatorBotoes        		= null;
-	private JTable jtableDadosCliente        		= null;
-	private JScrollPane dadosClienteJScrollPane    	= null;
+	private JTable jtableDados        		= null;
+	private JScrollPane dadosJScrollPane    	= null;
 	
 	public VisaoTelaPesquisa() {
 		setLayout(null);
@@ -44,7 +44,7 @@ public class VisaoTelaPesquisa extends JPanel {
 		add(getButtonFechar());
 		add(getSeparatorPesquisa());
 		add(getSeparatorBotoes());
-		add(getDadosClienteJScrollPane());
+		add(getDadosJScrollPane());
 	}
 	public JLabel getLabelPesquisa() {
 		if (labelPesquisa == null) {
@@ -167,12 +167,12 @@ public class VisaoTelaPesquisa extends JPanel {
 		return separatorBotoes;
 	}
 	
-	public JTable getJTableDadosCliente() {
-		if (jtableDadosCliente == null) {
-			jtableDadosCliente = new JTable();
-			jtableDadosCliente.setBorder(new LineBorder(new Color(0, 0, 0)));
-			jtableDadosCliente.setFont(new Font("Arial", Font.PLAIN, 16));
-			jtableDadosCliente.setModel(new DefaultTableModel(
+	public JTable getJTableDados() {
+		if (jtableDados == null) {
+			jtableDados = new JTable();
+			jtableDados.setBorder(new LineBorder(new Color(0, 0, 0)));
+			jtableDados.setFont(new Font("Arial", Font.PLAIN, 16));
+			jtableDados.setModel(new DefaultTableModel(
 				new Object[][] {
 //					{null, null, null, null},
 //					{null, null, null, null},
@@ -192,20 +192,20 @@ public class VisaoTelaPesquisa extends JPanel {
 					"CPF/CNPJ", "Nome/Razão Social", "Endere\u00E7o", "Telefone"
 				}
 			));
-			jtableDadosCliente.getColumnModel().getColumn(0).setPreferredWidth(128);
-			jtableDadosCliente.getColumnModel().getColumn(1).setPreferredWidth(231);
-			jtableDadosCliente.getColumnModel().getColumn(2).setPreferredWidth(241);
-			jtableDadosCliente.getColumnModel().getColumn(3).setPreferredWidth(124);
-			jtableDadosCliente.setBounds(10, 89, 776, 208);
+			jtableDados.getColumnModel().getColumn(0).setPreferredWidth(128);
+			jtableDados.getColumnModel().getColumn(1).setPreferredWidth(231);
+			jtableDados.getColumnModel().getColumn(2).setPreferredWidth(241);
+			jtableDados.getColumnModel().getColumn(3).setPreferredWidth(124);
+			jtableDados.setBounds(10, 89, 776, 208);
 		}
-		return jtableDadosCliente;
+		return jtableDados;
 	}
 	
-	public JScrollPane getDadosClienteJScrollPane() {
-		if(dadosClienteJScrollPane == null) {
-			dadosClienteJScrollPane = new JScrollPane(getJTableDadosCliente());
-			dadosClienteJScrollPane.setBounds(48, 89, 905, 208);
+	public JScrollPane getDadosJScrollPane() {
+		if(dadosJScrollPane == null) {
+			dadosJScrollPane = new JScrollPane(getJTableDados());
+			dadosJScrollPane.setBounds(48, 89, 905, 208);
 		}
-		return dadosClienteJScrollPane;
+		return dadosJScrollPane;
 	}	
 }
