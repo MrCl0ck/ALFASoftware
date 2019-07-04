@@ -17,6 +17,7 @@ import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.dados.DadosClientePessoaFisica;
 import modelo.cadastros.dados.DadosClientePessoaJuridica;
 import modelo.cadastros.dados.DadosFuncionario;
+import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
 import modelo.cadastros.validacoes.ValidacaoClientePessoaJuridica;
 import modelo.cadastros.validacoes.ValidacaoFuncionario;
@@ -368,7 +369,8 @@ public class ControladorFuncionario {
 		//DADOS DO CARGO
 		funcionario_atual.setCtps(tela.getTextFieldCtps().getText());
 		funcionario_atual.setDataDeAdmissao(tela.getFormattedTextFieldDataAdmissao().getText());
-		funcionario_atual.getCargo().setNomeCargo(tela.getComboBoxCargo().getSelectedItem().toString());;
+		funcionario_atual.setCargo(new Cargo());
+		funcionario_atual.getCargo().setNomeCargo(tela.getComboBoxCargo().getSelectedItem().toString());
 		funcionario_atual.setSetor(tela.getValidacaoTextFieldSetor().getText());
 		
 		try {
@@ -439,6 +441,7 @@ public class ControladorFuncionario {
 				      if(opcao == 1) {
 				    	  campos_bool(false);
 				    	  buttons_busca();
+				    	  limpar_campos();
 				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 				      }
 				}
@@ -451,6 +454,7 @@ public class ControladorFuncionario {
 				      if(opcao == 1) {
 				    	  campos_bool(false);
 				    	  buttons_inicial();
+				    	  limpar_campos();
 				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 				      }
 				}
@@ -463,6 +467,7 @@ public class ControladorFuncionario {
 				      if(opcao == 1) {
 				    	  campos_bool(false);
 				    	  buttons_inicial();
+				    	  limpar_campos();
 				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 				      }
 				}

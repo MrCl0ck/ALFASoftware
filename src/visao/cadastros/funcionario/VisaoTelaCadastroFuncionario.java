@@ -669,7 +669,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public JComboBox<String> getComboBoxSexo() {
 		if (comboBoxSexo == null) {
 			comboBoxSexo = new JComboBox<String>();
-			comboBoxSexo.setModel(new DefaultComboBoxModel(new String[] {"Selecione", "Feminino", "Masculino"}));
+			//comboBoxSexo.setModel(new DefaultComboBoxModel(new String[] {"Selecione", "Feminino", "Masculino"}));
 			comboBoxSexo.setBackground(Color.WHITE);
 			comboBoxSexo.setForeground(Color.BLACK);
 			comboBoxSexo.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -683,7 +683,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public JComboBox<String> getComboBoxCargo() {
 		if (comboBoxCargo == null) {
 			comboBoxCargo = new JComboBox<String>();
-			comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
+			//comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
 			comboBoxCargo.setBackground(Color.WHITE);
 			comboBoxCargo.setForeground(Color.BLACK);
 			comboBoxCargo.setFont(new Font("Arial", Font.PLAIN, 16));
