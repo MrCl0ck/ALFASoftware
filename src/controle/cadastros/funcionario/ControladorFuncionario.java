@@ -177,17 +177,23 @@ public class ControladorFuncionario {
 				String cargo_antigo = tela.getComboBoxCargo().getSelectedItem().toString();
 			    String novo_cargo = JOptionPane.showInputDialog(null, "Insira o novo nome do cargo: ", "Alterar Cargo", JOptionPane.WARNING_MESSAGE);
 			      
-			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false && novo_cargo != cargo_antigo) {			    	  
-			    	  cargo = banco.consultarCargo(); 
-				  		for (int i = 0; i < cargo.size(); i++) {
-				  			if(novo_cargo.equals(cargo.get(i).getNomeCargo())) {
-				  				banco.atualizar("cargo", "id", toString().valueOf(cargo.get(i).getId()), "nome='" + novo_cargo +  "'");//atualiza no banco
-				  				tela.getComboBoxCargo().removeItem(cargo_antigo);
-				  				tela.getComboBoxCargo().addItem(novo_cargo);		    			  
-				  				tela.getComboBoxCargo().setSelectedItem(novo_cargo);
-				  			}
-			    	  	}
-			  		
+			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false && novo_cargo != cargo_antigo) {
+			    	  boolean achou = false;
+			    	  
+			    	  for (int i = 0; i < tela.getComboBoxCargo().getItemCount(); i++) {
+			    		  if (novo_cargo.equals(tela.getComboBoxCargo().getItemAt(i).toString())) {
+			    			  achou = true;
+			    			  break;
+			    		  }
+			    	  }
+			    	  
+			    	  if(achou == false) {
+			    		  tela.getComboBoxCargo().addItem(novo_cargo);
+			    		  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
+			    	  }
+			    	  else {
+			    		  JOptionPane.showMessageDialog(null, "Esse cargo já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			    	  }			    	  
 			      }
 			}
 		});
@@ -247,7 +253,6 @@ public class ControladorFuncionario {
 			    	  }
 			    	  
 			    	  if(achou == false) {
-			    		  banco.inserir("cargo", "`nome`", "'"+novo_cargo+"'");
 			    		  tela.getComboBoxCargo().addItem(novo_cargo);
 			    		  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
 			    	  }

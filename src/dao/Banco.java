@@ -128,7 +128,6 @@ public class Banco {
 		try {
 			conexao = this.abrir(0);
 			consulta = conexao.createStatement();
-			conexao.setAutoCommit(false);
 			String sql = "INSERT INTO " + tabela + "(" + campos + ") VALUES(" + valores + ");";
 			consulta.execute(sql);
 			//JOptionPane.showMessageDialog(null, "Inserido com sucesso!"); eu exibo as mensagens de confirmação de inclusão no controlador, se não se importa já faz lá, aí não precisa tu alterar aqui...
@@ -136,8 +135,6 @@ public class Banco {
 			this.fechar(0);
 		} catch (SQLException e) {
 			try {
-				conexao.setAutoCommit(false);
-				conexao.commit();
 				conexao.rollback();
 			} catch (SQLException e1) {
 				// 
@@ -546,7 +543,7 @@ public class Banco {
 				modeloFuncionario.setSexo(resultado.getString("sexo"));
 				modeloFuncionario.setCtps(resultado.getString("ctps"));
 				modeloFuncionario.setDataDeAdmissao(resultado.getString("dataadmissao"));
-				modeloFuncionario.setCargo(toString().valueOf((resultado.getInt("CARGO_id"))));
+				modeloFuncionario.getCargo().setId((resultado.getInt("CARGO_id")));;
 				modeloFuncionario.setSetor(resultado.getString("setor"));
 				modeloFuncionario.setSalario(resultado.getFloat("salario"));
 				modeloFuncionario.setNomeDeUsuario(resultado.getString("usuario"));
