@@ -508,17 +508,6 @@ public class VisaoTelaCadastroClientePessoaJuridica extends JPanel {
 		}
 		return separator_1;
 	}
-	
-	public JuridicoTable getBuscaExibicaoTableModel(boolean consulta) {
-		if(consulta == true) {
-			return buscaExibicaoTableModel;
-		}
-		else{
-			buscaExibicaoTableModel = new JuridicoTable();
-			
-			return buscaExibicaoTableModel;
-		}		
-	}
 
 	private JLabel getLblR() {
 		if (lblR == null) {
