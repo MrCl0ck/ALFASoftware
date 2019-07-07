@@ -90,7 +90,7 @@ public class DadosFornecedorPessoaJuridica {
 	//------------------------------------FUNÇÕES TABELA-------------------------------------------------------------
 	
 		public void adicionarFornecedorTabela(ModeloFornecedorJuridica fornecedor) {
-			fornecedorTabela.addFornecedor(fornecedor);
+			fornecedorTabela.add_fornecedor(fornecedor);
 		}
 		
 		public FornecedorJuridicoTable getFornecedorNaTabela() {

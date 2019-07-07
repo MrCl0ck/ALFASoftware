@@ -3,16 +3,14 @@ package visao.cadastros.fornecedor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.LayoutManager;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
-import modelo.tableModel.FisicoTable;
-import modelo.tableModel.JuridicoTable;
+import modelo.tableModel.FisicoTable_Fornecedor;
+import modelo.tableModel.JuridicoTable_Fornecedor;
 import visao.VisaoTelaPesquisa;
 
 public class VisaoTelaCadastroFornecedor extends JPanel {
@@ -21,6 +19,11 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 	private JComboBox<String> comboBoxTipoFornecedor;
 	private JSeparator separatorTitulo;
 	private VisaoTelaPesquisa telaPesquisa;
+	private JPanel panel;
+	private FisicoTable_Fornecedor buscaExibicaoTableModelFisico;
+	private JuridicoTable_Fornecedor buscaExibicaoTableModelJuridico;
+	private VisaoTelaCadastroFornecedorPessoaFisica fisica;
+	private VisaoTelaCadastroFornecedorPessoaJuridica juridica;
 
 	public VisaoTelaCadastroFornecedor() {
 		setLayout(null);
@@ -28,10 +31,8 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 		setBackground(new Color(252, 246, 229));
 		setMinimumSize(new Dimension(804, 770));
 		setMaximumSize(new Dimension(804, 770));
-		add(getComboBoxTipoFornecedor());
-		add(getLabelTipoFornecedor());
-		add(getSeparatorTitulo());
 		add(getLabelPaginaCadastroFornecedor());		
+		add(getPanel());
 		add(getTelaPesquisa());
 	}
 
@@ -95,6 +96,78 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 			telaPesquisa.setBounds(0,334, 1058, 357);
 		}
 		return telaPesquisa;
+	}
+	
+	public FisicoTable_Fornecedor getBuscaExibicaoTableModelFisico(boolean consulta) {
+		if(consulta == true) {
+			return buscaExibicaoTableModelFisico;
+		}
+		else{
+			buscaExibicaoTableModelFisico = new FisicoTable_Fornecedor();
+			
+			return buscaExibicaoTableModelFisico;
+		}		
+	}
+	
+	public JuridicoTable_Fornecedor getBuscaExibicaoTableModelJuridico(boolean consulta) {
+		if(consulta == true) {
+			return buscaExibicaoTableModelJuridico;
+		}
+		else{
+			buscaExibicaoTableModelJuridico = new JuridicoTable_Fornecedor();
+			
+			return buscaExibicaoTableModelJuridico;
+		}		
+	}
+	
+	public JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBackground(new Color(252, 246, 229));
+			panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+			panel.setBounds(0, 0, 1055, 335);
+			panel.setLayout(null);
+			panel.add(getComboBoxTipoFornecedor());
+			panel.add(getLabelTipoFornecedor());
+			panel.add(getSeparatorTitulo());
+		}
+		return panel;
+	}
+	
+	public VisaoTelaCadastroFornecedorPessoaFisica getTelaFisica()
+	{
+		if(fisica==null)
+		{
+			fisica = new VisaoTelaCadastroFornecedorPessoaFisica();
+			fisica.setBounds(0,0,1055,335);
+		}
+		return fisica;
+	}
+	
+	public VisaoTelaCadastroFornecedorPessoaJuridica getTelaJuridica()
+	{
+		if(juridica==null)
+		{
+			juridica = new VisaoTelaCadastroFornecedorPessoaJuridica();
+			juridica.setBounds(0,0,1055,335);
+		}
+		return juridica;
+	}
+	
+	public void removePanel() {
+		this.remove(panel);
+	}
+	
+	public void removeTelaPesquisa() {
+		this.remove(telaPesquisa);
+	}
+	
+	public void removeTelaFisica() {
+		this.remove(fisica);
+	}
+	
+	public void removeTelaJuridica() {
+		this.remove(juridica);
 	}
 
 
