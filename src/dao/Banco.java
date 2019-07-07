@@ -128,6 +128,7 @@ public class Banco {
 		try {
 			conexao = this.abrir(0);
 			consulta = conexao.createStatement();
+			conexao.setAutoCommit(false);
 			String sql = "INSERT INTO " + tabela + "(" + campos + ") VALUES(" + valores + ");";
 			consulta.execute(sql);
 			//JOptionPane.showMessageDialog(null, "Inserido com sucesso!"); eu exibo as mensagens de confirmação de inclusão no controlador, se não se importa já faz lá, aí não precisa tu alterar aqui...
@@ -135,12 +136,15 @@ public class Banco {
 			this.fechar(0);
 		} catch (SQLException e) {
 			try {
+				conexao.setAutoCommit(false);
+				conexao.commit();
 				conexao.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
-			JOptionPane.showMessageDialog(null, "Erro: Não foi possível inserir!\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Erro: Não foi possível inserir!\n");
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -176,7 +180,7 @@ public class Banco {
 			try {
 				conexao.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "Erro: Não foi possível excluir!\n" + e.getMessage());
@@ -218,7 +222,7 @@ public class Banco {
 			try {
 				conexao.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "Erro: NÃ£o foi possivel atualizar!\n" + e.getMessage(),
@@ -321,7 +325,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -425,7 +429,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -454,7 +458,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -486,7 +490,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -514,12 +518,13 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
 	}
 	
+	@SuppressWarnings("static-access")
 	public ArrayList<ModeloFuncionario> consultarFuncionario() {
 		ArrayList<ModeloFuncionario> lista = new ArrayList<ModeloFuncionario>();
 		String sql = "SELECT * FROM funcionario";
@@ -541,7 +546,7 @@ public class Banco {
 				modeloFuncionario.setSexo(resultado.getString("sexo"));
 				modeloFuncionario.setCtps(resultado.getString("ctps"));
 				modeloFuncionario.setDataDeAdmissao(resultado.getString("dataadmissao"));
-				modeloFuncionario.getCargo().setId(resultado.getInt("CARGO_id"));
+				modeloFuncionario.setCargo(toString().valueOf((resultado.getInt("CARGO_id"))));
 				modeloFuncionario.setSetor(resultado.getString("setor"));
 				modeloFuncionario.setSalario(resultado.getFloat("salario"));
 				modeloFuncionario.setNomeDeUsuario(resultado.getString("usuario"));
@@ -553,12 +558,13 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
 	}
 	
+	@SuppressWarnings("static-access")
 	public ArrayList<ModeloProduto> consultarProduto() {
 		ArrayList<ModeloProduto> lista = new ArrayList<ModeloProduto>();
 		String sql = "SELECT * FROM funcionario";
@@ -574,15 +580,15 @@ public class Banco {
 				modeloProduto.setValorDaCompra(resultado.getDouble("valorcompra"));
 				modeloProduto.setValorDaVenda(resultado.getDouble("valorvenda"));
 				modeloProduto.setLucro(resultado.getDouble("lucro"));
-				modeloProduto.setEstoqueMinimo(resultado.getString("estoqueminimo"));
-				modeloProduto.setEstoqueMaximo(resultado.getString("estoquemaximo"));
-				modeloProduto.getUnidade().setId(resultado.getInt("UNIDADE_id"));
-				modeloProduto.getTipo().setId(resultado.getInt("TIPO_id"));
+				modeloProduto.setEstoqueMinimo(resultado.getInt("estoqueminimo"));
+				modeloProduto.setEstoqueMaximo(resultado.getInt("estoquemaximo"));
+				modeloProduto.setUnidade(toString().valueOf((resultado.getInt("UNIDADE_id"))));
+				modeloProduto.setTipo(toString().valueOf((resultado.getInt("TIPO_id"))));
 				lista.add(modeloProduto);
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -591,7 +597,7 @@ public class Banco {
 	
 	public ArrayList<Cargo> consultarCargo() {
 		ArrayList<Cargo> lista = new ArrayList<Cargo>();
-		String sql = "SELECT * FROM endereco";
+		String sql = "SELECT * FROM cargo";
 		conexao = this.abrir(0);
 		try {
 			consulta = conexao.createStatement();
@@ -599,13 +605,12 @@ public class Banco {
 			while (resultado.next()) {
 				Cargo modelocargo = new Cargo();
 				modelocargo.setId(resultado.getInt("id"));
-				modelocargo.setNomeCargo(resultado.getString("nome"));
-				
+				modelocargo.setNomeCargo(resultado.getString("nome"));				
 				lista.add(modelocargo);
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -627,7 +632,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -649,7 +654,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;
@@ -676,7 +681,7 @@ public class Banco {
 			}
 			this.fechar(0);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		return lista;

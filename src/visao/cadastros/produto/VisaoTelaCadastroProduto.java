@@ -7,6 +7,7 @@ import java.awt.LayoutManager;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
 import visao.VisaoTelaPesquisa;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -33,13 +34,13 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	private JComboBox<String> comboBoxUnidade = null;
 	private JComboBox<String> comboBoxTipo	  = null;
 	private JTextField textFieldDescricao	  = null;
-	private JTextField textFieldCodigo		  = null;
-	private JTextField textFieldValorVenda	  = null;
-	private JTextField textFieldLucro		  = null;
-	private JTextField textFieldValorCompra	  = null;
-	private JTextField textFieldEstoqueMinimo = null;
-	private JTextField textFieldCodigoBarras  = null;
-	private JTextField textFieldEstoqueMaximo = null;
+	private ValidacaoGeralCamposTexto textFieldCodigo		  = null;
+	private ValidacaoGeralCamposTexto textFieldValorVenda	  = null;
+	private ValidacaoGeralCamposTexto textFieldLucro		  = null;
+	private ValidacaoGeralCamposTexto textFieldValorCompra	  = null;
+	private ValidacaoGeralCamposTexto textFieldEstoqueMinimo = null;
+	private ValidacaoGeralCamposTexto textFieldCodigoBarras  = null;
+	private ValidacaoGeralCamposTexto textFieldEstoqueMaximo = null;
 	private JButton buttonAdicionarUnidade	  = null;
 	private JButton buttonRemoverUnidade	  = null;
 	private JButton buttonAlterarUnidade	  = null;
@@ -87,6 +88,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	public VisaoTelaPesquisa getTelaPesquisa() {
 		if(telaPesquisa == null) {
 			telaPesquisa = new VisaoTelaPesquisa();
+			telaPesquisa.setBorder(new LineBorder(new Color(0, 0, 0)));
 			telaPesquisa.getButtonFechar().setLocation(832, 321);
 			telaPesquisa.getButtonConfirmar().setLocation(683, 321);
 			telaPesquisa.getButtonCancelar().setLocation(539, 321);
@@ -102,7 +104,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
 			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1058, 357);
+			telaPesquisa.setBounds(0,334, 1055, 357);
 		}
 		return telaPesquisa;
 	}
@@ -240,9 +242,9 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		}
 		return textFieldDescricao;
 	}
-	public JTextField getTextFieldCodigo() {
+	public ValidacaoGeralCamposTexto getTextFieldCodigo() {
 		if (textFieldCodigo == null) {
-			textFieldCodigo = new JTextField();
+			textFieldCodigo = new ValidacaoGeralCamposTexto("3");
 			textFieldCodigo.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldCodigo.setText("");
 			textFieldCodigo.setBounds(10, 78, 341, 20);
@@ -250,45 +252,45 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		}
 		return textFieldCodigo;
 	}
-	public JTextField getTextFieldValorVenda() {
+	public ValidacaoGeralCamposTexto getTextFieldValorVenda() {
 		if (textFieldValorVenda == null) {
-			textFieldValorVenda = new JTextField();
+			textFieldValorVenda = new ValidacaoGeralCamposTexto("10");
 			textFieldValorVenda.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldValorVenda.setBounds(377, 190, 188, 20);
 			textFieldValorVenda.setColumns(10);
 		}
 		return textFieldValorVenda;
 	}
-	public JTextField getTextFieldLucro() {
+	public ValidacaoGeralCamposTexto getTextFieldLucro() {
 		if (textFieldLucro == null) {
-			textFieldLucro = new JTextField();
+			textFieldLucro = new ValidacaoGeralCamposTexto("10");
 			textFieldLucro.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldLucro.setBounds(724, 192, 166, 20);
 			textFieldLucro.setColumns(10);
 		}
 		return textFieldLucro;
 	}
-	public JTextField getTextFieldValorCompra() {
+	public ValidacaoGeralCamposTexto getTextFieldValorCompra() {
 		if (textFieldValorCompra == null) {
-			textFieldValorCompra = new JTextField();
+			textFieldValorCompra = new ValidacaoGeralCamposTexto("10");
 			textFieldValorCompra.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldValorCompra.setBounds(36, 190, 156, 20);
 			textFieldValorCompra.setColumns(10);
 		}
 		return textFieldValorCompra;
 	}
-	public JTextField getTextFieldEstoqueMinimo() {
+	public ValidacaoGeralCamposTexto getTextFieldEstoqueMinimo() {
 		if (textFieldEstoqueMinimo == null) {
-			textFieldEstoqueMinimo = new JTextField();
+			textFieldEstoqueMinimo = new ValidacaoGeralCamposTexto("3");
 			textFieldEstoqueMinimo.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldEstoqueMinimo.setBounds(10, 303, 230, 20);
 			textFieldEstoqueMinimo.setColumns(10);
 		}
 		return textFieldEstoqueMinimo;
 	}
-	public JTextField getTextFieldCodigoBarras() {
+	public ValidacaoGeralCamposTexto getTextFieldCodigoBarras() {
 		if (textFieldCodigoBarras == null) {
-			textFieldCodigoBarras = new JTextField();
+			textFieldCodigoBarras = new ValidacaoGeralCamposTexto("3");
 			textFieldCodigoBarras.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldCodigoBarras.setText("");
 			textFieldCodigoBarras.setBounds(470, 78, 341, 20);
@@ -296,9 +298,9 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		}
 		return textFieldCodigoBarras;
 	}
-	public JTextField getTextFieldEstoqueMaximo() {
+	public ValidacaoGeralCamposTexto getTextFieldEstoqueMaximo() {
 		if (textFieldEstoqueMaximo == null) {
-			textFieldEstoqueMaximo = new JTextField();
+			textFieldEstoqueMaximo = new ValidacaoGeralCamposTexto("3");
 			textFieldEstoqueMaximo.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldEstoqueMaximo.setBounds(470, 303, 230, 20);
 			textFieldEstoqueMaximo.setColumns(10);

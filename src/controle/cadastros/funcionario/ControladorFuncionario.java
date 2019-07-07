@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,13 +32,30 @@ public class ControladorFuncionario {
 	private ModeloFuncionario funcionario_antigo;
 	private ModeloFuncionario funcionario_exibicao;
 	private Banco banco = new Banco();
+	private ArrayList<Cargo> cargo  = banco.consultarCargo();
 
 	public ControladorFuncionario(VisaoFramePrincipal frame) {
 		framePrincipal = frame;
 		inicializaTela();
 		buttons_inicial();
 		add_eventos();
+		carregar_cargos();
 		campos_bool(false);
+	}
+
+	private void carregar_cargos() {
+		for (int i = 0; i < cargo.size(); i++) {
+			tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
+		}		
+		
+	}
+	
+	private void atualizar_cargos() {
+		cargo = banco.consultarCargo(); 
+		tela.getComboBoxCargo().removeAllItems();
+		for (int i = 0; i < cargo.size(); i++) {
+			tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
+  	  	}			
 	}
 
 	private void campos_bool(boolean b) {
@@ -80,12 +98,12 @@ public class ControladorFuncionario {
 		tela.getValidacaoJTextFieldNacionalidade().setText("");
 		tela.getValidacaoJTextFieldNaturalidade().setText("");
 		tela.getFormattedTextFieldDataNascimento().setText("");
-		tela.getComboBoxSexo().setSelectedItem("");
+		tela.getComboBoxSexo().setSelectedItem("Selecione");
 		tela.getFormattedTextFieldTelefone().setText("");
 		tela.getValidacaoTextFieldEmail().setText("");
 		tela.getTextFieldCtps().setText("");
 		tela.getFormattedTextFieldDataAdmissao().setText("");
-		tela.getComboBoxCargo().setSelectedItem("");
+		tela.getComboBoxCargo().setSelectedItem("Selecione");
 		tela.getValidacaoTextFieldSetor().setText("");
 		tela.getValidacaoTextFieldSalario().setText("");
 		tela.getTextFieldNomeUsuario().setText("");
@@ -96,7 +114,7 @@ public class ControladorFuncionario {
 		tela.getValidacaoJTextFieldNumero().setText("");
 		tela.getValidacaoJTextFieldBairro().setText("");
 		tela.getValidacaoJTextFieldCidade().setText("");
-		tela.getLabelUfEndereco().setText("");
+		tela.getComboBoxEstadoEndereco().setSelectedItem("Selecione");
 	}
 
 	private void buttons_inicial() {
@@ -113,8 +131,8 @@ public class ControladorFuncionario {
 		framePrincipal.setContentPane(getTela());
 		framePrincipal.setVisible(true);
 		framePrincipal.setResizable(false);
-		framePrincipal.setMinimumSize(new Dimension(1105, 720));
-		framePrincipal.setMaximumSize(new Dimension(1105, 720));
+		framePrincipal.setMinimumSize(new Dimension(1107, 720));
+		framePrincipal.setMaximumSize(new Dimension(1107, 720));
 		framePrincipal.setLocationRelativeTo(null);
 		framePrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		framePrincipal.repaint();
@@ -156,15 +174,20 @@ public class ControladorFuncionario {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String cargo = tela.getComboBoxCargo().getSelectedItem().toString();
+				String cargo_antigo = tela.getComboBoxCargo().getSelectedItem().toString();
 			    String novo_cargo = JOptionPane.showInputDialog(null, "Insira o novo nome do cargo: ", "Alterar Cargo", JOptionPane.WARNING_MESSAGE);
 			      
-			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false) {
-			    	  tela.getComboBoxCargo().removeItem(cargo);
-			    	  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
-			    	  campos_bool(false);
-			    	  buttons_busca();
-			    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
+			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false && novo_cargo != cargo_antigo) {			    	  
+			    	  cargo = banco.consultarCargo(); 
+				  		for (int i = 0; i < cargo.size(); i++) {
+				  			if(novo_cargo.equals(cargo.get(i).getNomeCargo())) {
+				  				banco.atualizar("cargo", "id", toString().valueOf(cargo.get(i).getId()), "nome='" + novo_cargo +  "'");//atualiza no banco
+				  				tela.getComboBoxCargo().removeItem(cargo_antigo);
+				  				tela.getComboBoxCargo().addItem(novo_cargo);		    			  
+				  				tela.getComboBoxCargo().setSelectedItem(novo_cargo);
+				  			}
+			    	  	}
+			  		
 			      }
 			}
 		});
@@ -178,18 +201,34 @@ public class ControladorFuncionario {
 			    String cargo_removido = JOptionPane.showInputDialog(null, "Insira o novo nome do cargo: ", "Alterar Cargo", JOptionPane.WARNING_MESSAGE);
 			      
 			      if(cargo_removido != null && cargo_removido.trim().isEmpty() == false) {
-			    	  for (int i = 0; i < tela.getComboBoxCargo().getItemCount(); i++) {
-			    		  if (tela.getComboBoxCargo().getItemAt(i).equals(cargo_removido)) {
-			    			  tela.getComboBoxCargo().removeItem(cargo_removido);	
-			    			  break;
-			    		  }
-			    	  }
-			    	  
+			    	  cargo = banco.consultarCargo(); 
+			    	  //tela.getComboBoxCargo().removeAllItems();
+			    	  for (int i = 0; i < cargo.size(); i++) {
+			    		  //tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
+			    	  }			    	  
 			      }
 			}
 		});
 	}
-
+//	boolean achou = false;
+//	  
+//	ArrayList<Cargo> cargo = banco.consultarCargo(); 
+//	  for (int i = 0; i < cargo.size(); i++) {
+//		  if(novo_cargo.equals(cargo.get(i).getNomeCargo())) {
+//			  achou = true;
+//			  break;
+//		  }
+//	  }
+//	  
+//	  if(achou == false) {
+//		  banco.inserir("cargo", "`nome`", novo_cargo);
+//		  tela.getComboBoxCargo().addItem(novo_cargo);
+//		  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
+//	  }
+//	  else {
+//		  JOptionPane.showMessageDialog(null, "Esse cargo já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+//	  }
+	
 	private void getMaisCargo() {
 		tela.getButtonAdicionarCargo().addActionListener(new ActionListener() {
 			
@@ -198,8 +237,23 @@ public class ControladorFuncionario {
 			    String novo_cargo = JOptionPane.showInputDialog(null, "Insira o nome do novo cargo: ", "Adicionar Cargo", JOptionPane.WARNING_MESSAGE);
 			      
 			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false) {
-			    	  tela.getComboBoxCargo().addItem(novo_cargo);
-			    	  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
+			    	  boolean achou = false;
+			    	  
+			    	  for (int i = 0; i < tela.getComboBoxCargo().getItemCount(); i++) {
+			    		  if (novo_cargo.equals(tela.getComboBoxCargo().getItemAt(i).toString())) {
+			    			  achou = true;
+			    			  break;
+			    		  }
+			    	  }
+			    	  
+			    	  if(achou == false) {
+			    		  banco.inserir("cargo", "`nome`", "'"+novo_cargo+"'");
+			    		  tela.getComboBoxCargo().addItem(novo_cargo);
+			    		  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
+			    	  }
+			    	  else {
+			    		  JOptionPane.showMessageDialog(null, "Esse cargo já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			    	  }
 			      }
 			}
 		});
@@ -280,8 +334,8 @@ public class ControladorFuncionario {
 			public void actionPerformed(ActionEvent e) {
 				if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Alterar")) {
 					Object[] options = { "NÃO", "SIM" };
-				      int opcao = JOptionPane.showOptionDialog(null, "Confirma a alteração atual?", "Alteração",
-				          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				      int opcao = JOptionPane.showOptionDialog(null, "Confirma a alteração dos dados do funcionário tratado?", "Confirmar",
+				          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				              null, options, options[0]);
 				      
 				      if(opcao == 1) {
@@ -295,8 +349,8 @@ public class ControladorFuncionario {
 				}
 				else if (tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
 					Object[] options = { "NÃO", "SIM" };
-				      int opcao = JOptionPane.showOptionDialog(null, "Confirma a inclusão atual?", "Inclusão",
-				          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				      int opcao = JOptionPane.showOptionDialog(null, "Confirma a inclusão dos dados do funcionário tratado?", "Confirmar",
+				          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
 				              null, options, options[0]);
 				      
 				      if(opcao == 1) {
@@ -325,7 +379,7 @@ public class ControladorFuncionario {
 			
 			if(funcionario.isResultadoValidacaoTodosCamposGeral() == true) {					
 				
-				funcionario_salvo.bancoDeDadosAlterar(funcionario_atual, funcionario_antigo.getCpf(), id_end, funcionario_atual.getCargo().getNomeCargo());
+				funcionario_salvo.bancoDeDadosAlterar(funcionario_atual, funcionario_antigo.getCpf(), id_end, funcionario_atual.getCargo());
 				
 				return true;
 			}			
@@ -333,14 +387,14 @@ public class ControladorFuncionario {
 		}
 		
 		else if(string.equals("Incluir")) {
-			DadosFuncionario clienteSalvo = new DadosFuncionario();
+			DadosFuncionario funcionario_salvo = new DadosFuncionario();
 			
 			funcionario = new ValidacaoFuncionario(funcionario_atual);
 			funcionario.validarCPF();
 			
 			if(funcionario.isResultadoValidacaoTodosCamposGeral() == true && funcionario.isResultadoValidacaoCpf() == true) {
 				
-				clienteSalvo.bancoDeDadosIncluir(funcionario_atual);
+				funcionario_salvo.bancoDeDadosIncluir(funcionario_atual);
 				
 				return true;
 			}
@@ -369,8 +423,7 @@ public class ControladorFuncionario {
 		//DADOS DO CARGO
 		funcionario_atual.setCtps(tela.getTextFieldCtps().getText());
 		funcionario_atual.setDataDeAdmissao(tela.getFormattedTextFieldDataAdmissao().getText());
-		funcionario_atual.setCargo(new Cargo());
-		funcionario_atual.getCargo().setNomeCargo(tela.getComboBoxCargo().getSelectedItem().toString());
+		funcionario_atual.setCargo((tela.getComboBoxCargo().getSelectedItem().toString()));
 		funcionario_atual.setSetor(tela.getValidacaoTextFieldSetor().getText());
 		
 		try {

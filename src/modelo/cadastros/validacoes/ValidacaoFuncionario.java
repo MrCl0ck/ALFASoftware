@@ -1,8 +1,12 @@
 package modelo.cadastros.validacoes;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
+import dao.Banco;
 import modelo.cadastros.dados.DadosFuncionario;
+import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
 
 public class ValidacaoFuncionario {
@@ -79,14 +83,14 @@ public class ValidacaoFuncionario {
 			resultado = false;
 		}
 		if(funcionario.getCargo().equals("Selecione")) {//**
-			errosConcatenados += "Preencha o campo 'Cargo'!\n";
+			errosConcatenados += "Escolha uma opção da lista 'Cargo'!\n";
 			resultado = false;
 		}
 		if(funcionario.getSetor().trim().equals("")) {//***
 			errosConcatenados += "Preencha o campo 'Setor'!\n";
 			resultado = false;
 		}
-		if(funcionario.getSalario() == 0) {//***
+		if(funcionario.getSalario() == -1) {//***
 			errosConcatenados += "Preencha o campo 'Salário'!\n";
 			resultado = false;
 		}
@@ -126,10 +130,6 @@ public class ValidacaoFuncionario {
 		}
 		if(funcionario.getTelefone().trim().length() <= 11) {
 			errosConcatenados += "Preencha o campo 'Telefone'!\n";
-			resultado = false;
-		}
-		if(funcionario.getEmail().trim().equals("")) {
-			errosConcatenados += "Preencha o campo 'Email'!\n";
 			resultado = false;
 		}
 		

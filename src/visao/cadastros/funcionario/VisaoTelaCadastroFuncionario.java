@@ -93,8 +93,8 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		setLayout(null);
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(252, 246, 229));
-		setMinimumSize(new Dimension(1055, 770));
-		setMaximumSize(new Dimension(1055, 770));
+		setMinimumSize(new Dimension(1106, 720));
+		setMaximumSize(new Dimension(1106, 720));
 		add(getTelaPesquisa());
 		add(getLabelCadastroDeFuncionrio());
 		add(getLabelNome());
@@ -683,11 +683,11 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public JComboBox<String> getComboBoxCargo() {
 		if (comboBoxCargo == null) {
 			comboBoxCargo = new JComboBox<String>();
-			//comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
+			comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
 			comboBoxCargo.setBackground(Color.WHITE);
 			comboBoxCargo.setForeground(Color.BLACK);
 			comboBoxCargo.setFont(new Font("Arial", Font.PLAIN, 16));
-			comboBoxCargo.addItem("Selecione");
+			//comboBoxCargo.addItem("Selecione");
 			comboBoxCargo.setBounds(457, 182, 115, 20);
 		}
 		return comboBoxCargo;

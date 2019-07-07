@@ -59,7 +59,7 @@ public class ControladorTelaCadastroCliente{
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -80,7 +80,7 @@ public class ControladorTelaCadastroCliente{
 						}						
 					}
 					else if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -107,7 +107,7 @@ public class ControladorTelaCadastroCliente{
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_UP) {
 					if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -128,7 +128,7 @@ public class ControladorTelaCadastroCliente{
 						}
 					}
 					else if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -152,7 +152,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 					if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -173,7 +173,7 @@ public class ControladorTelaCadastroCliente{
 						}						
 					}
 					else if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Cancelar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -211,15 +211,22 @@ public class ControladorTelaCadastroCliente{
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null, "Fazer validação Regex para os campos especiais e validação geral pros campos!", "Validação", JOptionPane.INFORMATION_MESSAGE);
 				if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
-					if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
-						capturar_campos_juridico();
-						if(validacao_cliente_campos_J("Incluir") == true) {
-							limpar_campos_juridico();
-							campos_inicial_juridico();	
-							inicial_buttons_fj();
-						}	
+					if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Incluir")) {
+						Object[] options = { "NÃO", "SIM" };
+					      int opcao = JOptionPane.showOptionDialog(null, "Confirma a inclusão dos dados do cliente tratado?", "Confirmar",
+					          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					              null, options, options[0]);
+					      
+					      if(opcao == 1) {
+					    	  capturar_campos_juridico();
+					    	  if(validacao_cliente_campos_J("Incluir") == true) {
+					    		  limpar_campos_juridico();
+					    		  campos_inicial_juridico();	
+					    		  inicial_buttons_fj();
+					    	  }						    	  
+					      }
 					}
-					else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente")) {
+					else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Alterar")) {
 						Object[] options = { "NÃO", "SIM" };
 						int opcao = JOptionPane.showOptionDialog(null, "Confirma a alteração dos dados do cliente tratado?", "Confirmar",
 								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -237,15 +244,22 @@ public class ControladorTelaCadastroCliente{
 					
 				}
 				else if (telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")){
-					if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente")) {
-						capturar_campos_fisico();
-						if(validacao_cliente_campos_F("Incluir") == true) {
-							limpar_campos_fisico();
-							campos_inicial_fisico();
-							inicial_buttons_fj();
-						}	
+					if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Incluir")) {
+						Object[] options = { "NÃO", "SIM" };
+					      int opcao = JOptionPane.showOptionDialog(null, "Confirma a inclusão do dados do cliente tratado?", "Confirmar",
+					          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					              null, options, options[0]);
+					      
+					      if(opcao == 1) {
+					    	  capturar_campos_fisico();
+					    	  if(validacao_cliente_campos_F("Incluir") == true) {
+					    		  limpar_campos_fisico();
+					    		  campos_inicial_fisico();
+					    		  inicial_buttons_fj();
+					    	  }						    	  
+					      }						
 					}
-					else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Alteração de cliente")) {
+					else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Alterar")) {
 						Object[] options = { "NÃO", "SIM" };
 					      int opcao = JOptionPane.showOptionDialog(null, "Confirma a alteração dos dados do cliente tratado?", "Confirmar",
 					          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -275,26 +289,18 @@ public class ControladorTelaCadastroCliente{
 					int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();
 					if (telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {
 						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Busca - Pessoa Física")) {
+							tela_fisico();
 							atribuicao_busca_campos_F(telaCliente.getBuscaExibicaoTableModelFisico(true).getCliente(linhaSelecionada));						
-							telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText(telaCliente.getTelaPesquisa().getTextFieldEntradaDado().getText());
-							telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem(telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().getSelectedItem().toString());
-							telaCliente.getTelaPesquisa().getJTableDados().setModel(telaCliente.getBuscaExibicaoTableModelFisico(true));;
-							telaCliente.getTelaFisica().getBuscaExibicaoTableModel(true).setClienteArray(telaCliente.getBuscaExibicaoTableModelFisico(true).getClienteArray());
-							telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alteração de cliente");											
+							telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alterar");											
 							incluir_alterar_campos_f(true);
-							//incluir_alterar_buttons(true);
-							//chamar controlador
-							//erro aqui....
+							incluir_alterar_buttons(true);
 						}
 						else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Busca - Pessoa Jurídica")) {
+							tela_juridico();
 							atribuicao_busca_campos_J(telaCliente.getBuscaExibicaoTableModelJuridico(true).getCliente(linhaSelecionada));						
-							telaCliente.getTelaPesquisa().getTextFieldEntradaDado().setText(telaCliente.getTelaPesquisa().getTextFieldEntradaDado().getText());
-							telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem(telaCliente.getTelaPesquisa().getComboBoxTipoPesquisa().getSelectedItem().toString());
-							//chamar tela jurídica
-							telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");											
-							incluir_alterar_campos_f(true);
-							//incluir_alterar_buttons(true);
-							
+							telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alterar");											
+							incluir_alterar_campos_j(true);
+							incluir_alterar_buttons(true);					
 						}						
 					}
 					else {
@@ -304,7 +310,7 @@ public class ControladorTelaCadastroCliente{
 				}	
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica")) {
 					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
-						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alteração de cliente");
+						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Alterar");
 						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();					
 						ModeloClientePessoaJuridica cliente = telaCliente.getTelaJuridica().getBuscaExibicaoTableModel(true).getCliente(linhaSelecionada);
 						
@@ -322,7 +328,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if (telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física")) {
 					if(telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
-						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alteração de cliente");
+						telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Alterar");
 						int linhaSelecionada = telaCliente.getTelaPesquisa().getJTableDados().getSelectedRow();
 						
 						cliente_antigo_F = new ModeloClientePessoaFisica();
@@ -538,8 +544,8 @@ public class ControladorTelaCadastroCliente{
 								null, options, options[0]);
 						
 						if(opcao == 1) {
-							limpar_campos_fisico();
-							campos_inicial_fisico();
+							limpar_campos_juridico();
+							campos_inicial_juridico();
 							//antes de fazer a limpeza dos butoes ver se tem clientes  mostrando na tabela de busca.
 							//inicial_buttons_fj();
 						}
@@ -636,12 +642,12 @@ public class ControladorTelaCadastroCliente{
 					}
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física")) {
-					telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente");
+					telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Física - Incluir");
 					incluir_alterar_campos_f(true);
 					incluir_alterar_buttons(true);	
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica")) {
-					telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente");
+					telaCliente.getLabelPaginaCadastroCliente().setText(" Cadastro de Cliente - Pessoa Jurídica - Incluir");
 					incluir_alterar_campos_j(true);
 					incluir_alterar_buttons(true);	
 				}
@@ -704,7 +710,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Física")) {
 					if(e.getClickCount() == 1) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Física - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Fechar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -728,7 +734,7 @@ public class ControladorTelaCadastroCliente{
 				}
 				else if(telaCliente.getLabelPaginaCadastroCliente().getText().contains(" Cadastro de Cliente - Pessoa Jurídica")) {
 					if(e.getClickCount() == 1) {
-						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Inclusão de cliente")) {
+						if(telaCliente.getLabelPaginaCadastroCliente().getText().equals(" Cadastro de Cliente - Pessoa Jurídica - Incluir")) {
 							Object[] options = { "NÃO", "SIM" };
 						      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Fechar",
 						          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
