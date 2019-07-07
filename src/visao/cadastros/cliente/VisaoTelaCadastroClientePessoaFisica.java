@@ -561,16 +561,6 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 		return separator_2;
 	}
 	
-	public FisicoTable getBuscaExibicaoTableModel(boolean consulta) {
-		if(consulta == true) {
-			return buscaExibicaoTableModel;
-		}
-		else{
-			buscaExibicaoTableModel = new FisicoTable();
-			
-			return buscaExibicaoTableModel;
-		}		
-	}
 	private JLabel getLblR() {
 		if (lblR == null) {
 			lblR = new JLabel("R$");
