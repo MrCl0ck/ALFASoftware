@@ -17,7 +17,7 @@ public class ModeloFuncionario extends EnderecoCadastro{
 	private String sexo;
 	private String ctps;
 	private String dataDeAdmissao;
-	private String cargo;
+	private Cargo cargo;
 	private String setor;
 	private double salario;
 	private String nomeDeUsuario;
@@ -126,12 +126,15 @@ public class ModeloFuncionario extends EnderecoCadastro{
 	public void setDataDeAdmissao(String dataDeAdmissao) {
 		this.dataDeAdmissao = dataDeAdmissao;
 	}
-	
-	public String getCargo() {
+
+	public Cargo getCargo() {
+		if (cargo == null) {
+			cargo = new Cargo();
+		}
 		return cargo;
 	}
 
-	public void setCargo(String cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
 

@@ -36,7 +36,7 @@ public class DadosFuncionario {
 
 			String id = banco.primeiroEultimo("endereco", "id", 1);
 
-			//retornoFuncao = banco.inserir("cargo", "`nome`", funcionario.getCargo());
+			retornoFuncao = banco.inserir("cargo", "`nome`", funcionario.getCargo().getNomeCargo());
 
 			String idCargo = banco.primeiroEultimo("cargo", "id", 1);
 
@@ -47,9 +47,9 @@ public class DadosFuncionario {
 							+ funcionario.getDataExpedicaoRg() + "','" + funcionario.getNacionalidade() + "','"
 							+ funcionario.getNaturalidade() + "','" + funcionario.getDataDeNascimento() + "','"
 							+ funcionario.getSexo() + "','" + funcionario.getCtps() + "','"
-							+ funcionario.getDataDeAdmissao() + "','" + idCargo + "','" + funcionario.getTelefone() + "','"
+							+ funcionario.getDataDeAdmissao() + "','" + funcionario.getCargo().getNomeCargo() + "','" + funcionario.getTelefone() + "','"
 							+ funcionario.getEmail() + "','" + funcionario.getSetor() + "','" + funcionario.getSalario()
-							+ "','" + funcionario.getNomeDeUsuario() + "','" + funcionario.getSenha() + "','" + Integer.parseInt(idCargo)
+							+ "','" + funcionario.getNomeDeUsuario() + "','" + funcionario.getSenha() + "','" + idCargo
 							+ "','" + id + "'");
 		} catch (Exception e) {
 			// 
@@ -84,8 +84,7 @@ public class DadosFuncionario {
 						+ "',cidade='" + funcionarioAtual.getCidade() + "',uf='"
 						+ funcionarioAtual.getUf_estado() + "'");
 		
-		//Não sei ainda como guardar o nome do cargo
-//		retornoFuncao = banco.atualizar("cargo", "id", idBuscaCargo,"nome='" + funcionarioAtual.getCargo() +  "'");
+		retornoFuncao = banco.atualizar("cargo", "id", idBuscaCargo,"nome='" + funcionarioAtual.getCargo().getNomeCargo() +  "'");
 
 		if (retornoFuncao == true) {
 			JOptionPane.showMessageDialog(null, "Alteração do registro de funcionário feita com sucesso!", "Alteração",
