@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controle.cadastros.cliente.ControladorTelaCadastroCliente;
+import controle.cadastros.fornecedor.ControladorTelaCadastroFornecedor;
 import controle.cadastros.funcionario.ControladorFuncionario;
 import controle.cadastros.produto.ControladorProduto;
 import visao.VisaoTelaPaginaInicial;
@@ -43,6 +44,13 @@ public class ControladorTelaInicial {
 			}
 		});
 		
+		telaInicial.getMenuItemCadastroFornecedor().addActionListener(new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ControladorTelaCadastroFornecedor(new VisaoFramePrincipal());				
+			}
+		});
 		
 	}
 	

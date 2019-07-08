@@ -8,6 +8,7 @@ import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
 
 
 public class JuridicoTable_Fornecedor extends AbstractTableModel{
+	
 	private	ArrayList<ModeloFornecedorJuridica> listaFornecedoresJuridico;
 	private String[] colunas = new String[]{"CNPJ","Razao Social","Endereço", "Telefone"};
 	
@@ -15,17 +16,17 @@ public class JuridicoTable_Fornecedor extends AbstractTableModel{
 		this.listaFornecedoresJuridico = new ArrayList<>();		
 	}
 		
-	public void add_fornecedor(ModeloFornecedorJuridica fornecedores) {
+	public void addFornecedor(ModeloFornecedorJuridica fornecedores) {
 		this.listaFornecedoresJuridico.add(fornecedores);
 		fireTableDataChanged();
 	}	
 	
-	public void remover_fornecedor(int linhaIndice) {
+	public void removerFornecedor(int linhaIndice) {
 		this.listaFornecedoresJuridico.remove(linhaIndice);
 		fireTableDataChanged();
 	}
 	
-	public ModeloFornecedorJuridica getCliente(int linhaIndice) {
+	public ModeloFornecedorJuridica getFornecedor(int linhaIndice) {
 		return this.listaFornecedoresJuridico.get(linhaIndice);
 	}
 	

@@ -17,6 +17,8 @@ import modelo.cadastros.dados.DadosFornecedorPessoaFisica;
 import modelo.cadastros.dados.DadosFornecedorPessoaJuridica;
 import modelo.cadastros.fornecedor.ModeloFornecedorFisica;
 import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
+import modelo.cadastros.validacoes.ValidacaoFornecedorPessoaFisica;
+import modelo.cadastros.validacoes.ValidacaoFornecedorPessoaJuridica;
 import visao.cadastros.cliente.VisaoFramePrincipal;
 import visao.cadastros.fornecedor.VisaoTelaCadastroFornecedor;
 
@@ -70,8 +72,7 @@ public class ControladorTelaCadastroFornecedor {
 							if (opcao == 1) {
 								fornecedor_exibicao_J = new ModeloFornecedorJuridica();
 								int linhaSelecionada = telaFornecedor.getTelaPesquisa().getJTableDados().getSelectedRow();
-								fornecedor_exibicao_J = telaFornecedor.getBuscaExibicaoTableModelJuridico(true)
-										.getFornecedor(linhaSelecionada);
+								fornecedor_exibicao_J = telaFornecedor.getBuscaExibicaoTableModelJuridico(true).getFornecedor(linhaSelecionada);
 								atribuicao_busca_campos_J(fornecedor_exibicao_J);
 							}
 						} else {
@@ -384,27 +385,20 @@ public class ControladorTelaCadastroFornecedor {
 
 	private void atribuicao_busca_campos_J(ModeloFornecedorJuridica fornecedor_antigo_J) {
 		telaFornecedor.getTelaJuridica().getComboBoxSituacaoFornecedor().setSelectedItem(fornecedor_antigo_J.getSituacao());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial()
-				.setText(fornecedor_antigo_J.getRazaoSocial());
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldCnpj().setText(fornecedor_antigo_J.getCnpj());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante()
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoRazaoSocial().setText(fornecedor_antigo_J.getRazaoSocial());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCnpj().setText(fornecedor_antigo_J.getCnpj());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoContatar()
 				.setText(fornecedor_antigo_J.getRepresentante());
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual()
-				.setText(fornecedor_antigo_J.getInscricaoEstadual());
-		telaFornecedor.getTelaJuridica().getComboBoxUfInscricaoEstadual()
-				.setSelectedItem(fornecedor_antigo_J.getInscricaoEstadualUF());
-		telaFornecedor.getTelaJuridica().getFormattedTextFieldCEP().setText(fornecedor_antigo_J.getCep());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setText(fornecedor_antigo_J.getLogradouro());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setText(fornecedor_antigo_J.getNumeroEndereco());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setText(fornecedor_antigo_J.getBairro());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldComplemento()
+		telaFornecedor.getTelaJuridica().getFormattedTextFieldCep().setText(fornecedor_antigo_J.getCep());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoLogradouro().setText(fornecedor_antigo_J.getLogradouro());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoNumero().setText(fornecedor_antigo_J.getNumeroEndereco());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoBairro().setText(fornecedor_antigo_J.getBairro());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoComplemento()
 				.setText(fornecedor_antigo_J.getComplemento());
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setText(fornecedor_antigo_J.getCidade());
-		telaFornecedor.getTelaJuridica().getComboBoxEstadoEndereco().setSelectedItem(fornecedor_antigo_J.getUf_estado());
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCidade().setText(fornecedor_antigo_J.getCidade());
+		telaFornecedor.getTelaJuridica().getComboBoxUfEndereco().setSelectedItem(fornecedor_antigo_J.getUf_estado());
 		telaFornecedor.getTelaJuridica().getFormattedTextFieldTelefone().setText(fornecedor_antigo_J.getTelefone());
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldEmail().setText(fornecedor_antigo_J.getEmail());
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldLimiteCredito()
-				.setText(String.valueOf(fornecedor_antigo_J.getLimiteCredito()));
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoEmail().setText(fornecedor_antigo_J.getEmail());
 		telaFornecedor.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		telaFornecedor.getTelaPesquisa().getTextFieldEntradaDado().setText("");
 	}
@@ -1130,21 +1124,18 @@ public class ControladorTelaCadastroFornecedor {
 
 	private void campos_inicial_juridico() {
 		telaFornecedor.getTelaJuridica().getComboBoxSituacaoFornecedor().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldCnpj().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getComboBoxUfInscricaoEstadual().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getFormattedTextFieldCEP().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getComboBoxEstadoEndereco().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoRazaoSocial().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCnpj().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoContatar().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getFormattedTextFieldCep().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoLogradouro().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoNumero().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoBairro().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoComplemento().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCidade().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getComboBoxUfEndereco().setEnabled(false);
 		telaFornecedor.getTelaJuridica().getFormattedTextFieldTelefone().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldEmail().setEnabled(false);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setEnabled(false);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoEmail().setEnabled(false);
 	}
 
 	private void limpar_campos_geral() {
@@ -1179,21 +1170,18 @@ public class ControladorTelaCadastroFornecedor {
 
 	private void incluir_alterar_campos_j(boolean b) {
 		telaFornecedor.getTelaJuridica().getComboBoxSituacaoFornecedor().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldCnpj().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getComboBoxUfInscricaoEstadual().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getFormattedTextFieldCEP().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getComboBoxEstadoEndereco().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoRazaoSocial().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCnpj().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoContatar().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getFormattedTextFieldCep().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoLogradouro().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoNumero().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoBairro().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoComplemento().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCidade().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getComboBoxUfEndereco().setEnabled(b);
 		telaFornecedor.getTelaJuridica().getFormattedTextFieldTelefone().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldEmail().setEnabled(b);
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setEnabled(b);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoEmail().setEnabled(b);
 	}
 
 	public void limpar_pesquisa_juridico() {
@@ -1205,21 +1193,18 @@ public class ControladorTelaCadastroFornecedor {
 	private void limpar_campos_juridico() {
 		telaFornecedor.getLabelPaginaCadastroFornecedor().setText(" Cadastro de Fornecedor - Pessoa Jurídica");
 		telaFornecedor.getTelaJuridica().getComboBoxSituacaoFornecedor().setSelectedIndex(0);
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldCnpj().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().setText("");
-		telaFornecedor.getTelaJuridica().getComboBoxUfInscricaoEstadual().setSelectedIndex(0);
-		telaFornecedor.getTelaJuridica().getFormattedTextFieldCEP().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldNumero().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldBairro().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldCidade().setText("");
-		telaFornecedor.getTelaJuridica().getComboBoxEstadoEndereco().setSelectedIndex(0);
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoRazaoSocial().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCnpj().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoContatar().setText("");
+		telaFornecedor.getTelaJuridica().getFormattedTextFieldCep().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoLogradouro().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoNumero().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoBairro().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoComplemento().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCidade().setText("");
+		telaFornecedor.getTelaJuridica().getComboBoxUfEndereco().setSelectedIndex(0);
 		telaFornecedor.getTelaJuridica().getFormattedTextFieldTelefone().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldEmail().setText("");
-		telaFornecedor.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().setText("");
+		telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoEmail().setText("");
 	}
 
 	private void inicial_buttons_fj() {
@@ -1241,7 +1226,7 @@ public class ControladorTelaCadastroFornecedor {
 
 	private void campos_inicial_fisico() {
 		telaFornecedor.getTelaFisica().getComboBoxSituacaoFornecedor().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNome().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNome().setEnabled(false);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldDataNascimento().setEnabled(false);
 		telaFornecedor.getTelaFisica().getComboBoxSexo().setEnabled(false);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCPF().setEnabled(false);
@@ -1249,15 +1234,14 @@ public class ControladorTelaCadastroFornecedor {
 		telaFornecedor.getTelaFisica().getComboBoxEstadoRG().setEnabled(false);
 		telaFornecedor.getTelaFisica().getValidacaoJTextFieldOrgaoExpeditor().setEnabled(false);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCEP().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldLogradouro().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNumero().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldBairro().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldComplemento().setEnabled(false);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldCidade().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldLogradouro().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNumero().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldBairro().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldComplemento().setEnabled(false);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldCidade().setEnabled(false);
 		telaFornecedor.getTelaFisica().getComboBoxEstadoEndereco().setEnabled(false);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldTelefone().setEnabled(false);
 		telaFornecedor.getTelaFisica().getTextFieldEmail().setEnabled(false);
-		telaFornecedor.getTelaFisica().getTextFieldLimiteCredito().setEnabled(false);
 	}
 
 	public void limpar_pesquisa_fisico() {
@@ -1268,7 +1252,7 @@ public class ControladorTelaCadastroFornecedor {
 
 	public void incluir_alterar_campos_f(boolean b) {
 		telaFornecedor.getTelaFisica().getComboBoxSituacaoFornecedor().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNome().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNome().setEnabled(b);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldDataNascimento().setEnabled(b);
 		telaFornecedor.getTelaFisica().getComboBoxSexo().setEnabled(b);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCPF().setEnabled(b);
@@ -1276,21 +1260,20 @@ public class ControladorTelaCadastroFornecedor {
 		telaFornecedor.getTelaFisica().getComboBoxEstadoRG().setEnabled(b);
 		telaFornecedor.getTelaFisica().getValidacaoJTextFieldOrgaoExpeditor().setEnabled(b);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCEP().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldLogradouro().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNumero().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldBairro().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldComplemento().setEnabled(b);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldCidade().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldLogradouro().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNumero().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldBairro().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldComplemento().setEnabled(b);
+		telaFornecedor.getTelaFisica().getFormattedTextFieldCidade().setEnabled(b);
 		telaFornecedor.getTelaFisica().getComboBoxEstadoEndereco().setEnabled(b);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldTelefone().setEnabled(b);
 		telaFornecedor.getTelaFisica().getTextFieldEmail().setEnabled(b);
-		telaFornecedor.getTelaFisica().getTextFieldLimiteCredito().setEnabled(b);
 	}
 
 	private void limpar_campos_fisico() {
 		telaFornecedor.getLabelPaginaCadastroFornecedor().setText(" Cadastro de Fornecedor - Pessoa Física");
 		telaFornecedor.getTelaFisica().getComboBoxSituacaoFornecedor().setSelectedIndex(0);
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNome().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNome().setText("");
 		telaFornecedor.getTelaFisica().getFormattedTextFieldDataNascimento().setText("");
 		telaFornecedor.getTelaFisica().getComboBoxSexo().setSelectedIndex(0);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCPF().setText("");
@@ -1298,15 +1281,14 @@ public class ControladorTelaCadastroFornecedor {
 		telaFornecedor.getTelaFisica().getComboBoxEstadoRG().setSelectedIndex(0);
 		telaFornecedor.getTelaFisica().getValidacaoJTextFieldOrgaoExpeditor().setText("");
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCEP().setText("");
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldLogradouro().setText("");
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNumero().setText("");
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldBairro().setText("");
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldComplemento().setText("");
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldCidade().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldLogradouro().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNumero().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldBairro().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldComplemento().setText("");
+		telaFornecedor.getTelaFisica().getFormattedTextFieldCidade().setText("");
 		telaFornecedor.getTelaFisica().getComboBoxEstadoEndereco().setSelectedIndex(0);
 		telaFornecedor.getTelaFisica().getFormattedTextFieldTelefone().setText("");
 		telaFornecedor.getTelaFisica().getTextFieldEmail().setText("");
-		telaFornecedor.getTelaFisica().getTextFieldLimiteCredito().setText("");
 	}
 
 	private boolean busca_banco_fisico() {
@@ -1504,7 +1486,7 @@ public class ControladorTelaCadastroFornecedor {
 
 	public void atribuicao_busca_campos_F(ModeloFornecedorFisica fornecedor) {
 		telaFornecedor.getTelaFisica().getComboBoxSituacaoFornecedor().setSelectedItem(fornecedor.getSituacao());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNome().setText(fornecedor.getNome());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNome().setText(fornecedor.getNome());
 		telaFornecedor.getTelaFisica().getFormattedTextFieldDataNascimento().setText(fornecedor.getDataNascimento());
 		telaFornecedor.getTelaFisica().getComboBoxSexo().setSelectedItem(fornecedor.getSexo());
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCPF().setText(fornecedor.getCpf());
@@ -1512,15 +1494,14 @@ public class ControladorTelaCadastroFornecedor {
 		telaFornecedor.getTelaFisica().getComboBoxEstadoRG().setSelectedItem(fornecedor.getUfRg());
 		telaFornecedor.getTelaFisica().getValidacaoJTextFieldOrgaoExpeditor().setText(fornecedor.getOrgaoExpeditorRg());
 		telaFornecedor.getTelaFisica().getFormattedTextFieldCEP().setText(fornecedor.getCep());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldLogradouro().setText(fornecedor.getLogradouro());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldNumero().setText(fornecedor.getNumeroEndereco());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldBairro().setText(fornecedor.getBairro());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldComplemento().setText(fornecedor.getComplemento());
-		telaFornecedor.getTelaFisica().getValidacaoJTextFieldCidade().setText(fornecedor.getCidade());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldLogradouro().setText(fornecedor.getLogradouro());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldNumero().setText(fornecedor.getNumeroEndereco());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldBairro().setText(fornecedor.getBairro());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldComplemento().setText(fornecedor.getComplemento());
+		telaFornecedor.getTelaFisica().getFormattedTextFieldCidade().setText(fornecedor.getCidade());
 		telaFornecedor.getTelaFisica().getComboBoxEstadoEndereco().setSelectedItem(fornecedor.getUf_estado());
 		telaFornecedor.getTelaFisica().getFormattedTextFieldTelefone().setText(fornecedor.getTelefone());
 		telaFornecedor.getTelaFisica().getTextFieldEmail().setText(fornecedor.getEmail());
-		telaFornecedor.getTelaFisica().getTextFieldLimiteCredito().setText(String.valueOf(fornecedor.getLimiteCredito()));
 		// telaFornecedor.getTelaPesquisa().getComboBoxTipoPesquisa().setSelectedItem("Selecione");
 		// telafornecedor.getTelaPesquisa().getTextFieldEntradaDado().setText("");
 	}
@@ -1530,37 +1511,23 @@ public class ControladorTelaCadastroFornecedor {
 		this.fornecedor_atual_J
 				.setSituacao(telaFornecedor.getTelaJuridica().getComboBoxSituacaoFornecedor().getSelectedItem().toString());
 		this.fornecedor_atual_J
-				.setRazaoSocial(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRazaoSocial().getText());
-		this.fornecedor_atual_J.setCnpj(telaFornecedor.getTelaJuridica().getValidacaoJTextFieldCnpj().getText());
+				.setRazaoSocial(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoRazaoSocial().getText());
+		this.fornecedor_atual_J.setCnpj(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCnpj().getText());
 		this.fornecedor_atual_J
-				.setRepresentante(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldRepresentante().getText());
-		this.fornecedor_atual_J.setInscricaoEstadual(
-				telaFornecedor.getTelaJuridica().getValidacaoJTextFieldInscricaoEstadual().getText());
-		this.fornecedor_atual_J.setInscricaoEstadualUF(
-				telaFornecedor.getTelaJuridica().getComboBoxUfInscricaoEstadual().getSelectedItem().toString());
-
-		try {
-			this.fornecedor_atual_J.setLimiteCredito(
-					Double.parseDouble(telaFornecedor.getTelaJuridica().getValidacaoJTextFieldLimiteCredito().getText()));
-		} catch (NumberFormatException e) {
-			// e.printStackTrace();
-			this.fornecedor_atual_J.setLimiteCredito(-1);
-			// System.out.println(fornecedor.getLimiteCredito());
-		}
-
-		this.fornecedor_atual_J.setCep(telaFornecedor.getTelaJuridica().getFormattedTextFieldCEP().getText());
+				.setRepresentante(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoContatar().getText());
+		this.fornecedor_atual_J.setCep(telaFornecedor.getTelaJuridica().getFormattedTextFieldCep().getText());
 		this.fornecedor_atual_J
-				.setLogradouro(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldLogradouro().getText());
+				.setLogradouro(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoLogradouro().getText());
 		this.fornecedor_atual_J
-				.setNumeroEndereco(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldNumero().getText());
-		this.fornecedor_atual_J.setBairro(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldBairro().getText());
+				.setNumeroEndereco(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoNumero().getText());
+		this.fornecedor_atual_J.setBairro(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoBairro().getText());
 		this.fornecedor_atual_J
-				.setComplemento(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldComplemento().getText());
-		this.fornecedor_atual_J.setCidade(telaFornecedor.getTelaJuridica().getValidacaoGeralJTextFieldCidade().getText());
+				.setComplemento(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoComplemento().getText());
+		this.fornecedor_atual_J.setCidade(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoCidade().getText());
 		this.fornecedor_atual_J
-				.setUf_estado(telaFornecedor.getTelaJuridica().getComboBoxEstadoEndereco().getSelectedItem().toString());
+				.setUf_estado(telaFornecedor.getTelaJuridica().getComboBoxUfEndereco().getSelectedItem().toString());
 		this.fornecedor_atual_J.setTelefone(telaFornecedor.getTelaJuridica().getFormattedTextFieldTelefone().getText());
-		this.fornecedor_atual_J.setEmail(telaFornecedor.getTelaJuridica().getValidacaoJTextFieldEmail().getText());
+		this.fornecedor_atual_J.setEmail(telaFornecedor.getTelaJuridica().getValidacaoGeralCamposTextoEmail().getText());
 	}
 
 	private void capturar_campos_fisico() {
@@ -1568,7 +1535,7 @@ public class ControladorTelaCadastroFornecedor {
 
 		this.fornecedor_atual_F
 				.setSituacao(telaFornecedor.getTelaFisica().getComboBoxSituacaoFornecedor().getSelectedItem().toString());
-		this.fornecedor_atual_F.setNome(telaFornecedor.getTelaFisica().getValidacaoJTextFieldNome().getText());
+		this.fornecedor_atual_F.setNome(telaFornecedor.getTelaFisica().getFormattedTextFieldNome().getText());
 		this.fornecedor_atual_F
 				.setDataNascimento(telaFornecedor.getTelaFisica().getFormattedTextFieldDataNascimento().getText());
 		this.fornecedor_atual_F.setSexo(telaFornecedor.getTelaFisica().getComboBoxSexo().getSelectedItem().toString());
@@ -1577,22 +1544,12 @@ public class ControladorTelaCadastroFornecedor {
 		this.fornecedor_atual_F.setUfRg(telaFornecedor.getTelaFisica().getComboBoxEstadoRG().getSelectedItem().toString());
 		this.fornecedor_atual_F
 				.setOrgaoExpeditorRg(telaFornecedor.getTelaFisica().getValidacaoJTextFieldOrgaoExpeditor().getText());
-
-		try {
-			this.fornecedor_atual_F.setLimiteCredito(
-					Double.parseDouble(telaFornecedor.getTelaFisica().getTextFieldLimiteCredito().getText()));
-		} catch (NumberFormatException e) {
-			// e.printStackTrace();
-			this.fornecedor_atual_F.setLimiteCredito(-1);
-			// System.out.println(fornecedor.getLimiteCredito());
-		}
-
 		this.fornecedor_atual_F.setCep(telaFornecedor.getTelaFisica().getFormattedTextFieldCEP().getText());
-		this.fornecedor_atual_F.setLogradouro(telaFornecedor.getTelaFisica().getValidacaoJTextFieldLogradouro().getText());
-		this.fornecedor_atual_F.setNumeroEndereco(telaFornecedor.getTelaFisica().getValidacaoJTextFieldNumero().getText());
-		this.fornecedor_atual_F.setBairro(telaFornecedor.getTelaFisica().getValidacaoJTextFieldBairro().getText());
-		this.fornecedor_atual_F.setComplemento(telaFornecedor.getTelaFisica().getValidacaoJTextFieldComplemento().getText());
-		this.fornecedor_atual_F.setCidade(telaFornecedor.getTelaFisica().getValidacaoJTextFieldCidade().getText());
+		this.fornecedor_atual_F.setLogradouro(telaFornecedor.getTelaFisica().getFormattedTextFieldLogradouro().getText());
+		this.fornecedor_atual_F.setNumeroEndereco(telaFornecedor.getTelaFisica().getFormattedTextFieldNumero().getText());
+		this.fornecedor_atual_F.setBairro(telaFornecedor.getTelaFisica().getFormattedTextFieldBairro().getText());
+		this.fornecedor_atual_F.setComplemento(telaFornecedor.getTelaFisica().getFormattedTextFieldComplemento().getText());
+		this.fornecedor_atual_F.setCidade(telaFornecedor.getTelaFisica().getFormattedTextFieldCidade().getText());
 		this.fornecedor_atual_F
 				.setUf_estado(telaFornecedor.getTelaFisica().getComboBoxEstadoEndereco().getSelectedItem().toString());
 		this.fornecedor_atual_F.setTelefone(telaFornecedor.getTelaFisica().getFormattedTextFieldTelefone().getText());

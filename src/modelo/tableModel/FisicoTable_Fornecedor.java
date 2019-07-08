@@ -14,12 +14,12 @@ public class FisicoTable_Fornecedor extends AbstractTableModel{
 		this.listaFornecedoresFisico = new ArrayList<>();		
 	}	
 	
-	public void add_fornecedor(ModeloFornecedorFisica fornecedor) {
+	public void addFornecedor(ModeloFornecedorFisica fornecedor) {
 		this.listaFornecedoresFisico.add(fornecedor);
 		fireTableDataChanged();
 	}	
 	
-	public void remover_fornecedor(int linhaIndice) {
+	public void removerFornecedor(int linhaIndice) {
 		this.listaFornecedoresFisico.remove(linhaIndice);
 		fireTableDataChanged();
 	}

@@ -8,6 +8,7 @@ import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 
 public class JuridicoTable extends AbstractTableModel{
+	
 	private	ArrayList<ModeloClientePessoaJuridica> listaClientesJuridico;
 	private String[] colunas = new String[]{"CNPJ","Razao Social","Endereço", "Telefone"};
 	

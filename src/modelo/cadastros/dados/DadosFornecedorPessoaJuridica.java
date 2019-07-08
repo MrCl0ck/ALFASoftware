@@ -7,10 +7,11 @@ import javax.swing.JOptionPane;
 import dao.Banco;
 import modelo.cadastros.fornecedor.ModeloFornecedorJuridica;
 import modelo.tableModel.JuridicoTable;
+import modelo.tableModel.JuridicoTable_Fornecedor;
 
 public class DadosFornecedorPessoaJuridica {
 
-	private static FornecedorJuridicoTable fornecedorTabela = new FornecedorJuridicoTable();
+	private static JuridicoTable_Fornecedor fornecedorTabela = new JuridicoTable_Fornecedor();
 	private static Banco banco = new Banco();
 	
 	public DadosFornecedorPessoaJuridica() {
@@ -90,10 +91,10 @@ public class DadosFornecedorPessoaJuridica {
 	//------------------------------------FUNÇÕES TABELA-------------------------------------------------------------
 	
 		public void adicionarFornecedorTabela(ModeloFornecedorJuridica fornecedor) {
-			fornecedorTabela.add_fornecedor(fornecedor);
+			fornecedorTabela.addFornecedor(fornecedor);
 		}
 		
-		public FornecedorJuridicoTable getFornecedorNaTabela() {
+		public JuridicoTable_Fornecedor getFornecedoresNaTabela() {
 			return fornecedorTabela;
 		}
 		
