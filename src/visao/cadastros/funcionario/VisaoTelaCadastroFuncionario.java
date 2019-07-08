@@ -88,7 +88,6 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	FormataMascaras fm = new FormataMascaras();
 	private JSeparator separator;
 	private JSeparator separator_1;
-	private FisicoTable_F tabela = null;
 	private FisicoTable_F busca_exibicao;	
 	
 	

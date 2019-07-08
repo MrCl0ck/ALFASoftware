@@ -56,7 +56,7 @@ public class ValidacaoGeralCamposTexto extends JTextField{
 					default:
 						break;
 				}
-			}
+			}			
 
 			@Override
 			public void keyPressed(java.awt.event.KeyEvent evento) {

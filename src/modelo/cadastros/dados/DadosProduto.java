@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import dao.Banco;
 import modelo.cadastros.funcionario.ModeloFuncionario;
 import modelo.cadastros.produto.ModeloProduto;
+import modelo.tableModel.ProdutoTable;
 
 public class DadosProduto {
 
@@ -92,11 +93,11 @@ public class DadosProduto {
 		// TABELA-------------------------------------------------------------
 
 		public void adicionarProdutoTabela(ModeloProduto produto) {
-			produtoTabela.addProduto(produto);
+			ProdutoTabela.add_tabela(produto);
 		}
 
 		public ProdutoTable getProdutosNaTabela() {
-			return produtosTabela;
+			return ProdutoTabela;
 		}
 
 		// ---------------------------------------------------------------------------------------------------------------

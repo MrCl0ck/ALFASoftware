@@ -86,7 +86,7 @@ public class ValidacaoProduto {
 			}				
 		}
 		
-		public boolean validacao_codigos() {
+		public boolean validarCódigo_barras() {
 			DadosProduto produtos = new DadosProduto();
 				
 			for (int i = 0; i < produtos.getProdutos().size() ; i++) {

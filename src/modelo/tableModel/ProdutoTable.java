@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import dao.Banco;
-import modelo.cadastros.funcionario.Cargo;
-import modelo.cadastros.funcionario.ModeloFuncionario;
 import modelo.cadastros.produto.ModeloProduto;
 
 public class ProdutoTable extends AbstractTableModel{
 		private	ArrayList<ModeloProduto> lista;
-		private String[] colunas = new String[]{"Código","Descrição","Código de Barras", "Quantidade"};
+		private String[] colunas = new String[]{"Código do produto","Descrição","Código de Barras"};
 		
 		public ProdutoTable() {
 			this.lista = new ArrayList<>();		
@@ -64,8 +61,6 @@ public class ProdutoTable extends AbstractTableModel{
 				return this.lista.get(linha).getDescricao();
 			case 2://coluna endereço(logradouro)
 				return this.lista.get(linha).getCodigoDeBarras();
-			case 3://coluna telefone
-				return this.lista.get(linha).getQuantidade();
 			default:
 				return this.lista.get(linha);
 			} 

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
+import modelo.tableModel.FisicoTable_F;
+import modelo.tableModel.ProdutoTable;
 import visao.VisaoTelaPesquisa;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -47,8 +49,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	private JButton buttonAlterarTipo		  = null;
 	private JButton buttonAdicionarTipo		  = null;
 	private JButton buttonRemoverTipo		  = null;
-	private JLabel lblQuantidade;
-	private ValidacaoGeralCamposTexto txtQuantidade;
+	private ProdutoTable busca_exibicao;
 	
 	public VisaoTelaCadastroProduto() {
 		setLayout(null);
@@ -86,8 +87,6 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		add(getButtonAlterarTipo());
 		add(getButtonAdicionarTipo());
 		add(getButtonRemoverTipo());
-		add(getLblQuantidade());
-		add(getTxtQuantidade());
 	}
 	public VisaoTelaPesquisa getTelaPesquisa() {
 		if(telaPesquisa == null) {
@@ -108,7 +107,12 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
 			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 905, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1082, 20);
-			telaPesquisa.setBounds(0,334, 1055, 357);
+			telaPesquisa.getJTableDados().setModel(get_busca_table_model(false));
+			telaPesquisa.getComboBoxTipoPesquisa().removeAllItems();
+			telaPesquisa.getComboBoxTipoPesquisa().addItem("Selecione");
+			telaPesquisa.getComboBoxTipoPesquisa().addItem("Código do produto");
+			telaPesquisa.getComboBoxTipoPesquisa().addItem("Código de barras");
+			telaPesquisa.setBounds(0,334, 1055, 357);			
 		}
 		return telaPesquisa;
 	}
@@ -219,7 +223,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	}
 	public JComboBox<String> getComboBoxUnidade() {
 		if (comboBoxUnidade == null) {
-			comboBoxUnidade = new JComboBox();
+			comboBoxUnidade = new JComboBox<String>();
 			comboBoxUnidade.setFont(new Font("Arial", Font.PLAIN, 16));
 			comboBoxUnidade.setBackground(Color.WHITE);
 			comboBoxUnidade.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
@@ -229,7 +233,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	}
 	public JComboBox<String> getComboBoxTipo() {
 		if (comboBoxTipo == null) {
-			comboBoxTipo = new JComboBox();
+			comboBoxTipo = new JComboBox<String>();
 			comboBoxTipo.setFont(new Font("Arial", Font.PLAIN, 16));
 			comboBoxTipo.setBackground(Color.WHITE);
 			comboBoxTipo.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
@@ -316,7 +320,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonAdicionarUnidade = new JButton("+");
 			buttonAdicionarUnidade.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonAdicionarUnidade.setBackground(Color.WHITE);
-			buttonAdicionarUnidade.setBounds(204, 246, 41, 23);
+			buttonAdicionarUnidade.setBounds(193, 249, 47, 23);
 		}
 		return buttonAdicionarUnidade;
 	}
@@ -325,7 +329,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonRemoverUnidade = new JButton("-");
 			buttonRemoverUnidade.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonRemoverUnidade.setBackground(Color.WHITE);
-			buttonRemoverUnidade.setBounds(255, 246, 41, 23);
+			buttonRemoverUnidade.setBounds(249, 249, 47, 23);
 		}
 		return buttonRemoverUnidade;
 	}
@@ -334,7 +338,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonAlterarUnidade = new JButton("A");
 			buttonAlterarUnidade.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonAlterarUnidade.setBackground(Color.WHITE);
-			buttonAlterarUnidade.setBounds(306, 246, 41, 23);
+			buttonAlterarUnidade.setBounds(304, 249, 47, 23);
 		}
 		return buttonAlterarUnidade;
 	}
@@ -343,7 +347,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonAlterarTipo = new JButton("A");
 			buttonAlterarTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonAlterarTipo.setBackground(Color.WHITE);
-			buttonAlterarTipo.setBounds(798, 246, 41, 23);
+			buttonAlterarTipo.setBounds(798, 246, 47, 23);
 		}
 		return buttonAlterarTipo;
 	}
@@ -352,7 +356,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonAdicionarTipo = new JButton("+");
 			buttonAdicionarTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonAdicionarTipo.setBackground(Color.WHITE);
-			buttonAdicionarTipo.setBounds(696, 246, 41, 23);
+			buttonAdicionarTipo.setBounds(696, 246, 47, 23);
 		}
 		return buttonAdicionarTipo;
 	}
@@ -361,25 +365,19 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonRemoverTipo = new JButton("-");
 			buttonRemoverTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 			buttonRemoverTipo.setBackground(Color.WHITE);
-			buttonRemoverTipo.setBounds(747, 246, 41, 23);
+			buttonRemoverTipo.setBounds(747, 246, 47, 23);
 		}
 		return buttonRemoverTipo;
 	}
-	private JLabel getLblQuantidade() {
-		if (lblQuantidade == null) {
-			lblQuantidade = new JLabel("Quantidade:*");
-			lblQuantidade.setFont(new Font("Arial", Font.PLAIN, 16));
-			lblQuantidade.setBounds(662, 280, 125, 20);
+	
+	public ProdutoTable get_busca_table_model(boolean consulta) {
+		if(consulta == true) {
+			return busca_exibicao;
 		}
-		return lblQuantidade;
-	}
-	private ValidacaoGeralCamposTexto getTxtQuantidade() {
-		if (txtQuantidade == null) {
-			txtQuantidade = new ValidacaoGeralCamposTexto("3");
-			txtQuantidade.setFont(new Font("Arial", Font.PLAIN, 16));
-			txtQuantidade.setBounds(661, 303, 105, 20);
-			txtQuantidade.setColumns(10);
-		}
-		return txtQuantidade;
+		else{
+			busca_exibicao = new ProdutoTable();
+						
+			return busca_exibicao;
+		}				
 	}
 }
