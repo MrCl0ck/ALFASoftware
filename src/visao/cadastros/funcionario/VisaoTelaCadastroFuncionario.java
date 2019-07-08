@@ -433,6 +433,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public JTextField getTextFieldNomeUsuario() {
 		if(textFieldNomeUsuario == null) {
 			textFieldNomeUsuario = new JTextField();
+			textFieldNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldNomeUsuario.setSize(249, 20);
 			textFieldNomeUsuario.setLocation(200, 227);
 		}
@@ -442,6 +443,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public ValidacaoGeralCamposTexto getTextFieldCtps() {
 		if(textFieldCtps == null) {
 			textFieldCtps = new ValidacaoGeralCamposTexto("3");
+			textFieldCtps.setFont(new Font("Arial", Font.PLAIN, 16));
 			textFieldCtps.setSize(285, 20);
 			textFieldCtps.setLocation(10, 182);
 		}
@@ -451,6 +453,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public JPasswordField getPasswordFieldSenhaUsuario() {
 		if(passwordFieldSenhaUsuario == null) {
 			passwordFieldSenhaUsuario = new JPasswordField();
+			passwordFieldSenhaUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
 			passwordFieldSenhaUsuario.setSize(254, 20);
 			passwordFieldSenhaUsuario.setLocation(513, 229);
 		}
@@ -625,6 +628,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public ValidacaoGeralCamposTexto getValidacaoTextFieldSalario() {
 		if(validacaoJTextFieldSalario == null) {
 			validacaoJTextFieldSalario = new ValidacaoGeralCamposTexto("10");
+			validacaoJTextFieldSalario.setFont(new Font("Arial", Font.PLAIN, 16));
 			validacaoJTextFieldSalario.setSize(106, 20);
 			validacaoJTextFieldSalario.setLocation(35, 229);
 		}
@@ -633,6 +637,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	public ValidacaoGeralCamposTexto getValidacaoTextFieldSetor() {
 		if(validacaoJTextFieldSetor == null) {
 			validacaoJTextFieldSetor = new ValidacaoGeralCamposTexto("1");
+			validacaoJTextFieldSetor.setFont(new Font("Arial", Font.PLAIN, 16));
 			validacaoJTextFieldSetor.setSize(301, 20);
 			validacaoJTextFieldSetor.setLocation(750, 182);
 		}
