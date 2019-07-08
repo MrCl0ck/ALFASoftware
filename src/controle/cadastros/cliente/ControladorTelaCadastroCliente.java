@@ -306,7 +306,7 @@ public class ControladorTelaCadastroCliente{
 						}						
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Selecione um cliente da lista exibida pela busca"
+						JOptionPane.showMessageDialog(null, "Selecione um cliente da lista exibida pela busca!"
 								, "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}	

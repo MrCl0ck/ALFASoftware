@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import dao.Banco;
+import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
-import modelo.tableModel.FisicoTable;
 import modelo.tableModel.FisicoTable_F;
 
 public class DadosFuncionario {
@@ -35,10 +35,18 @@ public class DadosFuncionario {
 							+ funcionario.getUf_estado() + "'");
 
 			String id = banco.primeiroEultimo("endereco", "id", 1);
+			
+			int ret_id = busca_cargo(funcionario.getCargo().getNomeCargo());
+			String idCargo;
+			
+			if(ret_id == -1) { //retorno indicando que não tem cargo igual na tabela cargo...
+				retornoFuncao = banco.inserir("cargo", "`nome`", "'"+funcionario.getCargo().getNomeCargo()+"'");				
+				idCargo = banco.primeiroEultimo("cargo", "id", 1);
+			}
+			else {
+				idCargo = String.valueOf(ret_id);
+			}			
 
-			retornoFuncao = banco.inserir("cargo", "`nome`", funcionario.getCargo().getNomeCargo());
-
-			String idCargo = banco.primeiroEultimo("cargo", "id", 1);
 
 			retornoFuncao = banco.inserir("funcionario",
 					"`cpf`, `nome`, `rg`, `uf_rg`, `orgaoexpedidor`, `dataexpedicao`, `nacionalidade`, `naturalidade`, `datanasc`, `sexo`, `ctps`, `dataadmissao`, `cargo`, `telefone`, `email`, `setor`, `salario`, `usuario`, `senha`, `CARGO_id`, `ENDERECO_id`",
@@ -97,7 +105,7 @@ public class DadosFuncionario {
 
 		retornoFuncao = banco.excluir("funcionario", "cpf", cpfBusca);
 		retornoFuncao = banco.excluir("endereco", "id", idBusca);
-		retornoFuncao = banco.excluir("cargo", "id", idBuscaCargo);
+		//retornoFuncao = banco.excluir("cargo", "id", idBuscaCargo);
 
 		if (retornoFuncao == true) {
 			JOptionPane.showMessageDialog(null, "Exclusão do registro de funcionário feita com sucesso!", "Exclusão",
@@ -152,12 +160,12 @@ public class DadosFuncionario {
 		return null;
 	}
 
-	public static ModeloFuncionario buscaArrayGeralNomeContem(ModeloFuncionario funcionarioASerBuscado) {
-		for (ModeloFuncionario u : banco.consultarFuncionario()) {
-			if (u.getNome().equals(funcionarioASerBuscado.getNome())) {
-				return u;
+	public int busca_cargo(String nome_cargo) {
+		for (Cargo u : banco.consultarCargo()) {
+			if (u.getNomeCargo().equals(nome_cargo)) {
+				return u.getId();
 			}
 		}
-		return null;
+		return -1;
 	}
 }

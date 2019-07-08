@@ -14,7 +14,9 @@ import modelo.cadastros.validacoes.FormataMascaras;
 import modelo.cadastros.validacoes.ValidacaoGeralCamposTexto;
 import modelo.tableModel.FisicoTable;
 import modelo.tableModel.FisicoTable_F;
+import modelo.tableModel.JuridicoTable;
 import visao.VisaoTelaPesquisa;
+import visao.cadastros.cliente.VisaoTelaCadastroClientePessoaJuridica;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -56,7 +58,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	private JLabel labelEmail		 		 = null;
 	private JLabel lblRS1		 			= null;
 	private JTextField textFieldNomeUsuario  = null;
-	private JTextField textFieldCtps 		 = null;
+	private ValidacaoGeralCamposTexto textFieldCtps 		 = null;
 	private JPasswordField passwordFieldSenhaUsuario 			 = null;
 	private JFormattedTextField formattedTextFieldCEP		 	 = null;
 	private JFormattedTextField formattedTextFieldTelefone		 = null;	
@@ -86,7 +88,8 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	FormataMascaras fm = new FormataMascaras();
 	private JSeparator separator;
 	private JSeparator separator_1;
-	private FisicoTable_F tabela = null;	
+	private FisicoTable_F tabela = null;
+	private FisicoTable_F busca_exibicao;	
 	
 	
 	public VisaoTelaCadastroFuncionario() {
@@ -179,17 +182,10 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			telaPesquisa.getSeparatorBotoes().setLocation(0, 308);
 			telaPesquisa.getDadosJScrollPane().setBounds(48, 89, 987, 208);
 			telaPesquisa.getSeparatorPesquisa().setBounds(0, 74, 1105, 20);
-			telaPesquisa.getJTableDados().setModel(getTableModel());
+			telaPesquisa.getJTableDados().setModel(get_busca_table_model(false));
 			telaPesquisa.setBounds(0,334, 1105, 357);
 		}
 		return telaPesquisa;
-	}
-	
-	public FisicoTable_F getTableModel() {
-		if(tabela==null) {
-			tabela = new FisicoTable_F();
-		}
-		return tabela;
 	}
 
 	public JLabel getLabelCadastroDeFuncionrio() {
@@ -444,9 +440,9 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 		return textFieldNomeUsuario;
 	}
 
-	public JTextField getTextFieldCtps() {
+	public ValidacaoGeralCamposTexto getTextFieldCtps() {
 		if(textFieldCtps == null) {
-			textFieldCtps = new JTextField();
+			textFieldCtps = new ValidacaoGeralCamposTexto("3");
 			textFieldCtps.setSize(285, 20);
 			textFieldCtps.setLocation(10, 182);
 		}
@@ -735,5 +731,17 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 			separator_1.setBounds(0, 255, 1105, 2);
 		}
 		return separator_1;
+	}
+	
+	
+	public FisicoTable_F get_busca_table_model(boolean consulta) {
+		if(consulta == true) {
+			return busca_exibicao;
+		}
+		else{
+			busca_exibicao = new FisicoTable_F();
+						
+			return busca_exibicao;
+		}				
 	}
 }

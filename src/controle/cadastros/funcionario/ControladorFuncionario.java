@@ -13,14 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import dao.Banco;
-import modelo.cadastros.cliente.ModeloClientePessoaFisica;
-import modelo.cadastros.cliente.ModeloClientePessoaJuridica;
 import modelo.cadastros.dados.DadosClientePessoaFisica;
-import modelo.cadastros.dados.DadosClientePessoaJuridica;
 import modelo.cadastros.dados.DadosFuncionario;
 import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
-import modelo.cadastros.validacoes.ValidacaoClientePessoaJuridica;
 import modelo.cadastros.validacoes.ValidacaoFuncionario;
 import visao.cadastros.cliente.VisaoFramePrincipal;
 import visao.cadastros.funcionario.VisaoTelaCadastroFuncionario;
@@ -46,16 +42,7 @@ public class ControladorFuncionario {
 	private void carregar_cargos() {
 		for (int i = 0; i < cargo.size(); i++) {
 			tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
-		}		
-		
-	}
-	
-	private void atualizar_cargos() {
-		cargo = banco.consultarCargo(); 
-		tela.getComboBoxCargo().removeAllItems();
-		for (int i = 0; i < cargo.size(); i++) {
-			tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
-  	  	}			
+		}	
 	}
 
 	private void campos_bool(boolean b) {
@@ -90,6 +77,7 @@ public class ControladorFuncionario {
 	}
 	
 	private void limpar_campos() {
+		tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 		tela.getValidacaoJTextFieldNome().setText("");
 		tela.getFormattedTextFieldCPF().setText("");
 		tela.getValidacaoJTextFieldRG().setText("");
@@ -177,24 +165,23 @@ public class ControladorFuncionario {
 				String cargo_antigo = tela.getComboBoxCargo().getSelectedItem().toString();
 			    String novo_cargo = JOptionPane.showInputDialog(null, "Insira o novo nome do cargo: ", "Alterar Cargo", JOptionPane.WARNING_MESSAGE);
 			      
-			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false && novo_cargo != cargo_antigo) {
-			    	  boolean achou = false;
+			      if(novo_cargo != null && novo_cargo.trim().isEmpty() == false && novo_cargo != cargo_antigo && !cargo_antigo.equals("Selecione")
+			    		  && !novo_cargo.equals("Selecione")) {
 			    	  
-			    	  for (int i = 0; i < tela.getComboBoxCargo().getItemCount(); i++) {
-			    		  if (novo_cargo.equals(tela.getComboBoxCargo().getItemAt(i).toString())) {
-			    			  achou = true;
-			    			  break;
-			    		  }
-			    	  }
 			    	  
-			    	  if(achou == false) {
+			    	  if(banco.atualizar("cargo", "nome", cargo_antigo,"nome='" + novo_cargo +  "'") == true) {
+			    		  tela.getComboBoxCargo().removeItem(cargo_antigo);
 			    		  tela.getComboBoxCargo().addItem(novo_cargo);
 			    		  tela.getComboBoxCargo().setSelectedItem(novo_cargo);
 			    	  }
 			    	  else {
-			    		  JOptionPane.showMessageDialog(null, "Esse cargo já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			    		  System.out.println("Erro ao atualizar cargo...");
 			    	  }			    	  
 			      }
+			      else {
+			    	  JOptionPane.showMessageDialog(null, "Preencha o campo corretamente!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			      }
+			    	  
 			}
 		});
 	}
@@ -204,16 +191,31 @@ public class ControladorFuncionario {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			    String cargo_removido = JOptionPane.showInputDialog(null, "Insira o novo nome do cargo: ", "Alterar Cargo", JOptionPane.WARNING_MESSAGE);
+			    String cargo_removido = tela.getComboBoxCargo().getSelectedItem().toString();
+			   
+			    Object[] options = { "NÃO", "SIM" };
+				int opcao = JOptionPane.showOptionDialog(null, "Essa ação é irreversível. Deseja remover o cargo: '"+cargo_removido+"'?", "Remover",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+				
+				if (opcao==1) {
+					String id = "";
+					for (int i = 0; i < cargo.size(); i++) {
+						if(cargo.get(i).getNomeCargo() == cargo_removido) {
+							id = String.valueOf(cargo.get(i).getId());
+							break;
+						}
+					}					
+					//ERRO AO EXCLUIR O CARGO
+//					if (banco.excluir("cargo", "id", id)) {
+//						tela.getComboBoxCargo().removeItem(cargo_removido);
+//					}
+//					else{
+//						System.out.println("Erro ao remover cargo...");
+//					}
+				}
 			      
-			      if(cargo_removido != null && cargo_removido.trim().isEmpty() == false) {
-			    	  cargo = banco.consultarCargo(); 
-			    	  //tela.getComboBoxCargo().removeAllItems();
-			    	  for (int i = 0; i < cargo.size(); i++) {
-			    		  //tela.getComboBoxCargo().addItem(cargo.get(i).getNomeCargo());		    			  
-			    	  }			    	  
-			      }
-			}
+			}		
 		});
 	}
 //	boolean achou = false;
@@ -275,13 +277,154 @@ public class ControladorFuncionario {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					
+					if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Incluir")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de inclusão é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Alterar")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Alterar")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de alteração é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else {
+						funcionario_exibicao = new ModeloFuncionario();
+						int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+						funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+						atribuicao_busca_campos(funcionario_exibicao);
+					}
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_UP) {
-					
+				if(e.getKeyCode() == KeyEvent.VK_UP) {
+					if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Incluir")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de inclusão é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Alterar")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Alterar")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de alteração é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else {
+						funcionario_exibicao = new ModeloFuncionario();
+						int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+						funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+						atribuicao_busca_campos(funcionario_exibicao);
+					}
 				}
 				else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-					
+					if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Incluir")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de inclusão é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Alterar")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Alterar")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o funcionário selecionado o procedimento de alteração é descartado, deseja cancelar?", "Cancelar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}						
+					}
+					else {
+						funcionario_exibicao = new ModeloFuncionario();
+						int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+						funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+						atribuicao_busca_campos(funcionario_exibicao);
+					}
 				}
 				
 			}
@@ -297,9 +440,63 @@ public class ControladorFuncionario {
 		tela.getTelaPesquisa().getJTableDados().addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {//ESSE			
+			public void mouseReleased(MouseEvent e) {//ESSE
+				if(e.getClickCount() == 1) {
+					if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário - Incluir")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
+							Object[] options = { "NÃO", "SIM" };
+							int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de inclusão é cancelado, deseja cancelar?", "Fechar",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, options, options[0]);
+							
+							if(opcao == 1) {
+								tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
+								funcionario_exibicao = new ModeloFuncionario();
+								int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+								funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+								atribuicao_busca_campos(funcionario_exibicao);
+							}
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}						
+					}
+					else if(tela.getLabelCadastroDeFuncionrio().getText().contains(" Cadastro de Funcionário")) {
+						if(tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Alterar")) {
+						Object[] options = { "NÃO", "SIM" };
+					      int opcao = JOptionPane.showOptionDialog(null, "Ao exibir o cliente selecionado o procedimento de alteração é descartado, deseja cancelar?", "Fechar",
+					          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					              null, options, options[0]);
+					      
+					      if(opcao == 1) {
+					    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
+					    	  funcionario_exibicao = new ModeloFuncionario();
+					    	  int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+					    	  funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+					    	  atribuicao_busca_campos(funcionario_exibicao);
+					      }
+						}
+						else {
+							funcionario_exibicao = new ModeloFuncionario();
+							int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+							funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+							atribuicao_busca_campos(funcionario_exibicao);
+						}
+					}
+					else {
+						funcionario_exibicao = new ModeloFuncionario();
+						int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
+						funcionario_exibicao = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);					
+						atribuicao_busca_campos(funcionario_exibicao);
+					}	
+					
+						
+				}
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
@@ -347,8 +544,12 @@ public class ControladorFuncionario {
 				    	  capturar_campos();
 				    	  if(validacao("Alterar")==true) {
 				    		  limpar_campos();
+				    		  campos_bool(false);
 				    		  buttons_inc_alt();
-				    		  tela.getTableModel().fireTableDataChanged();//atualiza a tabela
+				    		  tela.get_busca_table_model(true).fireTableDataChanged();
+				    		  tela.repaint();
+				    		  tela.validate();
+				    		  //tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));
 				    	  }
 				      }
 				}
@@ -362,7 +563,7 @@ public class ControladorFuncionario {
 				    	  capturar_campos();
 				    	  if(validacao("Incluir")==true) {
 				    		  limpar_campos();
-				    		  buttons_inc_alt();
+				    		  buttons_inicial();
 				    	  }
 				      }
 				}
@@ -372,6 +573,34 @@ public class ControladorFuncionario {
 		});
 	}
 	
+	private void atribuicao_busca_campos(ModeloFuncionario funcionario_exibicao) {
+		tela.getValidacaoJTextFieldNome().setText(funcionario_exibicao.getNome());
+		tela.getFormattedTextFieldCPF().setText(funcionario_exibicao.getCpf());
+		tela.getValidacaoJTextFieldRG().setText(funcionario_exibicao.getRg());
+		tela.getComboBoxEstadoRG().setSelectedItem(funcionario_exibicao.getUfRg());
+		tela.getValidacaoJTextFieldOrgaoExpeditor().setText(funcionario_exibicao.getOrgaoExpeditor());
+		tela.getValidacaoJTextFieldNacionalidade().setText(funcionario_exibicao.getNacionalidade());
+		tela.getValidacaoJTextFieldNaturalidade().setText(funcionario_exibicao.getNaturalidade());
+		tela.getFormattedTextFieldDataNascimento().setText(funcionario_exibicao.getDataDeNascimento());
+		tela.getComboBoxSexo().setSelectedItem(funcionario_exibicao.getSexo());
+		tela.getFormattedTextFieldTelefone().setText(funcionario_exibicao.getTelefone());
+		tela.getValidacaoTextFieldEmail().setText(funcionario_exibicao.getEmail());
+		tela.getTextFieldCtps().setText(funcionario_exibicao.getCtps());
+		tela.getFormattedTextFieldDataAdmissao().setText(funcionario_exibicao.getDataDeAdmissao());
+		tela.getComboBoxCargo().setSelectedItem(funcionario_exibicao.getCargo());
+		tela.getValidacaoTextFieldSetor().setText(funcionario_exibicao.getSetor());
+		tela.getValidacaoTextFieldSalario().setText(String.valueOf(funcionario_exibicao.getSalario()));
+		tela.getTextFieldNomeUsuario().setText(funcionario_exibicao.getNomeDeUsuario());
+		tela.getPasswordFieldSenhaUsuario().setText(funcionario_exibicao.getSenha());
+		tela.getFormattedTextFieldCEP().setText(funcionario_exibicao.getCep());
+		tela.getValidacaoJTextFieldLogradouro().setText(funcionario_exibicao.getLogradouro());
+		tela.getValidacaoJTextFieldComplemento().setText(funcionario_exibicao.getComplemento());
+		tela.getValidacaoJTextFieldNumero().setText(funcionario_exibicao.getNumeroEndereco());
+		tela.getValidacaoJTextFieldBairro().setText(funcionario_exibicao.getBairro());
+		tela.getValidacaoJTextFieldCidade().setText(funcionario_exibicao.getCidade());
+		tela.getComboBoxEstadoEndereco().setSelectedItem(funcionario_exibicao.getUf_estado());
+	}
+	
 	private boolean validacao(String string) {
 		ValidacaoFuncionario funcionario;
 		
@@ -379,12 +608,17 @@ public class ControladorFuncionario {
 			DadosFuncionario funcionario_salvo = new DadosFuncionario();
 			String id_end;
 			
+			int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();
+			
+			funcionario_antigo = new ModeloFuncionario();
+			funcionario_antigo = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);
+			
 			funcionario = new ValidacaoFuncionario(funcionario_atual);
 			id_end = banco .consultar("funcionario", "cpf" , funcionario_atual.getCpf(), "ENDERECO_id");
 			
 			if(funcionario.isResultadoValidacaoTodosCamposGeral() == true) {					
 				
-				funcionario_salvo.bancoDeDadosAlterar(funcionario_atual, funcionario_antigo.getCpf(), id_end, funcionario_atual.getCargo());
+				funcionario_salvo.bancoDeDadosAlterar(funcionario_atual, funcionario_antigo.getCpf(), id_end, funcionario_atual.getCargo().getNomeCargo());
 				
 				return true;
 			}			
@@ -428,7 +662,7 @@ public class ControladorFuncionario {
 		//DADOS DO CARGO
 		funcionario_atual.setCtps(tela.getTextFieldCtps().getText());
 		funcionario_atual.setDataDeAdmissao(tela.getFormattedTextFieldDataAdmissao().getText());
-		funcionario_atual.setCargo((tela.getComboBoxCargo().getSelectedItem().toString()));
+		funcionario_atual.getCargo().setNomeCargo((tela.getComboBoxCargo().getSelectedItem().toString()));
 		funcionario_atual.setSetor(tela.getValidacaoTextFieldSetor().getText());
 		
 		try {
@@ -459,7 +693,7 @@ public class ControladorFuncionario {
 			public void actionPerformed(ActionEvent e) {
 				if(tela.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {					
 					int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();					
-					ModeloFuncionario funcionario = tela.getTableModel().getFuncionario(linhaSelecionada);
+					ModeloFuncionario funcionario = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);
 					
 					Object[] options = { "NÃO", "SIM" };
 				      int opcao = JOptionPane.showOptionDialog(null, "Deseja excluir o funcionário de nome: '" + funcionario.getNome() +"' ?", "Exclusão",
@@ -467,7 +701,7 @@ public class ControladorFuncionario {
 				              null, options, options[0]);
 				      
 				      if(opcao == 1) {
-				    	  tela.getTableModel().remover_tabela(linhaSelecionada);
+				    	  tela.get_busca_table_model(true).remover_tabela(linhaSelecionada);
 				    	  String cpf = funcionario.getCpf();
 				    	  String id = banco.consultar("cliente", "cpf" , cpf, "ENDERECO_id");;
 				    	  
@@ -500,7 +734,6 @@ public class ControladorFuncionario {
 				    	  campos_bool(false);
 				    	  buttons_busca();
 				    	  limpar_campos();
-				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 				      }
 				}
 				else if (tela.getLabelCadastroDeFuncionrio().getText().equals(" Cadastro de Funcionário - Incluir")) {
@@ -513,7 +746,6 @@ public class ControladorFuncionario {
 				    	  campos_bool(false);
 				    	  buttons_inicial();
 				    	  limpar_campos();
-				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
 				      }
 				}
 				else {
@@ -526,7 +758,7 @@ public class ControladorFuncionario {
 				    	  campos_bool(false);
 				    	  buttons_inicial();
 				    	  limpar_campos();
-				    	  tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário");
+				    	  tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));				    	  
 				      }
 				}
 			}
@@ -538,9 +770,17 @@ public class ControladorFuncionario {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário - Alterar");
-				campos_bool(true);
-				buttons_inc_alt();
+				int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();
+				if (tela.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {
+					tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário - Alterar");
+					atribuicao_busca_campos(tela.get_busca_table_model(true).getFuncionario(linhaSelecionada));
+					campos_bool(true);
+					buttons_inc_alt();					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Selecione um funcionário da lista exibida pela busca!"
+							, "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 	}
@@ -568,8 +808,9 @@ public class ControladorFuncionario {
 				val_b = tela.getTelaPesquisa().getTextFieldEntradaDado().getText();
 				
 				if(!val_b.trim().equals("") && !tipo_b.equals("Selecione")) {
-					busca(tipo_b, val_b);
-					buttons_busca();
+					if (busca(tipo_b, val_b) == true) {
+						buttons_busca();						
+					};
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Preencha o campo de busca e escolha um tipo de busca!"
@@ -584,7 +825,7 @@ public class ControladorFuncionario {
 	private boolean busca(String tipo_b, String val_b) {
 		if(tipo_b.equals("Nome")) {
 			DadosFuncionario funcionario_banco = new DadosFuncionario();
-			//tela.getTelaPesquisa().getJTableDadosFuncionario().setModel(tela.getTableModel());//seta uma nova tabela, só pra exibição dos resultados da busca
+			tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 			
 			ModeloFuncionario funcionario = new ModeloFuncionario();
 			
@@ -600,12 +841,12 @@ public class ControladorFuncionario {
 							funcionario.setComplemento(banco.consultarEndereco().get(j).getComplemento());
 							funcionario.setCidade(banco.consultarEndereco().get(j).getCidade());
 							funcionario.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-							tela.getTableModel().add_tabela(funcionario);
+							tela.get_busca_table_model(true).add_tabela(funcionario);
 						}
 					}
 				}				
 			}
-			if(tela.getTableModel().getRowCount() == 0) {
+			if(tela.get_busca_table_model(true).getRowCount() == 0) {
 				JOptionPane.showMessageDialog(null, "Busca finalizada, nenhum cliente encontrado."
 						  , "Busca", JOptionPane.INFORMATION_MESSAGE);
 				return false;
@@ -613,7 +854,7 @@ public class ControladorFuncionario {
 		}
 		else if(tipo_b.equals("CPF")) {
 			DadosFuncionario funcionario_banco = new DadosFuncionario();
-			//tela.getTelaPesquisa().getJTableDadosFuncionario().setModel(tela.getBuscaExibicaoTableModelJuridico(false));//seta uma nova tabela, só pra exibição dos resultados da busca
+			tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));//seta uma nova tabela, só pra exibição dos resultados da busca
 			
 			ModeloFuncionario funcionario = new ModeloFuncionario();
 			
@@ -629,12 +870,12 @@ public class ControladorFuncionario {
 							funcionario.setComplemento(banco.consultarEndereco().get(j).getComplemento());
 							funcionario.setCidade(banco.consultarEndereco().get(j).getCidade());
 							funcionario.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-							tela.getTableModel().add_tabela(funcionario);
+							tela.get_busca_table_model(true).add_tabela(funcionario);
 						}
 					}
 				}				
 			}	
-			if(tela.getTableModel().getRowCount() == 0) {
+			if(tela.get_busca_table_model(true).getRowCount() == 0) {
 				JOptionPane.showMessageDialog(null, "Busca finalizada, nenhum cliente encontrado."
 						  , "Busca", JOptionPane.INFORMATION_MESSAGE);
 				return false;

@@ -538,7 +538,7 @@ public class Banco {
 				modeloFuncionario.setUfRg(resultado.getString("uf_rg"));
 				modeloFuncionario.setDataExpedicaoRg(resultado.getString("dataexpedicao"));
 				modeloFuncionario.setNacionalidade(resultado.getString("nacionalidade"));
-				modeloFuncionario.setNaturalidade(resultado.getString("naturaldade"));
+				modeloFuncionario.setNaturalidade(resultado.getString("naturalidade"));
 				modeloFuncionario.setDataDeNascimento(resultado.getString("datanasc"));
 				modeloFuncionario.setSexo(resultado.getString("sexo"));
 				modeloFuncionario.setCtps(resultado.getString("ctps"));
