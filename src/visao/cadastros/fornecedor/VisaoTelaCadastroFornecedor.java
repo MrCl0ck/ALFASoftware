@@ -32,8 +32,8 @@ public class VisaoTelaCadastroFornecedor extends JPanel {
 		setMinimumSize(new Dimension(804, 770));
 		setMaximumSize(new Dimension(804, 770));
 		add(getLabelPaginaCadastroFornecedor());		
-		add(getPanel());
 		add(getTelaPesquisa());
+		add(getPanel());
 	}
 
 	public JLabel getLabelTipoFornecedor() {

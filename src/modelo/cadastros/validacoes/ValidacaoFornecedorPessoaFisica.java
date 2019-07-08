@@ -11,7 +11,7 @@ public class ValidacaoFornecedorPessoaFisica {
 	private boolean resultadoValidacaoTodosCamposGeral;
 	private boolean resultadoValidacaoCpfRg;
 	
-	public ValidacaoFornecedorPessoaFisica(ModeloFornecedorFisica cliente) {
+	public ValidacaoFornecedorPessoaFisica(ModeloFornecedorFisica fornecedor) {
 		this.fornecedor = fornecedor;
 		setResultadoValidacaoTodosCamposGeral(validacaoTodosCamposGeral());	
 	}

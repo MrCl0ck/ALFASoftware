@@ -1097,7 +1097,7 @@ public class ControladorTelaCadastroFornecedor {
 	}
 
 	public void tela_fisico() {
-		telaFornecedor.removePanel();
+		telaFornecedor.remove(2);
 		telaFornecedor.add(telaFornecedor.getTelaFisica());
 		limpar_campos_fisico();
 		campos_inicial_fisico();
@@ -1111,7 +1111,7 @@ public class ControladorTelaCadastroFornecedor {
 	}
 
 	public void tela_juridico() {
-		telaFornecedor.removePanel();
+		telaFornecedor.remove(2);
 		telaFornecedor.add(telaFornecedor.getTelaJuridica());
 		limpar_campos_juridico();
 		campos_inicial_juridico();
