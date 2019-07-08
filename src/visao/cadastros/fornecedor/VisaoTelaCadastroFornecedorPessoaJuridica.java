@@ -59,7 +59,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 	private JSeparator separator	= null;
 	private JSeparator separator_1	= null;
 	private JSeparator separator_2	= null;
-	private JButton buttonCadastroEndereco	= null;
 	FormataMascaras fm = new FormataMascaras();
 	
 	public VisaoTelaCadastroFornecedorPessoaJuridica() {
@@ -106,7 +105,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 		add(getFormattedTextFieldRamoAtividade());
 		add(getFormattedTextFieldFax());
 		add(getFormattedTextFieldTelefone());
-		add(getButtonCadastroEndereco());
 	}
 	public JLabel getLabelTitulo() {
 		if (labelTitulo == null) {
@@ -478,15 +476,6 @@ public class VisaoTelaCadastroFornecedorPessoaJuridica extends JPanel {
 			formattedTextFieldFax.setBounds(560, 170, 155, 20);
 		}
 		return formattedTextFieldFax;
-	}
-	public JButton getButtonCadastroEndereco() {
-		if (buttonCadastroEndereco == null) {
-			buttonCadastroEndereco = new JButton("Cadastrar mais endere\u00E7os");
-			buttonCadastroEndereco.setBackground(new Color(135, 206, 250));
-			buttonCadastroEndereco.setFont(new Font("Arial", Font.PLAIN, 15));
-			buttonCadastroEndereco.setBounds(773, 296, 207, 30);
-		}
-		return buttonCadastroEndereco;
 	}
 	
 }

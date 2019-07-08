@@ -89,6 +89,14 @@ public class ValidacaoFornecedorPessoaFisica {
 			errosConcatenados += "Preencha o campo 'Email'!\n";
 			resultado = false;
 		}
+		if(fornecedor.getRamoAtividade().trim().equals("")) {
+			errosConcatenados += "Preencha o campo 'Ramo de Atividade'!\n";
+			resultado = false;
+		}
+		if(fornecedor.getFax().trim().equals("")) {
+			errosConcatenados += "Preencha o campo 'Fax'!\n";
+			resultado = false;
+		}
 		
 		if(resultado == true) {
 			return true;

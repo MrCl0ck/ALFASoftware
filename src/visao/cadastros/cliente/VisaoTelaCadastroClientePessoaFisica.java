@@ -351,7 +351,7 @@ public class VisaoTelaCadastroClientePessoaFisica extends JPanel {
 	}
 	public JLabel getLabelOrgaoExpeditor() {
 		if (labelOrgaoExpeditor == null) {
-			labelOrgaoExpeditor = new JLabel("\u00D3rg\u00E3o Expeditor:*");
+			labelOrgaoExpeditor = new JLabel("\u00D3rg\u00E3o Expedidor:*");
 			labelOrgaoExpeditor.setBackground(Color.WHITE);
 			labelOrgaoExpeditor.setForeground(Color.BLACK);
 			labelOrgaoExpeditor.setFont(new Font("Arial", Font.PLAIN, 16));

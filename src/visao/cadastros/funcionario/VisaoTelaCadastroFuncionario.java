@@ -235,7 +235,7 @@ public class VisaoTelaCadastroFuncionario extends JPanel {
 	}
 	public JLabel getLabelOrgoExpeditor() {
 		if (labelOrgoExpeditor == null) {
-			labelOrgoExpeditor = new JLabel("\u00D3rg\u00E3o Expeditor:*");
+			labelOrgoExpeditor = new JLabel("\u00D3rg\u00E3o Expedidor:*");
 			labelOrgoExpeditor.setFont(new Font("Arial", Font.PLAIN, 16));
 			labelOrgoExpeditor.setBounds(858, 50, 187, 20);
 		}

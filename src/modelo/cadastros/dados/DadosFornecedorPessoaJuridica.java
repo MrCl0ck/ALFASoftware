@@ -61,7 +61,7 @@ public class DadosFornecedorPessoaJuridica {
 						+ fornecedorJuridicoAtual.getCnpj() + "',telefone='" + fornecedorJuridicoAtual.getTelefone()
 						+ "',email='" + fornecedorJuridicoAtual.getEmail() + "',ramoatividade='"
 						+ fornecedorJuridicoAtual.getRamoAtividade() + "',fax='"
-						+ fornecedorJuridicoAtual.getFax() + "',telefone='" + fornecedorJuridicoAtual.getRepresentante()
+						+ fornecedorJuridicoAtual.getFax() + "',telefone='" + fornecedorJuridicoAtual.getTelefone()
 						+ "'");
 		
 		retornoFuncao = banco.atualizar("endereco", "id", idBusca, "cep='" + fornecedorJuridicoAtual.getCep() + "',logradouro='" + fornecedorJuridicoAtual.getLogradouro() + "',numero='" + fornecedorJuridicoAtual.getNumeroEndereco() + "',bairro='" + fornecedorJuridicoAtual.getBairro() + "',complemento='" + fornecedorJuridicoAtual.getComplemento() + "',cidade='" + fornecedorJuridicoAtual.getCidade() + "',uf='" + fornecedorJuridicoAtual.getUf_estado() + "'");

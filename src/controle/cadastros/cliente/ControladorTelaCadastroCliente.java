@@ -1039,7 +1039,7 @@ public class ControladorTelaCadastroCliente{
 	}
 	
 	public void tela_fisico() {
-		telaCliente.remove(2);
+		telaCliente.removePanel();
 		telaCliente.add(telaCliente.getTelaFisica());
 		limpar_campos_fisico();
 		campos_inicial_fisico();
