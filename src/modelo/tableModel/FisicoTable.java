@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import dao.Banco;
 import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 
 public class FisicoTable extends AbstractTableModel{

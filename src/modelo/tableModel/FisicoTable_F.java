@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import dao.Banco;
+import modelo.cadastros.funcionario.Cargo;
 import modelo.cadastros.funcionario.ModeloFuncionario;
 
 public class FisicoTable_F extends AbstractTableModel{
@@ -18,7 +20,7 @@ public class FisicoTable_F extends AbstractTableModel{
 			this.lista.add(funcionario);
 			fireTableDataChanged();
 		}	
-		
+				
 		public void remover_tabela(int linhaIndice) {
 			this.lista.remove(linhaIndice);
 			fireTableDataChanged();
