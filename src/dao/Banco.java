@@ -579,8 +579,8 @@ public class Banco {
 				modeloProduto.setLucro(resultado.getDouble("lucro"));
 				modeloProduto.setEstoqueMinimo(resultado.getInt("estoqueminimo"));
 				modeloProduto.setEstoqueMaximo(resultado.getInt("estoquemaximo"));
-				modeloProduto.setUnidade(toString().valueOf((resultado.getInt("UNIDADE_id"))));
-				modeloProduto.setTipo(toString().valueOf((resultado.getInt("TIPO_id"))));
+				modeloProduto.getUnidade().setId((resultado.getInt("UNIDADE_id")));
+				modeloProduto.getTipo().setId((resultado.getInt("TIPO_id")));
 				lista.add(modeloProduto);
 			}
 			this.fechar(0);

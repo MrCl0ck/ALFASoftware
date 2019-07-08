@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import dao.Banco;
+import modelo.cadastros.cliente.ModeloClientePessoaFisica;
 import modelo.cadastros.dados.DadosClientePessoaFisica;
 import modelo.cadastros.dados.DadosFuncionario;
 import modelo.cadastros.funcionario.Cargo;
@@ -545,11 +546,8 @@ public class ControladorFuncionario {
 				    	  if(validacao("Alterar")==true) {
 				    		  limpar_campos();
 				    		  campos_bool(false);
-				    		  buttons_inc_alt();
-				    		  tela.get_busca_table_model(true).fireTableDataChanged();
-				    		  tela.repaint();
-				    		  tela.validate();
-				    		  //tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));
+				    		  buttons_inc_alt();				    		  
+				    		  tela.getTelaPesquisa().getJTableDados().setModel(tela.get_busca_table_model(false));
 				    	  }
 				      }
 				}
@@ -563,6 +561,7 @@ public class ControladorFuncionario {
 				    	  capturar_campos();
 				    	  if(validacao("Incluir")==true) {
 				    		  limpar_campos();
+				    		  campos_bool(false);
 				    		  buttons_inicial();
 				    	  }
 				      }
@@ -573,32 +572,32 @@ public class ControladorFuncionario {
 		});
 	}
 	
-	private void atribuicao_busca_campos(ModeloFuncionario funcionario_exibicao) {
-		tela.getValidacaoJTextFieldNome().setText(funcionario_exibicao.getNome());
-		tela.getFormattedTextFieldCPF().setText(funcionario_exibicao.getCpf());
-		tela.getValidacaoJTextFieldRG().setText(funcionario_exibicao.getRg());
-		tela.getComboBoxEstadoRG().setSelectedItem(funcionario_exibicao.getUfRg());
-		tela.getValidacaoJTextFieldOrgaoExpeditor().setText(funcionario_exibicao.getOrgaoExpeditor());
-		tela.getValidacaoJTextFieldNacionalidade().setText(funcionario_exibicao.getNacionalidade());
-		tela.getValidacaoJTextFieldNaturalidade().setText(funcionario_exibicao.getNaturalidade());
-		tela.getFormattedTextFieldDataNascimento().setText(funcionario_exibicao.getDataDeNascimento());
-		tela.getComboBoxSexo().setSelectedItem(funcionario_exibicao.getSexo());
-		tela.getFormattedTextFieldTelefone().setText(funcionario_exibicao.getTelefone());
-		tela.getValidacaoTextFieldEmail().setText(funcionario_exibicao.getEmail());
-		tela.getTextFieldCtps().setText(funcionario_exibicao.getCtps());
-		tela.getFormattedTextFieldDataAdmissao().setText(funcionario_exibicao.getDataDeAdmissao());
-		tela.getComboBoxCargo().setSelectedItem(funcionario_exibicao.getCargo());
-		tela.getValidacaoTextFieldSetor().setText(funcionario_exibicao.getSetor());
-		tela.getValidacaoTextFieldSalario().setText(String.valueOf(funcionario_exibicao.getSalario()));
-		tela.getTextFieldNomeUsuario().setText(funcionario_exibicao.getNomeDeUsuario());
-		tela.getPasswordFieldSenhaUsuario().setText(funcionario_exibicao.getSenha());
-		tela.getFormattedTextFieldCEP().setText(funcionario_exibicao.getCep());
-		tela.getValidacaoJTextFieldLogradouro().setText(funcionario_exibicao.getLogradouro());
-		tela.getValidacaoJTextFieldComplemento().setText(funcionario_exibicao.getComplemento());
-		tela.getValidacaoJTextFieldNumero().setText(funcionario_exibicao.getNumeroEndereco());
-		tela.getValidacaoJTextFieldBairro().setText(funcionario_exibicao.getBairro());
-		tela.getValidacaoJTextFieldCidade().setText(funcionario_exibicao.getCidade());
-		tela.getComboBoxEstadoEndereco().setSelectedItem(funcionario_exibicao.getUf_estado());
+	private void atribuicao_busca_campos(ModeloFuncionario funcionario) {
+		tela.getValidacaoJTextFieldNome().setText(funcionario.getNome());
+		tela.getFormattedTextFieldCPF().setText(funcionario.getCpf());
+		tela.getValidacaoJTextFieldRG().setText(funcionario.getRg());
+		tela.getComboBoxEstadoRG().setSelectedItem(funcionario.getUfRg());
+		tela.getValidacaoJTextFieldOrgaoExpeditor().setText(funcionario.getOrgaoExpeditor());
+		tela.getValidacaoJTextFieldNacionalidade().setText(funcionario.getNacionalidade());
+		tela.getValidacaoJTextFieldNaturalidade().setText(funcionario.getNaturalidade());
+		tela.getFormattedTextFieldDataNascimento().setText(funcionario.getDataDeNascimento());
+		tela.getComboBoxSexo().setSelectedItem(funcionario.getSexo());
+		tela.getFormattedTextFieldTelefone().setText(funcionario.getTelefone());
+		tela.getValidacaoTextFieldEmail().setText(funcionario.getEmail());
+		tela.getTextFieldCtps().setText(funcionario.getCtps());
+		tela.getFormattedTextFieldDataAdmissao().setText(funcionario.getDataDeAdmissao());
+		tela.getComboBoxCargo().setSelectedItem(funcionario.getCargo());
+		tela.getValidacaoTextFieldSetor().setText(funcionario.getSetor());
+		tela.getValidacaoTextFieldSalario().setText(String.valueOf(funcionario.getSalario()));
+		tela.getTextFieldNomeUsuario().setText(funcionario.getNomeDeUsuario());
+		tela.getPasswordFieldSenhaUsuario().setText(funcionario.getSenha());
+		tela.getFormattedTextFieldCEP().setText(funcionario.getCep());
+		tela.getValidacaoJTextFieldLogradouro().setText(funcionario.getLogradouro());
+		tela.getValidacaoJTextFieldComplemento().setText(funcionario.getComplemento());
+		tela.getValidacaoJTextFieldNumero().setText(funcionario.getNumeroEndereco());
+		tela.getValidacaoJTextFieldBairro().setText(funcionario.getBairro());
+		tela.getValidacaoJTextFieldCidade().setText(funcionario.getCidade());
+		tela.getComboBoxEstadoEndereco().setSelectedItem(funcionario.getUf_estado());
 	}
 	
 	private boolean validacao(String string) {
@@ -773,7 +772,11 @@ public class ControladorFuncionario {
 				int linhaSelecionada = tela.getTelaPesquisa().getJTableDados().getSelectedRow();
 				if (tela.getTelaPesquisa().getJTableDados().getSelectedRow() != -1) {
 					tela.getLabelCadastroDeFuncionrio().setText(" Cadastro de Funcionário - Alterar");
-					atribuicao_busca_campos(tela.get_busca_table_model(true).getFuncionario(linhaSelecionada));
+					
+					funcionario_antigo = new ModeloFuncionario();
+					funcionario_antigo = tela.get_busca_table_model(true).getFuncionario(linhaSelecionada);
+					
+					atribuicao_busca_campos(funcionario_antigo);
 					campos_bool(true);
 					buttons_inc_alt();					
 				}

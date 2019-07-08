@@ -47,6 +47,8 @@ public class VisaoTelaCadastroProduto extends JPanel {
 	private JButton buttonAlterarTipo		  = null;
 	private JButton buttonAdicionarTipo		  = null;
 	private JButton buttonRemoverTipo		  = null;
+	private JLabel lblQuantidade;
+	private ValidacaoGeralCamposTexto txtQuantidade;
 	
 	public VisaoTelaCadastroProduto() {
 		setLayout(null);
@@ -84,6 +86,8 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		add(getButtonAlterarTipo());
 		add(getButtonAdicionarTipo());
 		add(getButtonRemoverTipo());
+		add(getLblQuantidade());
+		add(getTxtQuantidade());
 	}
 	public VisaoTelaPesquisa getTelaPesquisa() {
 		if(telaPesquisa == null) {
@@ -185,7 +189,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		if (labelEstoqueMaximo == null) {
 			labelEstoqueMaximo = new JLabel("Estoque máximo:*");
 			labelEstoqueMaximo.setFont(new Font("Arial", Font.PLAIN, 16));
-			labelEstoqueMaximo.setBounds(470, 283, 181, 20);
+			labelEstoqueMaximo.setBounds(349, 283, 181, 20);
 		}
 		return labelEstoqueMaximo;
 	}
@@ -302,7 +306,7 @@ public class VisaoTelaCadastroProduto extends JPanel {
 		if (textFieldEstoqueMaximo == null) {
 			textFieldEstoqueMaximo = new ValidacaoGeralCamposTexto("3");
 			textFieldEstoqueMaximo.setFont(new Font("Arial", Font.PLAIN, 16));
-			textFieldEstoqueMaximo.setBounds(470, 303, 230, 20);
+			textFieldEstoqueMaximo.setBounds(349, 303, 230, 20);
 			textFieldEstoqueMaximo.setColumns(10);
 		}
 		return textFieldEstoqueMaximo;
@@ -360,5 +364,22 @@ public class VisaoTelaCadastroProduto extends JPanel {
 			buttonRemoverTipo.setBounds(747, 246, 41, 23);
 		}
 		return buttonRemoverTipo;
+	}
+	private JLabel getLblQuantidade() {
+		if (lblQuantidade == null) {
+			lblQuantidade = new JLabel("Quantidade:*");
+			lblQuantidade.setFont(new Font("Arial", Font.PLAIN, 16));
+			lblQuantidade.setBounds(662, 280, 125, 20);
+		}
+		return lblQuantidade;
+	}
+	private ValidacaoGeralCamposTexto getTxtQuantidade() {
+		if (txtQuantidade == null) {
+			txtQuantidade = new ValidacaoGeralCamposTexto("3");
+			txtQuantidade.setFont(new Font("Arial", Font.PLAIN, 16));
+			txtQuantidade.setBounds(661, 303, 105, 20);
+			txtQuantidade.setColumns(10);
+		}
+		return txtQuantidade;
 	}
 }

@@ -1,6 +1,5 @@
 package modelo.cadastros.produto;
 
-import java.util.ArrayList;
 
 public class ModeloProduto {
 	
@@ -10,11 +9,10 @@ public class ModeloProduto {
 	private double valorDaCompra;
 	private double valorDaVenda;
 	private double lucro;
-	private String unidade;
-	private String tipo;
+	private Unidade unidade;
+	private Tipo tipo;
 	private int estoqueMinimo;
 	private int estoqueMaximo;
-	//private int quantidade;
 
 	public String getCodigo() {
 		return codigo;
@@ -64,21 +62,20 @@ public class ModeloProduto {
 		this.lucro = lucro;
 	}
 
-	public String getUnidade() {
+	public Unidade getUnidade() {
+		if(unidade==null) {
+			unidade = new Unidade();
+		}			
 		return unidade;
 	}
 
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
-	}
-
-	public String getTipo() {
+	public Tipo getTipo() {		
+		if(tipo==null) {
+			tipo = new Tipo();
+		}			
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public int getEstoqueMinimo() {
 		return estoqueMinimo;

@@ -69,11 +69,11 @@ public class ValidacaoProduto {
 				resultado = false;
 			}
 			if(produto.getEstoqueMinimo() == -1) {
-				errosConcatenados += "Preencha o campo 'Órgão Expeditor'!\n";
+				errosConcatenados += "Preencha o campo 'Estoque Mínimo'!\n";
 				resultado = false;
 			}
-			if(produto.getLucro() == -1) {
-				errosConcatenados += "Preencha o campo 'Nacionalidade'!\n";
+			if(produto.getEstoqueMaximo() == -1) {
+				errosConcatenados += "Preencha o campo 'Estoque Máximo'!\n";
 				resultado = false;
 			}
 			
