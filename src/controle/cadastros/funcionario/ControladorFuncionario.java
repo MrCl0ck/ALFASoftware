@@ -202,18 +202,18 @@ public class ControladorFuncionario {
 				if (opcao==1) {
 					String id = "";
 					for (int i = 0; i < cargo.size(); i++) {
-						if(cargo.get(i).getNomeCargo() == cargo_removido) {
+						if(cargo.get(i).getNomeCargo().equals(cargo_removido)) {
 							id = String.valueOf(cargo.get(i).getId());
 							break;
 						}
 					}					
 					//ERRO AO EXCLUIR O CARGO
-//					if (banco.excluir("cargo", "id", id)) {
-//						tela.getComboBoxCargo().removeItem(cargo_removido);
-//					}
-//					else{
-//						System.out.println("Erro ao remover cargo...");
-//					}
+					if (banco.excluir("cargo", "id", id)) {
+						tela.getComboBoxCargo().removeItem(cargo_removido);
+					}
+					else{
+						System.out.println("Erro ao remover cargo...");
+					}
 				}
 			      
 			}		
@@ -586,7 +586,7 @@ public class ControladorFuncionario {
 		tela.getValidacaoTextFieldEmail().setText(funcionario.getEmail());
 		tela.getTextFieldCtps().setText(funcionario.getCtps());
 		tela.getFormattedTextFieldDataAdmissao().setText(funcionario.getDataDeAdmissao());
-		tela.getComboBoxCargo().setSelectedItem(funcionario.getCargo());
+		tela.getComboBoxCargo().setSelectedItem(funcionario.getCargo().getNomeCargo());
 		tela.getValidacaoTextFieldSetor().setText(funcionario.getSetor());
 		tela.getValidacaoTextFieldSalario().setText(String.valueOf(funcionario.getSalario()));
 		tela.getTextFieldNomeUsuario().setText(funcionario.getNomeDeUsuario());
@@ -835,7 +835,7 @@ public class ControladorFuncionario {
 			for (int i = 0; i < funcionario_banco.getFuncionarios().size(); i++) {
 				if(funcionario_banco.getFuncionarios().get(i).getNome().contains(val_b)) {
 					for (int j = 0; j < banco.consultarEndereco().size(); j++) {
-						if (banco.consultarEndereco().get(j).getId_endereco() == banco.consultarClienteFisico().get(i).getId_endereco()) {
+						if (banco.consultarEndereco().get(j).getId_endereco() == banco.consultarFuncionario().get(i).getId_endereco()) {
 							funcionario = funcionario_banco.getFuncionarios().get(i);
 							funcionario.setBairro(banco.consultarEndereco().get(j).getBairro());
 							funcionario.setCep(banco.consultarEndereco().get(j).getCep());
@@ -844,8 +844,10 @@ public class ControladorFuncionario {
 							funcionario.setComplemento(banco.consultarEndereco().get(j).getComplemento());
 							funcionario.setCidade(banco.consultarEndereco().get(j).getCidade());
 							funcionario.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
+							
 							tela.get_busca_table_model(true).add_tabela(funcionario);
 						}
+						
 					}
 				}				
 			}

@@ -544,6 +544,7 @@ public class Banco {
 				modeloFuncionario.setCtps(resultado.getString("ctps"));
 				modeloFuncionario.setDataDeAdmissao(resultado.getString("dataadmissao"));
 				modeloFuncionario.getCargo().setId((resultado.getInt("CARGO_id")));;
+				modeloFuncionario.getCargo().setNomeCargo((resultado.getString("cargo")));
 				modeloFuncionario.setSetor(resultado.getString("setor"));
 				modeloFuncionario.setSalario(resultado.getFloat("salario"));
 				modeloFuncionario.setNomeDeUsuario(resultado.getString("usuario"));
@@ -564,7 +565,7 @@ public class Banco {
 	@SuppressWarnings("static-access")
 	public ArrayList<ModeloProduto> consultarProduto() {
 		ArrayList<ModeloProduto> lista = new ArrayList<ModeloProduto>();
-		String sql = "SELECT * FROM funcionario";
+		String sql = "SELECT * FROM produto";
 		conexao = this.abrir(0);
 		try {
 			consulta = conexao.createStatement();
@@ -615,7 +616,7 @@ public class Banco {
 	
 	public ArrayList<Unidade> consultarUnidade() {
 		ArrayList<Unidade> lista = new ArrayList<Unidade>();
-		String sql = "SELECT * FROM endereco";
+		String sql = "SELECT * FROM unidade";
 		conexao = this.abrir(0);
 		try {
 			consulta = conexao.createStatement();
@@ -637,7 +638,7 @@ public class Banco {
 	
 	public ArrayList<Tipo> consultarTipo() {
 		ArrayList<Tipo> lista = new ArrayList<Tipo>();
-		String sql = "SELECT * FROM endereco";
+		String sql = "SELECT * FROM tipo";
 		conexao = this.abrir(0);
 		try {
 			consulta = conexao.createStatement();

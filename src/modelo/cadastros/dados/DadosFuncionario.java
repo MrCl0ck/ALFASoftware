@@ -81,7 +81,7 @@ public class DadosFuncionario {
 						+ "',email='" + funcionarioAtual.getEmail() + "',dataexpedicao='"
 						+ funcionarioAtual.getDataExpedicaoRg() + "',nacionalidade='" + funcionarioAtual.getNacionalidade() 
 						+ "',naturalidade='" + funcionarioAtual.getNaturalidade() + "',ctps='" + funcionarioAtual.getCtps()
-						+ "',dataadmissao='" + funcionarioAtual.getDataDeAdmissao() + "',setor='" + funcionarioAtual.getSetor()
+						+ "',dataadmissao='" + funcionarioAtual.getDataDeAdmissao() +"',cargo='" +funcionarioAtual.getCargo().getNomeCargo() +"',setor='" + funcionarioAtual.getSetor()
 						+ "',salario='" + funcionarioAtual.getSalario() + "',usuario='" + funcionarioAtual.getNomeDeUsuario() 
 						+ "',senha='" + funcionarioAtual.getSenha() +  "'");
 
@@ -92,7 +92,7 @@ public class DadosFuncionario {
 						+ "',cidade='" + funcionarioAtual.getCidade() + "',uf='"
 						+ funcionarioAtual.getUf_estado() + "'");
 		
-		retornoFuncao = banco.atualizar("cargo", "id", idBuscaCargo,"nome='" + funcionarioAtual.getCargo().getNomeCargo() +  "'");
+		//retornoFuncao = banco.atualizar("cargo", "id", idBuscaCargo,"nome='" + funcionarioAtual.getCargo().getNomeCargo() +  "'");
 
 		if (retornoFuncao == true) {
 			JOptionPane.showMessageDialog(null, "Alteração do registro de funcionário feita com sucesso!", "Alteração",

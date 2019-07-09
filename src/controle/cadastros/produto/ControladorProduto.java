@@ -136,32 +136,146 @@ public class ControladorProduto {
 	}
 
 	private void getAlterarTipo() {
-		// 
-		
+		tela.getButtonAlterarTipo().addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String tipo_antigo = tela.getComboBoxTipo().getSelectedItem().toString();
+				String novo_tipo = JOptionPane.showInputDialog(null, "Insira o novo nome do tipo: ", "Alterar Tipo", JOptionPane.WARNING_MESSAGE);
+				
+				if(novo_tipo != null && novo_tipo.trim().isEmpty() == false && novo_tipo != tipo_antigo && !tipo_antigo.equals("Selecione")
+						&& !novo_tipo.equals("Selecione")) {	    	  
+					
+					if(banco.atualizar("tipo", "nome", tipo_antigo,"nome='" + novo_tipo +  "'") == true) {
+						tela.getComboBoxTipo().removeItem(tipo_antigo);
+						tela.getComboBoxTipo().addItem(novo_tipo);
+						tela.getComboBoxTipo().setSelectedItem(novo_tipo);
+					}
+					else {
+						System.out.println("Erro ao atualizar tipo...");
+					}			    	  
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Preencha o campo corretamente!", "Info", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+		});
 	}
 
 	private void getMenosTipo() {
-		// 
+		tela.getButtonRemoverTipo().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		}); 
 		
 	}
 
 	private void getMaisTipo() {
-		// 
-		
+		tela.getButtonAdicionarTipo().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String novo_tipo = JOptionPane.showInputDialog(null, "Insira o nome do novo tipo: ", "Adicionar Tipo", JOptionPane.WARNING_MESSAGE);
+				
+				if(novo_tipo != null && novo_tipo.trim().isEmpty() == false && !novo_tipo.equals("Selecione")) {
+					boolean achou = false;
+					
+					for (int i = 0; i < tela.getComboBoxTipo().getItemCount(); i++) {
+						if (novo_tipo.equals(tela.getComboBoxTipo().getItemAt(i).toString())) {
+							achou = true;
+							break;
+						}
+					}
+					
+					if(achou == false) {
+						tela.getComboBoxTipo().addItem(novo_tipo);
+						tela.getComboBoxTipo().setSelectedItem(novo_tipo);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Esse tipo já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}		
+				
+			}
+		});
 	}
 
 	private void getAlterarUnidade() {
-		// 
-		
+		tela.getButtonAlterarUnidade().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String unidade_antigo = tela.getComboBoxUnidade().getSelectedItem().toString();
+				String novo_unidade = JOptionPane.showInputDialog(null, "Insira o novo nome do unidade: ", "Alterar Unidade", JOptionPane.WARNING_MESSAGE);
+				
+				if(novo_unidade != null && novo_unidade.trim().isEmpty() == false && novo_unidade != unidade_antigo && !unidade_antigo.equals("Selecione")
+						&& !novo_unidade.equals("Selecione")) {
+					
+					
+					if(banco.atualizar("unidade", "nome", unidade_antigo,"nome='" + novo_unidade +  "'") == true) {
+						tela.getComboBoxUnidade().removeItem(unidade_antigo);
+						tela.getComboBoxUnidade().addItem(novo_unidade);
+						tela.getComboBoxUnidade().setSelectedItem(novo_unidade);
+					}
+					else {
+						System.out.println("Erro ao atualizar unidade...");
+					}			    	  
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Preencha o campo corretamente!", "Info", JOptionPane.INFORMATION_MESSAGE);
+				}			
+			}
+		});
 	}
 
 	private void getMenosUnidade() {
-		// 
+		tela.getButtonRemoverUnidade().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 
 	private void getMaisUnidade() {
-		// 
+		tela.getButtonAdicionarUnidade().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String novo_unidade = JOptionPane.showInputDialog(null, "Insira o nome do novo unidade: ", "Adicionar Unidade", JOptionPane.WARNING_MESSAGE);
+				
+				if(novo_unidade != null && novo_unidade.trim().isEmpty() == false && !novo_unidade.equals("Selecione")) {
+					boolean achou = false;
+					
+					for (int i = 0; i < tela.getComboBoxUnidade().getItemCount(); i++) {
+						if (novo_unidade.equals(tela.getComboBoxUnidade().getItemAt(i).toString())) {
+							achou = true;
+							break;
+						}
+					}
+					
+					if(achou == false) {
+						tela.getComboBoxUnidade().addItem(novo_unidade);
+						tela.getComboBoxUnidade().setSelectedItem(novo_unidade);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Esse unidade já existe!", "Info", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+			}
+		});
 		
 	}
 
@@ -690,7 +804,7 @@ public class ControladorProduto {
 			produto_antigo = tela.get_busca_table_model(true).getProduto(linhaSelecionada);
 			
 			Produto = new ValidacaoProduto(produto_atual);
-			id_end = banco .consultar("produto", "codigo" , produto_atual.getCodigo(), "ENDERECO_id");
+			id_end = banco.consultar("produto", "codigo" , produto_atual.getCodigo(), "codigo");
 			
 			if(Produto.isRes_val_geral() == true) {					
 				
@@ -768,19 +882,8 @@ public class ControladorProduto {
 			
 			for (int i = 0; i < Produto_banco.getProdutos().size(); i++) {
 				if(Produto_banco.getProdutos().get(i).getCodigo().contains(val_b)) {
-					for (int j = 0; j < banco.consultarEndereco().size(); j++) {
-						if (banco.consultarEndereco().get(j).getId_endereco() == banco.consultarClienteFisico().get(i).getId_endereco()) {
-							Produto = Produto_banco.getProdutos().get(i);
-							Produto.setBairro(banco.consultarEndereco().get(j).getBairro());
-							Produto.setCep(banco.consultarEndereco().get(j).getCep());
-							Produto.setLogradouro(banco.consultarEndereco().get(j).getLogradouro());
-							Produto.setNumeroEndereco(banco.consultarEndereco().get(j).getNumeroEndereco());
-							Produto.setComplemento(banco.consultarEndereco().get(j).getComplemento());
-							Produto.setCidade(banco.consultarEndereco().get(j).getCidade());
-							Produto.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-							tela.get_busca_table_model(true).add_tabela(Produto);
-						}
-					}
+					Produto = Produto_banco.getProdutos().get(i);
+					tela.get_busca_table_model(true).add_tabela(Produto);
 				}				
 			}
 			if(tela.get_busca_table_model(true).getRowCount() == 0) {
@@ -796,20 +899,9 @@ public class ControladorProduto {
 			ModeloProduto Produto = new ModeloProduto();
 			
 			for (int i = 0; i < Produto_banco.getProdutos().size(); i++) {
-				if(Produto_banco.getProdutos().get(i).getCpf().contains(val_b)) {
-					for (int j = 0; j < banco.consultarEndereco().size(); j++) {
-						if (banco.consultarEndereco().get(j).getId_endereco() == banco.consultarClienteFisico().get(i).getId_endereco()) {
-							Produto = Produto_banco.getProdutos().get(i);
-							Produto.setBairro(banco.consultarEndereco().get(j).getBairro());
-							Produto.setCep(banco.consultarEndereco().get(j).getCep());
-							Produto.setLogradouro(banco.consultarEndereco().get(j).getLogradouro());
-							Produto.setNumeroEndereco(banco.consultarEndereco().get(j).getNumeroEndereco());
-							Produto.setComplemento(banco.consultarEndereco().get(j).getComplemento());
-							Produto.setCidade(banco.consultarEndereco().get(j).getCidade());
-							Produto.setUf_estado(banco.consultarEndereco().get(j).getUf_estado());
-							tela.get_busca_table_model(true).add_tabela(Produto);
-						}
-					}
+				if(Produto_banco.getProdutos().get(i).getCodigoDeBarras().contains(val_b)) {
+					Produto = Produto_banco.getProdutos().get(i);
+					tela.get_busca_table_model(true).add_tabela(Produto);
 				}				
 			}	
 			if(tela.get_busca_table_model(true).getRowCount() == 0) {
